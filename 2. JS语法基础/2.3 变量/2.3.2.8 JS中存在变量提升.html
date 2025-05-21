@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- <script>
+      console.log(a); // Uncaught ReferenceError: a is not defined
+    </script> -->
+    <script>
+      console.log(a); // undefined
+      var a = 1;
+
+      /* 会转化为以下代码，再运行，所以所以才不会报错
+        var a;
+        console.log(a);
+        a = 1; 
+      */
+    </script>
+    <script>
+      console.log(a); // 1
+    </script>
+  </body>
+</html>

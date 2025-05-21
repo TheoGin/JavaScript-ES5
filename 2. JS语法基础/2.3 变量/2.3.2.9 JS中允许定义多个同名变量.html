@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var a = 1;
+      console.log(a); // 1
+      
+      var a = 2;
+      console.log(a); // 2
+
+      /* 会转化为以下代码，再运行，所以才不会报错
+        var a; // 进行了合并
+        a = 1;
+        console.log(a); // 1
+      
+        a = 2;
+        console.log(a); // 2
+      */
+    </script>
+  </body>
+</html>
