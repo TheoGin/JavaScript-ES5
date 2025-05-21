@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var obj = {};
+      console.log(obj.a); // 属性与变量不同，属性不存在不会报错，会得到undefined
+
+      var obj2;
+      // console.log(obj2.a); // Uncaught TypeError: Cannot read properties of undefined (reading 'a')
+
+      var obj3 = null;
+      console.log(obj3.a); // Uncaught TypeError: Cannot read properties of null (reading 'a')
+    </script>
+  </body>
+</html>

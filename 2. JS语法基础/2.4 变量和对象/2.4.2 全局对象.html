@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // window.可以省略
+      window.console.log("abc");
+      window.alert("abc");
+      window.document.write("abc");
+
+      var a;
+      console.log(window); // window: { a: undefined, ...} 因为，window之前没有属性a，a成为了window对象的属性
+
+      var console;
+      console.log(console); // console {debug: ƒ, error: ƒ, info: ƒ, log: ƒ, warn: ƒ, …} 由于，console没有赋值，因此，没有覆盖window的属性console
+
+      var console = undefined; // window: { name: "undefined" }， undefined会被转换为字符串
+      alert(window.console); // undefined 由于，console有赋值，因此，覆盖了window的属性console
+
+      // 例外：window: { name: "" }
+      console.log(name); // 打印空字符串
+      console.log(typeof name); // string（因为属性名的类型为string）
+
+      // why?
+      var name = null; // name属性比较特殊，赋值的任何内容，都会被转换为字符串
+      // window: { name: "null" }， null会被转换为字符串
+      console.log(name); // null
+      console.log(typeof name); // string
+      console.log(window);
+
+      var alert = undefined;
+      console.log(typeof alert); // undefined
+    </script>
+  </body>
+</html>

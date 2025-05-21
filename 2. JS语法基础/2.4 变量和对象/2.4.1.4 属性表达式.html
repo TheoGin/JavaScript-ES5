@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var sophoboy = {
+        name: "Sophoboy",
+        age: 18,
+        gender: "男",
+        girlfriend: {
+          name: "Sophogirl",
+          age: 18,
+          gender: "女",
+        },
+      };
+
+      var prop = "name";
+      console.log(sophoboy[prop]);
+
+      console.log(sophoboy.age);
+      console.log(sophoboy["age"]);
+
+      var obj = {
+        name: "theo",
+        "ds dsaio ewa": "abc", // 只能通过属性表达式读取值
+      };
+      console.log(obj["ds dsaio ewa"]); // abc
+
+      var obj2 = {
+        0: "dsa",
+      };
+      console.log(obj2[0]);
+
+      var obj = {};
+      // 属性的名字只能是字符串，如果你书写的是数字，会自动转换为字符串
+      obj[0] = "abc"; // {  "0": "abc" }
+      obj["0"] = "bcd"; // { "0": "bcd" }
+      console.log(obj[0]); // bcd
+      console.log(obj["0"]); // "bcd"
+    </script>
+  </body>
+</html>

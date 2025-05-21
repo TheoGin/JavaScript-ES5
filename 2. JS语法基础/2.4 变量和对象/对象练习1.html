@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var sophoboy = {
+        name: "Sophoboy",
+        age: 18,
+        gender: "男",
+        girlfriend: {
+          name: "Sophogirl",
+          age: 18,
+          gender: "女",
+        },
+      };
+
+      var jack = {
+        name: "Jack",
+        age: 18,
+        gender: "男",
+        girlfriend: sophoboy.girlfriend,
+      };
+
+      console.log(sophoboy.girlfriend.name);
+      console.log(jack.girlfriend.name);
+
+      // delete jack.girlfriend; // 属性名和属性值都删除
+      jack.girlfriend = undefined; // 属性名还存在，只是属性值变为undefined
+      console.log(jack);
+    </script>
+  </body>
+</html>
