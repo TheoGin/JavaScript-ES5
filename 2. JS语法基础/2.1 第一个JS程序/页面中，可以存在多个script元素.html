@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- 页面中，可以存在多个script元素，执行顺序从上到下 -->
+    <script>
+      document.write(1);
+    </script>
+
+    <!-- script元素有一个可选的属性，type，该属性用于指定代码的类型，该属性值是MIME格式 -->
+    <script src="./script/外部的js文件.js" type="text/javascript">
+      document.write(2);
+    </script>
+
+    <script>
+      // 如果一个script元素引用了外部文件，内部不能书写任何代码
+      document.write(3); // 无效代码
+    </script>
+  </body>
+</html>
