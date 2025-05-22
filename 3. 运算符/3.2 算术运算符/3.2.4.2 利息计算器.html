@@ -7,14 +7,25 @@
   </head>
   <body>
     <script>
-      // 设置变量，分别存放本金、月数、年利率，计算利息
-      var principal = 10000; // 本金
-      var month = 12; // 月数
-      var yearRate = 1.1; // 年利率
+      // // 设置变量，分别存放本金、月数、年利率，计算利息
+      // var principal = 10000; // 本金
+      // var month = 12; // 月数
+      // var yearRate = 1.1; // 年利率
 
-      // 利息=本金×利率×时间（存期）‌
-      var interest = principal * month * yearRate; // 利息
-      console.log(interest);
+      // // 利息=本金×利率×时间（存期）‌
+      // 错误写法
+      // var interest = principal * month * yearRate; // 利息
+      // console.log(interest);
+
+      /**
+       *  一年的利息 = 本金 × 利率（如果单位是百分比，需要除以100）
+       * 一个月的利息 = 本金 × 利率 / 12
+       */
+      var money = 10000,
+        month = 3,
+        rate = 5.6; //利率百分比：:3.6%
+      var earnMoney = money * rate / 100 / 12 * month;
+      console.log(`本金：${money}, 存储月数：${month}, 年利率${rate}, 赚取利息：${earnMoney}`);
       
     </script>
   </body>
