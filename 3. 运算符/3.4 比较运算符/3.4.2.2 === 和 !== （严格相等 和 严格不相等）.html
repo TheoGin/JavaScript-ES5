@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <script>
+      // === ： 两端的数据和类型必须相同
+      // 2. 两端类型不同，为false。
+      console.log(1 === true); // false
+      console.log(null == undefined); // true
+      console.log(null === undefined); // false
+      console.log(null === undefined); // false
+
+      // 1). NaN与任何数字比较，都是false，包括自身
+      console.log(NaN === NaN); // false
+
+      // 2). Infinity和-Infinity，自能和自身相等
+      console.log(Infinity === Infinity); // true
+      console.log(-Infinity === -Infinity); // true
+    </script>
+  </body>
+</html>

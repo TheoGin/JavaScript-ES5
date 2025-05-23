@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      console.log("1" >= 10); // （易错）如果一个不是字符串，并且两个都是原始类型，将它们都转换为数字进行比较，1 > 10，false
+      console.log("2" > true); // 2 > 1，true
+      // NaN与任何数字比较，得到的结果都是false
+      console.log(NaN > 0); // false
+      console.log(NaN >= NaN); // false
+      console.log(3 > {}); // 3 > NaN，false
+      console.log(null > -1); // 0 > -1，true
+      console.log(undefined > -1); // NaN > -1，false
+
+      // Infinity比任何数字都大
+      console.log(Infinity > 999999999999999); // true
+
+      // -Infinity比任何数字都小
+      console.log(-Infinity < -999999999999999); // true
+    </script>
+  </body>
+</html>
