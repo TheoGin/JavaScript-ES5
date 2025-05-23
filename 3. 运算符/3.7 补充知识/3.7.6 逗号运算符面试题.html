@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <script>
+      var x = 1;
+      // 从左到右进行，调步就会出错
+      // x = x++ * 2, x++ * 2, x++ * 2; // 4
+      x = (x++ * 2, x++ * 2, x++ * 2);  // 6
+      console.log(x);
+    </script>
+  </body>
+</html>

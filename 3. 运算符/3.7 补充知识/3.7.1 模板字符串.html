@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <script>
+      var user = {
+        age: 18,
+        name: "Sophotheo",
+        gender: "男",
+      };
+
+      // 输出： 我叫xxx，今年xxx岁了，性别是xxx，目前已成年（未成年）
+      console.log(
+        "我叫" +
+          user.name +
+          "，今年" +
+          user.age +
+          "岁了，性别是" +
+          user.gender +
+          "，目前" +
+          user.age >= 18 ? "已成年" : "未成年"
+      ); 
+      // user.age >= 18 ? "已成年" : "未成年"要用括号括起来，不然就会把全面一整个当成字符串，那就是 字符串 >=18，NaN >= 18，就是false，输出未成年
+      console.log(
+        "我叫" +
+          user.name +
+          "，今年" +
+          user.age +
+          "岁了，性别是" +
+          user.gender +
+          "，目前" +
+          (user.age >= 18 ? "已成年" : "未成年")
+      );
+
+      console.log(
+        `我叫${user.name}，今年${user.age}岁了，性别是${user.gender}，目前${
+          user.age >= 18 ? "已成年" : "未成年"
+        }`
+      );
+    </script>
+  </body>
+</html>
