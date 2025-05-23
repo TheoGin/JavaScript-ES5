@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <script>
+      var x = 1;
+      var y = x + x++ * ++x; // （易错）                    // 4
+      // var y = x++ + ++x + x++ * ++x + ++x;              // 25
+      // var y = x + ++x * ++x + x;                        // 10
+      // var y = x + x++ * (x = x + x++ * ++x) + x;        // 21
+      console.log(y);
+    </script>
+  </body>
+</html>
