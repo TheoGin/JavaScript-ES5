@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 用一个变量保存年份，得到该年份2月的天数
+      var year = 2020;
+      var isLeapYear = (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
+      var days = isLeapYear ? 29 : 28;
+      console.log("2月的天数：" + days);
+    </script>
+  </body>
+</html>
