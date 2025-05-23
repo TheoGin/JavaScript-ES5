@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+        var year = 2025;
+        var isLeapYear = year % 4 === 0 && year % 100 !== 0 || year % 400 === 0;
+        console.log(isLeapYear && '闰年' || '平年');
+        // 或者
+        isLeapYear && console.log('闰年');
+        isLeapYear || console.log('平年');
+        
+    </script>
+  </body>
+</html>

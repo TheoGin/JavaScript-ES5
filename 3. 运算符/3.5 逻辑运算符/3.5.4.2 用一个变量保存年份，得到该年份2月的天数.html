@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 2. 用一个变量保存年份，得到该年份2月的天数
+      var year = 2025;
+      var isLeapYear = (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
+      isLeapYear && console.log(29 + "天"); // 闰年
+      isLeapYear || console.log(28 + "天"); // 平年
+      // !isLeapYear && console.log(28 + "天"); // 也可以这样写
+    </script>
+  </body>
+</html>

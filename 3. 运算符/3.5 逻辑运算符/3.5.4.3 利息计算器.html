@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // - 设置变量，分别存放本金、月数、年利率，计算利息
+      // - 如果本金存放量超过了10万，年利率上浮20%（比如，年利率为4%，上浮后的年利率 4% * 1.2）
+      var money = 200000,
+        month = 12,
+        rate = 4; // 利率百分比
+      money >= 100000 && (rate = rate * 1.2);
+      console.log(money * rate / 100 / 12 * month);
+    </script>
+  </body>
+</html>
