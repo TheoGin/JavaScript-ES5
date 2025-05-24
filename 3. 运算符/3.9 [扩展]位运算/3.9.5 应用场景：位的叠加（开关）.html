@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <script>
+      //保存了所有可能的权限
+      var permission = {
+        read:   0b001, // 读权限
+        write:  0b010, // 写（修改）权限
+        create: 0b100, // 创建权限
+      }
+
+      // 可读可写
+      var userPermission = permission.create | permission.write;
+
+      // 去掉可读权限
+      // userPermission = userPermission ^ permission.read;
+      // 110 ^ 001 = 111，上面写法，当原先没有可读的时候，又变成添加权限，所以不管有没有读权限，一开始都加上，再去除就不会有问题
+      userPermission = userPermission | permission.read ^ permission.read;
+
+      // 判断是否可读
+      // p: 011  & 001  = 001
+      // var isReadable = userPermission & permission.read === permission.read;
+      // isReadable && console.log("可读");
+      // !isReadable && console.log("不可读");
+      userPermission & permission.read === permission.read ? console.log("可读") : console.log("不可读");
+    </script>
+  </body>
+</html>

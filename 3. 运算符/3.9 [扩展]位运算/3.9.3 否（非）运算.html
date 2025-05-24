@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <script>
+      //  1 ：0000 0000 0000 0000 0000 0000 0000 0001
+      // =
+      // 取反：1111 1111 1111 1111 1111 1111 1111 1110（补码）
+      // 原码：1000 0000 0000 0000 0000 0000 0000 0010（补码变回原码）
+      // -2
+      console.log(~1); // 或者通过 取反的快速运算：-数字 - 1，如 ~1，就是-1 - 1 = -2
+
+      // 快速取整
+      // ~~3.65645 = ~~3 = ~-4 = 3（通过 取反的快速运算计算）
+      console.log(~~3.65645); // 3
+    </script>
+  </body>
+</html>
