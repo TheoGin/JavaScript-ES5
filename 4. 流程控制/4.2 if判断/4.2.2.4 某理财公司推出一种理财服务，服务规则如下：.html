@@ -18,17 +18,32 @@
       if (isNaN(money) || isNaN(year)) {
         console.log("输入有误");
       } else {
-        var interst = money * year; // 收益
-        if (money < 500000) {
-          interst *= 0.04;
-        } else {
-          interst *= 0.45;
+        // var earnMoney = money * year; // 总收益
+        // if (money < 500000) {
+        //   earnMoney *= 0.04;
+        // } else {
+        //   // earnMoney *= 0.45; // 4.5%
+        //   earnMoney *= 0.045; // 4.5%
+        // }
+
+        // if (money > 2000000) {
+        //   earnMoney += earnMoney * 0.1;
+        // }
+        // console.log("总收益：" + earnMoney);
+
+        // 另一种写法，不用写else
+        var rate = 0.04;
+        if (money >= 500000) {
+          // earnMoney = 0.45; // 4.5%
+          rate = 0.045; // 4.5%
         }
 
+        var earnMoney = money * year * rate; // 总收益
+
         if (money > 2000000) {
-          interst += interst * 0.1;
+          earnMoney += earnMoney * 0.1;
         }
-        console.log("到期后的收益：" + interst);
+        console.log("总收益：" + earnMoney);
       }
     </script>
   </body>
