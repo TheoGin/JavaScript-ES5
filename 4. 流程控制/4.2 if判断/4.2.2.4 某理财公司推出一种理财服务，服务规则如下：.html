@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+        1. 若用户的理财金额在50万元以下，则每年的收益按照4%计算。
+        2. 若用户的理财金额在50万元以上（包括50万），则每年收益按照4.5%计算。
+        3. 若用户的理财金额超过200万，除了理财收益外，还要额外给予用户收益金额的10%
+        编写程序，让用户输入理财金额和理财年限，计算到期后的收益
+       */
+      var money = +prompt("请输入输入理财金额（元）：");
+      var year = +prompt("请输入输入理财年限：");
+      if (isNaN(money) || isNaN(year)) {
+        console.log("输入有误");
+      } else {
+        var interst = money * year; // 收益
+        if (money < 500000) {
+          interst *= 0.04;
+        } else {
+          interst *= 0.45;
+        }
+
+        if (money > 2000000) {
+          interst += interst * 0.1;
+        }
+        console.log("到期后的收益：" + interst);
+      }
+    </script>
+  </body>
+</html>
