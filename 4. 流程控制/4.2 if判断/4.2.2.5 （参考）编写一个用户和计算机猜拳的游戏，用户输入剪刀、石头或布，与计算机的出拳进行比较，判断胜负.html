@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+        编写一个用户和计算机猜拳的游戏，用户输入剪刀、石头或布，与计算机的出拳进行比较，判断胜负
+       */
+      var fist = prompt("请出拳（剪刀、石头或布）：");
+      var userNum;
+      if (fist === "石头" || fist === "剪刀" || fist === "布") {
+        var randomNum = Math.random();
+        var pcFist; // 计算机出拳结果
+        if (pcFist < 0.333) {
+          pcFist = "剪刀";
+        } else if (pcFist < 0.6666) {
+          pcFist = "石头";
+        } else {
+          pcFist = "布";
+        }
+        console.log(`你的出拳：${fist}，计算机出拳：${pcFist}`);
+        if (
+          (fist === "剪刀" && pcFist === "布") ||
+          (fist === "石头" && pcFist === "剪刀") ||
+          (fist === "布" && pcFist === "石头")
+        ) {
+          console.log("你胜利了！");
+        } else if (fist === pcFist) {
+          console.log("平局");
+        } else {
+          console.log("电脑胜利了！");
+        }
+      } else {
+        console.log("输入有误");
+      }
+    </script>
+  </body>
+</html>
