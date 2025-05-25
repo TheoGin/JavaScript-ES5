@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 让用户输入一个成绩（0-100），判断这个成绩属于哪个范围并输出结果（A:90-100  B:70-89  C:60-69  D:40-59  E:0-39），若用户输入的不是0-100的数字，则输出输入有误。
+      var score = +prompt("请输入你的成绩：");
+      if (score < 0 || score > 100) {
+        console.log("输入有误");
+      } else if (score >= 90) {
+        console.log("A");
+      } else if (score >= 70) {
+        console.log("B");
+      } else if (score >= 60) {
+        console.log("C");
+      } else if (score >= 40) {
+        console.log("D");
+      } else {
+        console.log("E");
+      }
+    </script>
+  </body>
+</html>
