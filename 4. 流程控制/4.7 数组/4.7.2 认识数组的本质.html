@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var obj = {
+        0: 1,
+        1: 2,
+        2: 3,
+        3: "abc",
+        length: 4,
+      };
+      console.log(obj);
+      console.log(obj.length);
+      console.log(obj["0"]);
+      console.log(obj[0]);
+
+      var arr = [
+        34,
+        "asdf",
+        true,
+        null,
+        undefined,
+        {
+          x: 1,
+          y: 34,
+        },
+      ];
+      // 数组的本质是一个对象
+      console.log(typeof arr); // object
+      console.log(arr, arr.length);
+      // 得到数组第1项数据
+      console.log(arr, arr[0]);
+      console.log(arr[5].x);
+
+      arr[10] = "dasd";
+      arr.test = "321"; // 非数字字符串属性不计入长度
+      // length属性：数组的长度，会自动变化，值为最大下标+1
+      console.log(arr.length);
+      arr.length = 2;
+      console.log(arr);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 如果给length直接赋值，会导致数组可能被截断
+      var arr = [1, 5, 354, 234, 11];
+      arr.length = 2;
+      console.log(arr); // [1, 5]
+    </script>
+  </body>
+</html>
