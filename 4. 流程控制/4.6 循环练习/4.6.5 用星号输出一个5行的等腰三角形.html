@@ -7,7 +7,27 @@
   </head>
   <body>
     <script>
-      
+      // 用*号输出一个5行的等腰三角形
+      /* row = 5     i行  space  star
+            *         1     4     1  
+           ***        2     3     3  
+          *****       3     2     5  
+         *******      4     1     7  
+        *********     5     0     9  
+        i + space = row  -> space = row - i
+       */
+      var row = 5;
+      for (var i = 1; i <= row; i++) {
+        var star = "";
+        for (var j = row - i; j > 0; j--) {
+          star += " ";
+        }
+
+        for (var k = 1; k <= 2 * i - 1; k++) {
+          star += "*";
+        }
+        console.log(star);
+      }
     </script>
   </body>
 </html>
