@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /* 将猜拳游戏升级，记录系统和玩家的积分，获胜者加1分，平局和输者不计分
+        游戏开始
+        ==============第1轮==============
+        系统：0分，玩家：0分
+        你的出拳：剪刀
+        系统出拳：布
+        你赢了！
+        ==============第2轮==============
+        系统：0分，玩家：1分
+        你的出拳：石头
+        系统出拳：布
+        你输了！
+        ==============游戏结束==============
+        系统：1分，玩家：1分
+      */
+      var systemScore = 0,
+        userScore = 0;
+      console.log(`游戏开始`);
+      var i = 1;
+      while (1) {
+        var fist = prompt("请出拳（剪刀、石头、布）：");
+        if(fist !== "剪刀" && fist !== "石头" && fist !== "布") {
+          break;
+        }
+        console.log(`==============第${i}轮==============`);
+        console.log(`系统：${systemScore}分，玩家：${userScore}分`);
+        var randNum = Math.random();
+        var systemFist;
+        if (randNum < 0.333) {
+          systemFist = "剪刀";
+        } else if (randNum < 0.6666) {
+          systemFist = "石头";
+        } else {
+          systemFist = "布";
+        }
+        console.log(`你的出拳：${fist}`);
+        console.log(`系统出拳：${systemFist}`);
+        if (
+          (fist === "剪刀" && systemFist === "布") ||
+          (fist === "布" && systemFist === "石头") ||
+          (fist === "石头" && systemFist === "剪刀")
+        ) {
+          userScore++;
+          console.log(`你赢了！`);
+        } else if (fist === systemFist) {
+          console.log(`平局！`);
+        } else {
+          systemScore++;
+          console.log(`你输了！`);
+        }
+        i++;
+      }
+      console.log(`==============游戏结束==============`);
+      console.log(`系统：${systemScore}分，玩家：${userScore}分`);
+    </script>
+  </body>
+</html>

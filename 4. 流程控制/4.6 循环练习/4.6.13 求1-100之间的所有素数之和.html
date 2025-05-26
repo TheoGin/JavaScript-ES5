@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 求1-100之间的所有素数之和
+      var sum = 0;
+      for (var i = 1; i <= 100; i++) {
+        var isFind = false;
+        for (var j = 2; j < i; j++) {
+          if (i % j === 0) {
+            isFind = true;
+            break;
+          }
+        }
+        if (i > 1 && !isFind) {
+          // console.log(i);
+          sum += i;
+        }
+      }
+      console.log(sum); // 1060
+
+      // 参考
+      var sum = 0;
+      for (var i = 2; i <= 100; i++) {
+        var isFind = false;
+        for (var j = 2; j < i - 1; j++) {
+          if (i % j === 0) {
+            isFind = true;
+            break;
+          }
+        }
+        if (!isFind) {
+          sum += i;
+        }
+      }
+      console.log(sum); // 1060
+    </script>
+  </body>
+</html>
