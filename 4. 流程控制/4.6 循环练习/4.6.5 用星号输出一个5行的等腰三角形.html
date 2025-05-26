@@ -28,6 +28,19 @@
         }
         console.log(star);
       }
+
+      var row = 5;
+      for (var i = 1; i <= row; i++) {
+        var star = "";
+        for (var j = 0; j < row - i; j++) {
+          star += " ";
+        }
+
+        for (var j = 1; j <= 2 * i - 1; j++) {
+          star += "*";
+        }
+        console.log(star);
+      }
     </script>
   </body>
 </html>
