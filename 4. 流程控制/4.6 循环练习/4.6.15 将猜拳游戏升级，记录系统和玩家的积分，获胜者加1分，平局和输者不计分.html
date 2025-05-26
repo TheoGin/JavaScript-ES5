@@ -22,45 +22,50 @@
         ==============游戏结束==============
         系统：1分，玩家：1分
       */
-      var systemScore = 0,
-        userScore = 0;
+      var pcScore = 0,
+        playerScore = 0;
       console.log(`游戏开始`);
-      var i = 1;
-      while (1) {
+      var round = 1; // 轮次
+      while (true) {
         var fist = prompt("请出拳（剪刀、石头、布）：");
-        if(fist !== "剪刀" && fist !== "石头" && fist !== "布") {
+        if (fist === null) {
           break;
+        } // 取消
+        // 没有取消
+        if(fist !== "剪刀" && fist !== "石头" && fist !== "布") {
+          console.log(`出拳无效，请重新出拳！`);
+          continue;
         }
-        console.log(`==============第${i}轮==============`);
-        console.log(`系统：${systemScore}分，玩家：${userScore}分`);
-        var randNum = Math.random();
-        var systemFist;
-        if (randNum < 0.333) {
-          systemFist = "剪刀";
-        } else if (randNum < 0.6666) {
-          systemFist = "石头";
-        } else {
-          systemFist = "布";
-        }
+        console.log(`==============第${round}轮==============`);
+        console.log(`系统：${pcScore}分，玩家：${playerScore}分`);
         console.log(`你的出拳：${fist}`);
-        console.log(`系统出拳：${systemFist}`);
+        
+        var pcFist = Math.random();
+        if (pcFist < 0.3333) {
+          pcFist = "剪刀";
+        } else if (pcFist < 0.6666) {
+          pcFist = "石头";
+        } else {
+          pcFist = "布";
+        }
+        console.log(`系统出拳：${pcFist}`);
         if (
-          (fist === "剪刀" && systemFist === "布") ||
-          (fist === "布" && systemFist === "石头") ||
-          (fist === "石头" && systemFist === "剪刀")
+          (fist === "剪刀" && pcFist === "布") ||
+          (fist === "布" && pcFist === "石头") ||
+          (fist === "石头" && pcFist === "剪刀")
         ) {
-          userScore++;
+          playerScore++;
           console.log(`你赢了！`);
-        } else if (fist === systemFist) {
+        } else if (fist === pcFist) {
           console.log(`平局！`);
         } else {
-          systemScore++;
+          pcScore++;
           console.log(`你输了！`);
         }
-        i++;
+        round++;
       }
       console.log(`==============游戏结束==============`);
-      console.log(`系统：${systemScore}分，玩家：${userScore}分`);
+      console.log(`系统：${pcScore}分，玩家：${playerScore}分`);
     </script>
   </body>
 </html>
