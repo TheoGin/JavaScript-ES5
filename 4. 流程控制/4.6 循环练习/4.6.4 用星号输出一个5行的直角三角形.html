@@ -8,12 +8,12 @@
   <body>
     <script>
       // 用星号输出一个5行的直角三角形
-      var row = 5;
-      for (var i = 0; i < row; i++) {
-        for (var j = 0; j <= i; j++) {
-          console.log("*");
-        }
-      }
+      // var row = 5;
+      // for (var i = 0; i < row; i++) {
+      //   for (var j = 0; j <= i; j++) {
+      //     console.log("*");
+      //   }
+      // }
 
       var row = 5;
       var star = "";
@@ -24,6 +24,15 @@
         star += "\n";
       }
       console.log(star);
+
+      var row = 5;
+      for (var i = 0; i < row; i++) {
+        var star = "";
+        for (var j = 0; j <= i; j++) {
+          star += "*";
+        }
+        console.log(star);
+      }
     </script>
   </body>
 </html>
