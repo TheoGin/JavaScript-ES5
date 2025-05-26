@@ -74,54 +74,26 @@
       //     console.log(i);
       //   }
       // }
+      // 从2开始
+      // 打印1-100的所有素数
+      for (var i = 1; i <= 100; i++) {
+        // if (i === 1) {
+        //   continue;
+        // }
 
-      // // 从2开始
-      // for (var i = 1; i <= 100; i++) {
-      //   var record = 0;
-      //   for (var j = 1; j <= i; j++) {
-      //     // 除1和自身以外，不能被其他数整除
-      //     if (i % j === 0) {
-      //       record++;
-      //     }
-      //   }
-      //   if (record === 2) {
-      //     console.log(i);
-      //   }
-      // }
-
-      // 判断一个数是不是素数（质数）
-      // 素数：一个大于1的整数，只能被1和自身整除
-      // 比如：2是一个素数
-      // 比如：4不是一个素数
-      // 思路：从1循环到这个数，记录有多少个数字能整除它
-      var num = 103;
-      var record = 0;
-      for (var i = 1; i <= num; i++) {
-        if (num % i === 0) {
-          record++;
+        // 判断i是不是素数
+        var isFind = false; //没有找到
+        for (var j = 2; j < i; j++) {
+          // 除1和自身以外，不能被其他数整除
+          if (i % j === 0) {
+            isFind = true;
+            break;
+          }
         }
-      }
-      if (record === 2) {
-        console.log(num + "是素数");
-      } else {
-        console.log(num + "不是素数");
-      }
-
-      // 法二：去掉1和自身的比较
-      var num = 103;
-      var isFind = true;
-      for (var i = 2; i < num; i++) {
-        if (num % i === 0) {
-          isFind = false;
-          break;
+        // if (i !== 1 && !isFind) {
+        if (i > 1 && !isFind) {
+          console.log(i);
         }
-      }
-
-      // 但要判断1是不是素数的情况
-      if (num <= 1 || !isFind) {
-        console.log(num + "不是素数");
-      } else {
-        console.log(num + "是素数");
       }
     </script>
   </body>
