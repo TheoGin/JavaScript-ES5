@@ -8,14 +8,24 @@
   <body>
     <script>
       // 输出一个3行5列的*号
-      var star = '';
+      var star = "";
       for (var i = 0; i < 3; i++) {
-        for(var j = 0; j < 5; j++) {
-          star += '*';
+        for (var j = 0; j < 5; j++) {
+          star += "*";
         }
-        star += '\n';
+        star += "\n";
       }
       console.log(star);
+
+      var row = 3,
+        col = 5;
+      for (var i = 0; i < 3; i++) {
+        var star = "";
+        for (var j = 0; j < 5; j++) {
+          star += "*";
+        }
+        console.log(star);
+      }
     </script>
   </body>
 </html>
