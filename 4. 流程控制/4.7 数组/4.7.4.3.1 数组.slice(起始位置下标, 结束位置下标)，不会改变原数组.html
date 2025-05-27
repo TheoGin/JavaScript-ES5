@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var arr = [1, 2, 3, 4, 5];
+      // 数组.slice(起始位置下标, 结束位置下标)：将起始位置到结束位置之间的数据拿出来，得到一个新的数组
+      var newArr = arr.slice(2, 4); // 注意：结束下标取不到
+      console.log(newArr); // [3, 4]
+      // 不会改变原数组
+      console.log(arr); // [1, 2, 3, 4, 5]
+
+      // 下标可以写负数，如果是负数，则从数组的末尾开始计算。
+      newArr = arr.slice(-3, -1);
+      console.log(newArr); // [3, 4]
+      console.log(arr); // [1, 2, 3, 4, 5]
+
+      newArr = arr.slice(-3, 1); // 负数下标开始只能从左到右，不能右到左取
+      console.log(newArr); // []
+      console.log(arr); // [1, 2, 3, 4, 5]
+
+      // 如果不写结束下标，则直接取到末尾。
+      newArr = arr.slice(-3);
+      console.log(newArr); // [3, 4, 5]
+      console.log(arr); // [1, 2, 3, 4, 5]
+    </script>
+  </body>
+</html>

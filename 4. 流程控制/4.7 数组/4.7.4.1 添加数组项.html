@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var arr = [1, 2, 3, 4, 5];
+      console.log(arr); // [1, 2, 3, 4, 5]
+      // 1. 【末尾添加】数组[长度] = 数据：向数组末尾添加一个数据
+      arr[arr.length] = 66;
+      arr[arr.length] = 77;
+      console.log(arr); // [1, 2, 3, 4, 5, 66, 77]
+
+      // 2. 【末尾添加】数组.push(数据): 向数组末尾添加一个数据
+      arr.push(123);
+      arr.push("abc", {
+        x: 1,
+        y: 2,
+      });
+      console.log(arr); //  [1, 2, 3, 4, 5, 66, 77, 123, 'abc', { x: 1, y: 2 }]
+
+      // 3. 【开头添加】数组.unshift(数据)：向数组起始位置添加一个数据，会导致数组每一项的下标向后移动
+      arr.unshift(11);
+      arr.unshift(22, 33);
+      console.log(arr); // [22, 33, 11, 1, 2, 3, 4, 5, 66, 77, 123, 'abc', { x: 1, y: 2 }]
+
+      // 4. 【中间添加】数组.splice(下标, 0, 添加的数据): 从指定下标位置开始，删除0个，然后在该位置插入添加的数据
+      arr.splice(3, 0, "aa");
+      arr.splice(4, 0, "bb", "cc");
+      console.log(arr); // [22, 33, 11, 'aa', 'bb', 'cc', 1, 2, 3, 4, 5, 66, 77, 123, 'abc', { x: 1, y: 2 }]
+
+      // 如果下标超过范围，则按照范围的边界进行处理。（安全）（可删、可加）
+      arr.splice(100, 0, "99", "88");
+      console.log(arr); // [22, 33, 11, 'aa', 'bb', 'cc', 1, 2, 3, 4, 5, 66, 77, 123, 'abc', { x: 1, y: 2 }, '99', '88']
+      arr.splice(-20, 0, "123", "234");
+      console.log(arr); // ['123', '234', 22, 33, 11, 'aa', 'bb', 'cc', 1, 2, 3, 4, 5, 66, 77, 123, 'abc', { x: 1, y: 2 }, '99', '88']
+    </script>
+  </body>
+</html>

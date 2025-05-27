@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var arr = [1, 2, 3, 4, 3, 5, 3];
+      // 1. 数组.indexOf(数据)：从数组中依次查找对应的数据，查找时使用严格相等进行比较。找到第一个匹配的下标，返回。
+      var index = arr.indexOf(3);
+      console.log(index); // 2
+      
+      // 2. 数组.lastIndexOf(数据)：功能和indexOf类似，只是查找的是最后一个匹配的下标
+      index = arr.lastIndexOf(3);
+      console.log(index); // 6
+
+      var index = arr.indexOf(30);
+      // 如果没有找到，则得到-1
+      console.log(index); // -1
+      
+    </script>
+  </body>
+</html>

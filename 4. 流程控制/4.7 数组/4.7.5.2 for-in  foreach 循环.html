@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var obj = {
+        name: "Sophotheo",
+        age: 18,
+      };
+
+      // 对象是属性名property
+      for (var prop in obj) {
+        console.log(prop);
+      }
+      /* 
+        name
+        age
+      */
+
+      var arr = ["abc", "bcd", "234", , , , 54, 2, 1]; //  ['abc', 'bcd', '234', empty × 3, 54, 2, 1]
+      // 数组也是属性名，一般会写成index，利用该特点，可以实现数组的遍历
+      for (var index in arr) {
+        console.log(index, typeof index, arr[index]);
+      }
+      /* 如果是稀疏数组，for-in不会遍历，因为for-in遍历的是属性名，empty数据项没有属性名，所有遍历不到
+        0 string abc
+        1 string bcd
+        2 string 234
+        6 string 54
+        7 string 2
+        8 string 1
+      */
+
+      for (var i = 0; i < arr.length; i++) {
+        console.log(arr[i]);
+      }
+      /* 如果是稀疏数组，for也会遍历
+        abc
+        bcd
+        234
+        undefined
+        undefined
+        undefined
+        54
+        2
+        1
+      */
+    </script>
+  </body>
+</html>

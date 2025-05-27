@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var arr = [1, 2, 3, 4, 5];
+      console.log(arr); // [1, 2, 3, 4, 5], length: 5
+      // 1. 【指定下标删除】delete 数组[下标]: 这种做法不会导致数组其他的属性发生变化，因此，该做法会导致产生稀松数组，所以不推荐使用该做法。
+      delete arr[2];
+      console.log(arr); // [1, 2, empty, 4, 5], length: 5 稀松数组
+
+      arr = [1, 2, 3, 4, 5, "abc"];
+      console.log(arr); // [1, 2, 3, 4, 5, 'abc'], length: 6
+      // 2. 【末尾删除】数组.pop(): 删除数组的最后一项，该表达式返回最后一项的数据
+      var n = arr.pop(); // 一次只能删一个
+      console.log(n, arr); // abc [1, 2, 4, 4, 5], length: 5
+
+      arr = ["aaa", 1, 2, 3, 4, 5];
+      console.log(arr); // ['aaa', 1, 2, 3, 4, 5], length: 6
+      // 3. 【开头删除】数组.shift()：删除数组第一项，该表达式返回第一项的数据（一次只能删一个）
+      var n = arr.shift(); // 一次只能删一个
+      console.log(n, arr); // aaa [1, 2, 4, 4, 5], length: 5
+
+      arr = [1, 2, 3, 4, 5];
+      console.log(arr); // [1, 2, 3, 4, 5], length: 5
+      // 4. 【指定下标删除一个或多个】数组.splice(下标, 删除的数量, 添加的数据): 从指定下标位置开始，删除指定数量，然后在该位置插入添加的数据
+      var deleteArr = arr.splice(2, 2); // 从2开始删，删除2个
+      console.log(deleteArr); // [3, 4] , length: 2
+      console.log(arr); // [1, 2, 5], length: 3
+
+      arr = [1, 2, 3, 4, 5];
+      console.log(arr); // [1, 2, 3, 4, 5]
+      // 如果下标超过范围，则按照范围的边界进行处理。返回一个新数组，该数组记录被删除的数据。
+      var deleteArr = arr.splice(200, 2); // 从200开始删，删除2个，js会纠正到末尾开始删，而末尾之后没有数据了，所以就一个都没有删掉
+      console.log(deleteArr); // []
+      console.log(arr); // [1, 2, 3, 4, 5]
+      
+      deleteArr = arr.splice(1, 200); // 从1开始删，删除200个，js会纠正删除数量为从1开始到最后的数量
+      console.log(deleteArr); // [2, 3, 4, 5]
+      console.log(arr); // [1]
+
+      arr = [1, 2, 3, 4, 5];
+      console.log(arr); // [1, 2, 3, 4, 5]
+      var deleteArr = arr.splice(-10, 2); // 从-10开始删，删除2个，js会纠正到开头开始删，所以就是删前面两个
+      console.log(deleteArr); // [1, 2]
+      console.log(arr); // [3, 4, 5]
+    </script>
+  </body>
+</html>

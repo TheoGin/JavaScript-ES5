@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 创建一个长度为100的数组，给数组的每一项赋值为"abc"
+      var arr = new Array(100);
+      // 错误写法。如果是稀疏数组，for-in不会遍历，因为for-in遍历的是属性名，empty数据项没有属性名，所有遍历不到
+      for (var index in arr) {
+        arr[index] = "abc";
+      }
+      console.log(arr); // [empty × 100]
+
+      // 法一:如果是稀疏数组，for也会遍历
+      for (var i = 0; i < arr.length; i++) {
+        arr[i] = "abc";
+      }
+      console.log(arr); // ['abc', 'abc', ......]
+
+      // 法二：
+      arr.fill("123");
+      console.log(arr); // ['123', '123', ......]
+    </script>
+  </body>
+</html>

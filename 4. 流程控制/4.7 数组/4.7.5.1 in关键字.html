@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var obj = {
+        name: "Sophotheo",
+        age: 18,
+      };
+
+      // console.log(age in obj); // Uncaught ReferenceError: age is not defined
+      // 1. 判断某个属性在对象中是否存在
+      console.log("age" in obj); // true
+
+      var arr = [1, 2, 3, 4, 5];
+      // 2. 属性名 in 对象
+      console.log(3 in arr); // true，注意，此处的3是下标属性名，js会把3转为"3"
+      console.log("3" in arr); // true
+      console.log("32" in arr); // false
+    </script>
+  </body>
+</html>

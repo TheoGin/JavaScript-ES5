@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var arr = new Array(10);
+      // 1. 数组.fill(数据)：将数组的所有项，填充为指定的数据
+      arr.fill("abc");
+      console.log(arr); // ['abc', 'abc', 'abc', 'abc', 'abc', 'abc', 'abc', 'abc', 'abc', 'abc']
+
+      // 2. 数组.fill(数组, 开始下标): 将数组从开始下标起，到数组的末尾，填充为指定的数据
+      arr.fill(7, 7); // 填充数据7，从下标7开始
+      console.log(arr); // ['abc', 'abc', 'abc', 'abc', 'abc', 'abc', 'abc', 7, 7, 7]
+
+      arr.fill([1, 2, 3], 7); // 填充数据[1, 2, 3]，从下标7开始
+      console.log(arr); // ['abc', 'abc', 'abc', 'abc', 'abc', 'abc', 'abc', [1, 2, 3], [1, 2, 3], [1, 2, 3]]
+
+      // 3. 数组.fill(数组, 开始下标，结束下标): 将数组从开始下标起，到数组的结束下标（取不到），填充为指定的数据
+
+      arr.fill('aaa', 5, 7); // 填充数据'aaa'，从下标5 - 7（不包含7）
+      console.log(arr); // ['abc', 'abc', 'abc', 'abc', 'abc', 'aaa', 'aaa', [1, 2, 3], [1, 2, 3], [1, 2, 3]]
+    </script>
+  </body>
+</html>
