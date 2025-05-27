@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /* 
+        有一个数组，存放了一些数字，找出出现频率最高的数字
+      */
+      /* var arr = [1, 2, 3, 4, 3, 5, 3, 5, 2, 2, 2];
+      var maxCnt = 1,
+        num = arr[0];
+      for (var i = 0; i < arr.length; i++) {
+        var cnt = 0;
+        for (var j = 0; j < arr.length; j++) {
+          if (arr[i] === arr[j]) {
+            cnt++;
+          }
+        }
+        if (cnt > maxCnt) {
+          num = arr[i];
+          maxCnt = cnt;
+        }
+      }
+      console.log('频率最高的数字：' + num, '频率：' + maxCnt); */
+
+      /* var arr = [123, 2, 3, 4, 3, 5, 3, 5, 2, 2, 2];
+      var record = {};
+      for (var i = 0; i < arr.length; i++) {
+        var isFind = false;
+        for (var prop in record) {
+          if (prop === arr[i]) {
+            isFind = true;
+            break;
+          }
+        }
+        if (!isFind) {
+          record[arr[i]] = 0;
+        }
+      }
+
+      for (var prop in record) {
+        for (var i = 0; i < arr.length; i++) {
+          if (prop === ''+ arr[i]) {
+            record[prop]++;
+          }
+        }
+      }
+
+      console.log(record);
+
+      var maxCnt = 1,
+        num;
+      for (var prop in record) {
+        if (record[prop] > maxCnt) {
+          maxCnt = record[prop];
+          num = prop;
+        }
+      }
+      console.log("频率最高的数字：" + num, "频率：" + maxCnt); */
+
+      /* var arr = [123, 2, 3, 4, 3, 5, 3, 5, 2, 2, 2];
+      var record = {};
+      for (var i = 0; i < arr.length; i++) {
+        var isFind = false;
+        for (var prop in record) {
+          if (prop === arr[i]) {
+            isFind = true;
+            break;
+          }
+        }
+        if (!isFind) {
+          record[arr[i]] = 0;
+        }
+      }
+
+      for (var i = 0; i < arr.length; i++) {
+        for (var prop in record) {
+          if (prop === "" + arr[i]) {
+            record[prop]++;
+          }
+        }
+      }
+
+      console.log(record);
+
+      var maxCnt = 1,
+        num;
+      for (var prop in record) {
+        if (record[prop] > maxCnt) {
+          maxCnt = record[prop];
+          num = prop;
+        }
+      }
+      console.log("频率最高的数字：" + num, "频率：" + maxCnt); */
+
+      /* var arr = [123, 2, 3, 4, 3, 5, 3, 5, 2, 2, 2];
+      var record = {};
+      for (var i = 0; i < arr.length; i++) {
+        if (arr[i] in record) {
+          record[arr[i]]++;
+        } else {
+          record[arr[i]] = 1;
+        }
+      }
+      console.log(record);
+
+      var maxCnt = 1,
+        num;
+      for (var prop in record) {
+        if (record[prop] > maxCnt) {
+          maxCnt = record[prop];
+          num = prop;
+        }
+      }
+      console.log("频率最高的数字：" + num, "频率：" + maxCnt); */
+
+      /* var arr = [123, 2, 3, 4, 3, 5, 3, 5, 2, 2, 2];
+      var record = {};
+      for (var i = 0; i < arr.length; i++) {
+        if (arr[i] in record) {
+          record[arr[i]]++;
+        } else {
+          record[arr[i]] = 1;
+        }
+      }
+      console.log(record);
+
+      var result;
+      for (var prop in record) {
+        if (!result) {
+          result = {};
+          result.number = prop;
+          result.frequency = record[prop];
+        } else {
+          if (record[prop] > result.frequency) {
+            result.number = prop;
+            result.frequency = record[prop];
+          }
+        }
+      }
+      console.log(result);
+      console.log("频率最高的数字：" + result.number, "频率：" + result.frequency); */
+
+      var arr = [123, 2, 3, 4, 3, 5, 3, 5, 2, 2, 2];
+      var record = {}; //记录对象
+      for (var i = 0; i < arr.length; i++) {
+        num = arr[i];
+        // if (num in record) {
+        if (record[num]) { // 当读取的属性不存在时，会得到undefined
+          record[num]++;
+        } else {
+          record[num] = 1;
+        }
+      }
+      console.log(record); // {2: 4, 3: 3, 4: 1, 5: 2, 123: 1}
+
+      var result; //结果对象
+      for (var prop in record) {
+        if (!result || record[prop] > result.frequency) {
+          /* result = {};
+          result.number = prop;
+          result.frequency = record[prop]; */
+          result = {
+            number: prop,
+            frequency: record[prop],
+          };
+        }
+      }
+      console.log(result); // {number: '2', frequency: 4}
+      console.log(`${result.number}出现频率最高，出现${result.frequency}次`);
+    </script>
+  </body>
+</html>

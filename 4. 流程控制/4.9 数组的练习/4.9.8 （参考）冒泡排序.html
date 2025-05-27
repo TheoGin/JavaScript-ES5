@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /* 
+        初始化一个数字数组（数据随意），对该数组进行升序排序，然后输出结果
+        思路提示：
+        数组的排序有多种算法可以完成，这里介绍其中一种：冒泡排序算法
+        冒泡排序算法的原理如下：
+        - 比较相邻的元素。如果第一个比第二个大，就交换他们两个。
+        - 对每一对相邻元素做同样的工作，从开始第一对到结尾的最后一对。在这一点，最后的元素应该会是最大的数。
+        - 针对所有的元素重复以上的步骤，除了已排好序的元素。
+      */
+      var arr = [3, 1, 8, 4, 2, -5];
+      for (var i = 1; i < arr.length; i++) {
+        for (var j = 0; j < arr.length - i; j++) {
+          if (arr[j] > arr[j + 1]) {
+            var temp = arr[j];
+            arr[j] = arr[j + 1];
+            arr[j + 1] = temp;
+          }
+        }
+      }
+      console.log(arr); // [-5, 1, 2, 3, 4, 8]
+    </script>
+  </body>
+</html>

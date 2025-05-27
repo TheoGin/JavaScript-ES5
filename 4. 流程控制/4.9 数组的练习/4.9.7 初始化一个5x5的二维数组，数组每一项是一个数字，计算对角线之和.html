@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /* 
+        初始化一个5*5的二维数组，数组每一项是一个数字，计算对角线之和
+      */
+      var arr = [
+        [1, 2, 3, 4, 5],
+        [1, 2, 3, 4, 5],
+        [1, 2, 3, 4, 5],
+        [1, 2, 3, 4, 5],
+        [1, 2, 3, 4, 5],
+      ];
+      var sum = 0;
+      for (var i = 0; i < arr.length; i++) {
+        for (var j = 0; j < arr[i].length; j++) {
+          /* 
+            1. 主对角：i === j
+            2. 副主对角
+                0, 4
+                1, 3
+                2, 2
+                3, 1
+                4, 0
+          */
+          if (i === j || i + j === arr[i].length - 1) {
+            sum += arr[i][j];
+            // console.log(i, j);
+          }
+          //  分开if，会导致中间那个数字加两次——》合并写就不会
+          /* if (i === j) {
+            sum += arr[i][j];
+            // console.log(i, j);
+          }
+          if (i + j === arr[i].length - 1) {
+            sum += arr[i][j];
+            // console.log(i, j);
+          }
+          // if (arr[i].length - i - 1 === j) {
+          //   sum += arr[i][j];
+          //   // console.log(i, j);
+          // } */
+        }
+      }
+      console.log(sum); // 27
+    </script>
+  </body>
+</html>

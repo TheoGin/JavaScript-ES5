@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 初始化一个数字数组，然后输出数组中所有的奇数
+      var arr = [34, 6, 7, 122, 3];
+      for (var i = 0; i < arr.length; i++) {
+        if (arr[i] % 2 !== 0) {
+          console.log(arr[i]);
+        }
+      }
+
+      for (var index in arr) {
+        if (arr[index] % 2 !== 0) {
+          console.log(arr[index]);
+        }
+      }
+    </script>
+  </body>
+</html>

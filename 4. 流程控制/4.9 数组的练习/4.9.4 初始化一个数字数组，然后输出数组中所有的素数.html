@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 初始化一个数字数组，然后输出数组中所有的素数
+      var arr = [1, 34, 6, 7, 122, 3, 9, 2];
+
+      for (var index in arr) {
+        // 判断arr[index]是否为素数
+        var isFind = false;
+        for (var i = 2; i < arr[index]; i++) {
+          if (arr[index] % i === 0) {
+            isFind = true;
+            break;
+          }
+        }
+        if (arr[index] > 1 && !isFind) {
+          console.log(arr[index]);
+        }
+      }
+    </script>
+  </body>
+</html>
