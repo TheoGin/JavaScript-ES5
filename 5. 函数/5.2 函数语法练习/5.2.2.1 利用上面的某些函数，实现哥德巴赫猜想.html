@@ -39,15 +39,21 @@
       var num = +prompt("输入一个大于2的偶数：");
       console.log(isGoldbachConjecture(num)); */
 
+      
       /*  8
+      [ 0 + 8
+        1 + 7 ]
         2 + 6
         3 + 5
         4 + 4
+        5 + 3
+        6 + 2
+      [ 7 + 1
+        8 + 0 ]
       */
       function goldbachConjecture() {
         var num = +prompt("输入一个大于2的偶数：");
-        if (isNaN(num) || num <= 2 || isOdd(num)) {
-          // 还要是偶数
+        if (isNaN(num) || num <= 2 || isOdd(num)) { // 还要是偶数
           console.log("输入有误");
           return;
         }
@@ -55,6 +61,7 @@
         // for (var i = 2; i <= num / 2; i++) {
         for (var i = 2; i <= num - 2; i++) { // 倒过来也算一个的话，就用减2，因为小于2不是素数
           var j = num - i;
+          //判断两个数字是否都是素数
           if (isPrime(i) && isPrime(j)) {
             console.log(`${num} = ${i} + ${j}`);
             // return;

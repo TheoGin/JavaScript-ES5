@@ -172,22 +172,22 @@ function getTopFreqInArray(arr) {
    * 1: 1
    * 34: 1
    */
-  var record = {};
+  var records = {}; //记录出现频率
   for (var i = 0; i < arr.length; i++) {
     var num = arr[i];
-    // if(num in record) {
-    if (record[num]) {
-      record[num]++;
+    // if(num in records) {
+    if (records[num]) {
+      records[num]++;
     } else {
-      record[num] = 1;
+      records[num] = 1;
     }
   }
-  var result;
-  for (var prop in record) {
-    if (!result || record[prop] > result.frequency) {
+  var result; //记录最终结果的对象
+  for (var prop in records) {
+    if (!result || records[prop] > result.frequency) {
       result = {
         number: +prop,
-        frequency: record[prop],
+        frequency: records[prop],
       };
     }
   }
