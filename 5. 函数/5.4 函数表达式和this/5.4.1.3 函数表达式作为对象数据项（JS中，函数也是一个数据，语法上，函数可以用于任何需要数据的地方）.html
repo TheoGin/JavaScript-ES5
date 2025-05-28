@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var obj = {
+        x: 123,
+        func1: function () {
+          console.log("对象中的函数表达式func1");
+        },
+        func2: function () {
+          console.log("对象中的函数表达式func2");
+        },
+      };
+      console.log(obj.func1, typeof obj.func1); // ƒ () { console.log("对象中的函数表达式func1"); }      'function'
+      var a = obj.func1;
+      a(); // 对象中的函数表达式func1
+      obj.func2(); // 对象中的函数表达式func2
+    </script>
+  </body>
+</html>

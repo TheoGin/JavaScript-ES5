@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var obj = {
+        x: 123,
+        a: function () {
+          console.log(this);
+        },
+      };
+
+      var b = obj.a;
+      // 1. 函数直接调用，this指向全局对象
+      b(); // Window { … }
+
+      // 2. 通过一个对象的属性调用，格式为对象.属性()或对象["属性"]()，this指向对象
+      obj.a(); // {x: 123, a: ƒ}
+    </script>
+  </body>
+</html>

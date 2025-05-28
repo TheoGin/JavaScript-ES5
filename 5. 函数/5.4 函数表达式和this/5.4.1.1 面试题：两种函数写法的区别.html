@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      func(); // func执行
+      window.func(); // func执行
+      // 它会提升，并且会附着在window全局对象上边
+      function func() {
+        console.log("func执行");
+      }
+      /* 上面等价于：
+        function func();
+        func();
+        function func() {
+          console.log("test执行");
+        };
+      */
+
+      /* var a = function test() {
+        console.log("test执行");
+      };
+      //   test(); // Uncaught ReferenceError: test is not defined。function test() { console.log("test执行"); };是一个表达式，所以函数名可以省略 */
+
+      // a(); // Uncaught TypeError: a is not a function
+      // window.a(); // Uncaught TypeError: a is not a function
+      // 函数表达式：用变量接收声明的函数只会进行变量提升，而不是函数提升，所以在声明前调用就会报错；这就是与函数声明的函数名的区别
+      var a = function () {
+        console.log("test执行");
+      };
+      /* 上面等价于：
+        var a;
+        a(); // 调用一个变量，所以才会报错
+        a = function () {
+          console.log("test执行");
+        };
+      */
+      a(); // test执行
+      window.a(); // test执行
+    </script>
+  </body>
+</html>

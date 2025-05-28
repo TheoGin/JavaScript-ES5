@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // ------------------使用this--------------------
+      var obj = {
+        firstName: "傅",
+        lastName: "小",
+        age: 18,
+        sayHello: function () {
+          // 1. 使用this调用成员属性
+          console.log(
+            `我叫${this.lastName}${this.firstName},今年${this.age}岁了`
+          );
+        },
+      };
+      obj.sayHello(); // 我叫小傅,今年18岁了
+
+      // 使用this调用成员属性 方便实现自动更新
+      obj.lastName = "张";
+      obj.firstName = "三";
+      obj.age = 28;
+      obj.sayHello(); // 我叫张三,今年28岁了
+
+      // ------------------使用对象名--------------------
+      var obj1 = {
+        firstName: "傅",
+        lastName: "小",
+        age: 18,
+        sayHello: function () {
+          // 2. 使用对象名调用成员属性
+          console.log(
+            `我叫${obj1.lastName}${obj1.firstName},今年${obj1.age}岁了`
+          );
+        },
+      };
+      var obj2 = obj1;
+      obj1 = 123;
+      obj2.sayHello(); // 我叫undefinedundefined,今年undefined岁了
+
+      // 使用对象名调用成员属性 无法实现自动更新
+      obj2.lastName = "张";
+      obj2.firstName = "三";
+      obj2.age = 28;
+      obj2.sayHello(); // 我叫undefinedundefined,今年undefined岁了
+    </script>
+  </body>
+</html>

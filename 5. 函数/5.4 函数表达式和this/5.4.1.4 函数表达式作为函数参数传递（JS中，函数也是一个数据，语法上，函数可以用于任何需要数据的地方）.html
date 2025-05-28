@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 回调函数：参数是一个函数
+      function test(callback1, callback2) {
+        console.log("test函数执行");
+        callback1();
+        callback2();
+      }
+      var func1 = function () {
+        console.log("函数表达式作为函数参数传递的函数执行1");
+      };
+      var func2 = function () {
+        console.log("函数表达式作为函数参数传递的函数执行2");
+      };
+      test(func1, func2);
+      /* 
+        test函数执行
+        函数表达式作为函数参数传递的函数执行1
+        函数表达式作为函数参数传递的函数执行2
+      */
+
+      test(
+        function () {
+          console.log("函数表达式作为函数参数传递的函数执行1");
+        },
+        function () {
+          console.log("函数表达式作为函数参数传递的函数执行1");
+        }
+      );
+      /* 
+        test函数执行
+        函数表达式作为函数参数传递的函数执行1
+        函数表达式作为函数参数传递的函数执行2
+      */
+    </script>
+  </body>
+</html>
