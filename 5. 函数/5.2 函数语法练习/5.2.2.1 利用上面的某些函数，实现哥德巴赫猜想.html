@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script src="../../common/MyFunction.js"></script>
+    <script>
+      /* 利用上面的某些函数，实现哥德巴赫猜想
+        任一大于2的偶数都可写成两个质数之和，比如：8 = 3 + 5
+        让用户输入一个大于2的整数，输出其等于哪两个素数相加
+        */
+      /*  8
+        0 + 8
+        1 + 7
+        2 + 6
+        3 + 5
+        4 + 4
+        5 + 3
+        6 + 2
+        7 + 1
+        8 + 0
+      */
+      /* function isGoldbachConjecture(num) {
+        if (isNaN(num) || num <= 2 || isOdd(num)) {
+          // 还要是偶数
+          console.log("输入有误");
+          return;
+        }
+        for (var i = 0; i <= num / 2; i++) {
+          var j = num - i;
+          if (isPrime(i) && isPrime(j)) {
+            return `${num} = ${i} + ${j}`;
+          }
+        }
+      }
+      var num = +prompt("输入一个大于2的偶数：");
+      console.log(isGoldbachConjecture(num)); */
+
+      /*  8
+        2 + 6
+        3 + 5
+        4 + 4
+      */
+      function goldbachConjecture() {
+        var num = +prompt("输入一个大于2的偶数：");
+        if (isNaN(num) || num <= 2 || isOdd(num)) {
+          // 还要是偶数
+          console.log("输入有误");
+          return;
+        }
+        // 从2开始，因为素数是从2开始
+        // for (var i = 2; i <= num / 2; i++) {
+        for (var i = 2; i <= num - 2; i++) { // 倒过来也算一个的话，就用减2，因为小于2不是素数
+          var j = num - i;
+          if (isPrime(i) && isPrime(j)) {
+            console.log(`${num} = ${i} + ${j}`);
+            // return;
+          }
+        }
+      }
+      goldbachConjecture();
+    </script>
+  </body>
+</html>
