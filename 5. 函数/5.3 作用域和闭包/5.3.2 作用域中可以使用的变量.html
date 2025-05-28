@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var g = "abc";
+      var a = "aaa";
+      function A() {
+        var a = 10;
+        var b = "bbb";
+        // 2. 函数作用域不仅能使用自身作用域中声明的变量（或函数），还能使用外部环境（嵌套函数）的变量（或函数）
+        console.log(g, a); // abc 10
+        // console.log(b); // Uncaught ReferenceError: b is not defined
+        function B() {
+          var b = 2;
+          // 函数内部声明的变量和外部冲突时，使用内部的。
+          console.log(g, a, b); // abc 10 2
+        }
+
+        B();
+      }
+
+      A();
+      // 1. 全局作用域只能使用全局作用域中声明的变量（或函数）
+      // console.log(b); // Uncaught ReferenceError: b is not defined
+
+      function B() {}
+    </script>
+  </body>
+</html>

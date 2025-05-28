@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 1. 将函数变为一个函数表达式的方式之一，将函数用小括号括起来。
+      (function test() {
+        var a = 1,
+          b = 2,
+          c = 3;
+        console.log(a, b, c);
+      }()); // 1 2 3
+
+      // 2. 然而，这样一来，函数无法通过名称调用。
+      // test(); // Uncaught ReferenceError: test is not defined
+      console.log(window.test); // undefined
+
+      // 4. 由于大部分情况下，函数表达式的函数名没有实际意义，因此，可以省略函数名。
+      (function () { // 5. 没有名字的函数，称之为匿名函数
+        var a = 1,
+          b = 2,
+          c = 3;
+        console.log(a, b, c);
+      })(); // 1 2 3
+      // 3. 如果书写一个函数表达式，然后将立即调用，该函数称之为立即执行函数 IIFE（Imdiately Invoked Function Expression）。
+    </script>
+  </body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      console.log(a); // undefined
+      var a = 1;
+
+      test();
+      function test() {
+        console.log(b); // undefined
+        var b = 1;
+        // 在函数作用域中声明的变量，会被提升到函数的顶部，并且不会成为全局对象的属性.
+        console.log(window.b); // undefined
+        /* 上面等价于：
+            var b;
+            console.log(b);
+            b = 1;
+        */
+      }
+      // 在全局作用域中声明的变量，会被提升到脚本块的顶部，并且会成为全局对象的属性。
+      console.log(window.a); // 1
+      console.log(window.test); // ƒ test() { ... }
+      /* 上面等价于：
+        var a;
+        function test();
+        console.log(a);
+        a = 1;
+        test();
+      */
+    </script>
+  </body>
+</html>
