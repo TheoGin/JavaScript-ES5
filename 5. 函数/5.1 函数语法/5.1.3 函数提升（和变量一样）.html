@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 通过字面量声明的函数，会提升到脚本块的顶部。但不会提升到脚本块的顶部。
+    //   test(); // Uncaught ReferenceError: test is not defined
+    </script>
+    <script>
+      test();
+      function test() {
+        console.log("test");
+      }
+      /* 上面代码等价于：
+      function test();
+      test();
+      function test() {
+        console.log("test");
+      }
+      */
+
+      // 通过字面量声明的函数，会成为全局对象的属性。
+      window.test();
+    </script>
+  </body>
+</html>

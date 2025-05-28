@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      test();
+      function test() {
+        console.log("a = " + a); // a = undefined
+        // 如果使用var声明，变量提升到所在函数的顶部
+        var a = 1;
+        /* 上面代码等价于：
+          var a;  
+          console.log("a = " + a);
+          a = 1;
+        */
+      }
+      // 函数外部不可以使用该变量。
+      console.log("a = " + a); // Uncaught ReferenceError: a is not defined
+    </script>
+  </body>
+</html>

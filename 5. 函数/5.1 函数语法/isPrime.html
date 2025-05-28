@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /* function isPrime(num) {
+        var isFind = false;
+        for (var i = 2; i < num; i++) {
+          if (num % i === 0) {
+            isFind = true;
+            break;
+          }
+        }
+        if (num > 1 && !isFind) {
+          return true;
+        }
+        return false;
+      } */
+
+      // 优化
+      function isPrime(num) {
+        // 判断一个数是不是素数
+        if (num < 2) {
+          return false; // 2. return 会直接结束整个函数的运行
+        }
+        for (var i = 2; i < num; i++) {
+          if (num % i === 0) {
+            return false;
+          }
+        }
+
+        return true;
+
+        // 3. return 后面如果不跟任何数据，返回undefined
+        // return;
+
+        // 4. 如果函数中没有书写return，则该函数会在末尾自动return undefined。
+      }
+
+      var nums = [32, 5, 6, 83, 8, 4, 56, 72, 123, 43, 1];
+      var sum = 0;
+      // 求数组中素数的和
+      for (var index in nums) {
+        if (isPrime(nums[index])) { // 1. 函数运行后，得到的结果，调用函数时，调用表达式的值就是函数的返回值
+          sum += nums[index];
+        }
+      }
+      console.log(sum);
+    </script>
+  </body>
+</html>

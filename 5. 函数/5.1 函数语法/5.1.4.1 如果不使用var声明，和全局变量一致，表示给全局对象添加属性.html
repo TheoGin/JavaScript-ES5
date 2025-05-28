@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      test();
+      function test() {
+        // 1. 如果不使用var声明，和全局变量一致，表示给全局对象添加属性
+        a = 1; // 一般不会不写var声明
+        console.log("a = " + a);
+      }
+      // 通过typeof 函数名，得到的结果是"function"
+      console.log(typeof test); // function
+      // 1. 如果不使用var声明，和全局变量一致，表示给全局对象添加属性，在函数外也可以使用
+      console.log("a = " + a);
+      console.log("window.a = " + window.a);
+    </script>
+  </body>
+</html>
