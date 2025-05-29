@@ -253,10 +253,42 @@ var MyFunctions = {
       this.bubbleSort(arr);
     }
   }, */
-  sort: function (arr, callback) {
+  /**
+   * 为数组排序
+   * @param {Array} arr 数组
+   * @param {Function} compare 回调
+   * 第一个数减去第二个数，大于0，返回正数
+   * 第一个数减去第二个数，等于0，返回0
+   * 第一个数减去第二个数，小于0，返回负数
+   */
+  sort: function (arr, compare) {
+    /* 
+    if (
+        compare === undefined
+          ? function (o1, o2) {
+              return o1 > o2;
+            }
+          : compare(arr[j], arr[j + 1]) > 0
+      ) 
+    */
+    if (!compare) {
+      compare = function (o1, o2) {
+        // return o1 > o2;
+        if (o1 > o2) {
+          return 1;
+        } else if (o1 === o2) {
+          return 0;
+        } else {
+          return -1;
+        }
+      };
+    }
+    // console.log(compare);
+
     for (var i = 1; i < arr.length; i++) {
       for (var j = 0; j < arr.length - i; j++) {
-        if (callback(arr[j], arr[j+1])) {
+        // console.log(compare(arr[j], arr[j+1]));
+        if (compare(arr[j], arr[j + 1]) > 0) {
           var temp = arr[j + 1];
           arr[j + 1] = arr[j];
           arr[j] = temp;
