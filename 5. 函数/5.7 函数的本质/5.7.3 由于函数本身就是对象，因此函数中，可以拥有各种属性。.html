@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 由于函数本身就是对象，因此函数中，可以拥有各种属性
+      function User(firstName, lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.fullName = this.lastName + this.firstName;
+      }
+
+      User.abc = 123;
+      User.fn = function() {
+        console.log('fn函数执行');
+      }
+      console.log(User.abc); // 123
+      User.fn(); // fn函数执行
+    </script>
+  </body>
+</html>

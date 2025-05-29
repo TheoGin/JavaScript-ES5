@@ -6,11 +6,11 @@
 */
 
 /**
- *
+ * 游戏角色的构造函数
  * @param {*} name 角色名
  * @param {*} attack 攻击力
  * @param {*} defense 防御力
- * @param {*} hitPoint 生命值
+ * @param {*} hitPoint 生命值healthPoint
  * @param {*} criticalRate 暴击几率（0 ~ 100）
  */
 function Character(name, attack, defense, hitPoint, criticalRate) {
@@ -20,13 +20,19 @@ function Character(name, attack, defense, hitPoint, criticalRate) {
     this.defense = defense;
     this.hitPoint = hitPoint; // 生命值
     this.criticalRate = criticalRate; // 暴击几率
+
+    //函数
+    /**
+     * 打印信息
+     */
     this.print = function () {
       console.log(
         `${this.name}\t生命：${this.hitPoint}\t攻击：${this.attack}\t防御：${this.defense}\t暴击率：${this.criticalRate}%`
       );
     };
+
     /**
-     * 攻击
+     * 攻击，返回对方是否死亡
      * @param {*} character 攻击对象
      * @returns 生命值是否为0（是否死亡），是返回true，否则返回false
      */
@@ -34,13 +40,13 @@ function Character(name, attack, defense, hitPoint, criticalRate) {
       // 攻击伤害 = 攻击力 - 防御力
       var damage = this.attack - character.defense;
 
-      // 是否暴击
+      // 判断是否暴击
       var isCritical = false;
-
+      var rate = this.criticalRate / 100;
       var randomNum = Math.random();
 
       // 暴击条件，随机数 <= 当前角色的暴击率
-      if (randomNum <= this.criticalRate) {
+      if (randomNum <= rate) {
         isCritical = true;
         // 暴击几率（暴击时伤害翻倍）
         damage *= 2;

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var obj = { // 速写语法糖
+        x: 2,
+        y: 34,
+      };
+
+      // 等价于
+      var obj = new Object(); // 所有的对象都是通过关键字new出来的，new 构造函数()
+      obj.x = 2;
+      obj.y = 34;
+
+      var arr = [1, 2, 3]; // 速写语法糖
+      var arr = new Array(3); // 所有的对象都是通过关键字new出来的，new 构造函数()
+      arr[0] = 1;
+      arr[1] = 2;
+      arr[2] = 3;
+    </script>
+  </body>
+</html>

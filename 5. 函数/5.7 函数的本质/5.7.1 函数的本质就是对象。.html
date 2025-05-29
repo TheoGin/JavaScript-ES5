@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function sum(a, b) {
+        return a + b;
+      }
+      
+      // 上面等价于
+      var sum = new Function("a", "b", "return a+b");
+
+      console.log(typeof sum); // function
+      console.log(sum(3, 5)); // 8
+    </script>
+  </body>
+</html>
