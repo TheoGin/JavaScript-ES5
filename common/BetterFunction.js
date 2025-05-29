@@ -209,9 +209,9 @@ var MyFunctions = {
    * 判断数据是否为对象
    * @param {*} data
    */
-  isObject: function (data) {
+  /* isObject: function (data) {
     return typeof data === "object" && data !== null;
-  },
+  }, */
   /**
    * 冒泡排序
    * @param {*} arr
@@ -271,6 +271,7 @@ var MyFunctions = {
           : compareFn(arr[j], arr[j + 1]) > 0
       ) 
     */
+    // 没传第二个参数的情况
     if (!compareFn) {
       compareFn = function (o1, o2) {
         // return o1 > o2;
@@ -288,6 +289,7 @@ var MyFunctions = {
     for (var i = 1; i < arr.length; i++) {
       for (var j = 0; j < arr.length - i; j++) {
         // console.log(compareFn(arr[j], arr[j+1]));
+        //比较arr[j] 和 arr[j+1]
         if (compareFn(arr[j], arr[j + 1]) > 0) {
           var temp = arr[j + 1];
           arr[j + 1] = arr[j];
@@ -301,18 +303,9 @@ var MyFunctions = {
   /**
    * 按照指定的条件对某个数组进行筛选
    * @param {Array} arr 数组
-   * @param {Function} conditionFn 回调函数，接收一个数据项，返回一个布尔值
+   * @param {Function} conditionFn 回调函数，接收两个参数（一个数据项和一个下标），返回一个布尔值
    * @returns 返回新数组
    */
-  /* filter: function (arr, conditionFn) {
-    var newArr = [];
-    for(var i = 0; i < arr.length; i++) {
-      if(conditionFn(arr[i])) {
-        newArr.push(arr[i]);
-      }
-    }
-    return newArr;
-  }, */
   filter: function (arr, conditionFn) {
     var newArr = [];
     for (var i = 0; i < arr.length; i++) {
@@ -327,11 +320,11 @@ var MyFunctions = {
   /**
    * find() 方法返回数组中满足提供的测试函数的第一个元素的值
    * @param {*} arr
-   * @param {Function} conditionFn 回调函数，接收一个数据项，返回一个布尔值
+   * @param {Function} conditionFn 回调函数，接收两个参数（一个数据项和一个下标），返回一个元素
    */
   find: function (arr, conditionFn) {
     for (var i = 0; i < arr.length; i++) {
-      if (conditionFn(arr[i])) {
+      if (conditionFn(arr[i], i)) {
         return arr[i];
       }
     }
@@ -341,4 +334,18 @@ var MyFunctions = {
   },
 
   // 5.5.5 写一个函数，按照指定的条件，得到某个数组中满足条件的元素数量 count
+  /**
+   * 按照指定的条件，得到某个数组中满足条件的元素数量 count
+   * @param {*} arr
+   * @param {Function} conditionFn 回调函数，接收两个参数（一个数据项和一个下标），没有满足条件的返回0
+   */
+  count: function (arr, conditionFn) {
+    var cnt = 0;
+    for (var i = 0; i < arr.length; i++) {
+      if (conditionFn(arr[i], i)) {
+        cnt++;
+      }
+    }
+    return cnt;
+  },
 };

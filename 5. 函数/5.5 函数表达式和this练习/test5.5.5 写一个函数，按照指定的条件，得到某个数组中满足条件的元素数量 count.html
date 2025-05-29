@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script src="../../common/BetterFunction.js"></script>
+    <script>
+      /* 
+        5.5.5 写一个函数，按照指定的条件，得到某个数组中满足条件的元素数量 count
+      */
+
+      var arr = [5, 12, 8, 130, 44];
+      var count = MyFunctions.count(arr, function (item) {
+        return item > 10;
+      });
+      console.log(count);
+
+      var arr = [5, 12, 8, 2, 9, 130, 44];
+      var count = MyFunctions.count(arr, MyFunctions.isPrime);
+      console.log(count);
+    </script>
+  </body>
+</html>
