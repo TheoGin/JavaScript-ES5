@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 1. 函数名使用大驼峰命名法
+      function User(name, age, gender) { // 创建一个用户
+        /*  2. 构造函数内部
+        // 2.1 会自动创建一个新对象，this指向新创建的对象
+        this = {};
+
+        // 2.2 并且自动返回新对象
+        return this;
+        */
+        this.name = name;
+        this.age = age;
+        this.gender = gender;
+        this.sayHello = function () {
+          console.log(
+            `我叫${this.name}, 今年${this.age}岁，性别：${this.gender}`
+          );
+        };
+      }
+      var user = User("小傅", 18, "男");
+      console.log(user); // undefined
+
+      var user1 = new User("小傅", 18, "男");
+      console.log(user1); // User {name: '小傅', age: 18, gender: '男'}
+      user1.sayHello();
+
+      var user2 = new User("张三", 21, "男");
+      console.log(user2); // User {name: '张三', age: 21, gender: '男', sayHello: ƒ}
+      user2.sayHello(); // 我叫张三, 今年21岁，性别：男
+
+      console.log(user1 === user2); // false
+    </script>
+  </body>
+</html>

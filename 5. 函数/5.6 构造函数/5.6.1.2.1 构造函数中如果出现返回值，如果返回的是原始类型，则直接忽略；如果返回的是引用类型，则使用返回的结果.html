@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function User(name, age, gender) {
+        // 创建一个用户
+
+        this.name = name;
+        this.age = age;
+        this.gender = gender;
+        this.sayHello = function () {
+          console.log(
+            `我叫${this.name}, 今年${this.age}岁，性别：${this.gender}`
+          );
+        };
+        // 3. 构造函数中如果出现返回值
+        // // 3.1 如果返回的是原始类型，则直接忽略
+        // return 123;
+
+        // 3.2 如果返回的是引用类型，则使用返回的结果
+        return {
+          x: "abc",
+        };
+      }
+      // // 3.1 如果返回的是原始类型，则直接忽略
+      // var user1 = new User("小傅", 18, "男");
+      // console.log(user1); // {name: '小傅', age: 18, gender: '男', sayHello: ƒ}
+
+      // 3.2 如果返回的是引用类型，则使用返回的结果
+      var user1 = new User("小傅", 18, "男");
+      console.log(user1); // {x: 'abc'}
+    </script>
+  </body>
+</html>

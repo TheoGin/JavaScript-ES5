@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function User(name, age, gender) {
+        // 1. 该表达式在函数中使用，返回的是当前的构造函数，但是，如果该函数不是通过new调用的，则返回undefined
+        // console.log(new.target === User); // true（使用new的情况）；false（不使用new的情况）
+
+        var temp = function () {
+          console.log(
+            `我叫${this.name}, 今年${this.age}岁，性别：${this.gender}`
+          );
+        };
+        if (new.target) { // 2. 通常用于判断某个函数是否是通过new在调用。
+          this.name = name;
+          this.age = age;
+          this.gender = gender;
+          this.sayHello = temp;
+        } else {
+          return {
+            name,
+            age,
+            gender,
+            sayHello: temp,
+          };
+        }
+      }
+      // 1. 不使用new关键字
+      var user = User("Sophotheo", 18, "男"); // new.target ------> undefined
+      console.log(user); // {name: 'Sophotheo', age: 18, gender: '男', sayHello: ƒ}
+
+      // 2. 使用new关键字
+      user = new User("Sophotheo", 18, "男"); // new.target ------> User{...}
+      console.log(user); // User {name: 'Sophotheo', age: 18, gender: '男', sayHello: ƒ}
+    </script>
+  </body>
+</html>
