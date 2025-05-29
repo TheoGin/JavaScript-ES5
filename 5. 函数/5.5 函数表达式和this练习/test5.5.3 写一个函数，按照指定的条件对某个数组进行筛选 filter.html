@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script src="../../common/BetterFunction.js"></script>
+    <script>
+      /* 
+        5.5.3 写一个函数，按照指定的条件对某个数组进行筛选 filter
+      */
+
+      var arr = [324, 32, 76, 56, 345, 34, 45, 45];
+      var newArr = MyFunctions.filter(arr, function (item, index) {
+        return item % 2 !== 0 && index % 2 === 0;
+      });
+      console.log(arr);
+      console.log(newArr);
+
+      var arr = [1,2,34,5,4,9,10,15,11];
+      var newArr = MyFunctions.filter(arr, function (item) { // 第二项参数不需要，可以不写
+        // console.log(MyFunctions.isPrime(item));
+        return MyFunctions.isPrime(item);
+      });
+      console.log(arr);
+      console.log(newArr);
+
+      // 甚至可以直接传递函数
+      var arr = [1,2,34,5,4,9,10,15,11];
+      var newArr = MyFunctions.filter(arr, MyFunctions.isPrime); // 需要传一个函数？MyFunctions.isPrime就是一个函数
+      console.log(arr);
+      console.log(newArr);
+
+      var words = ["spray", "elite", "exuberant", "destruction", "present"];
+      var result = MyFunctions.filter(words, function (word) {
+        return word.length > 6;
+      });
+      console.log(words);
+      console.log(result);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script src="../../common/BetterFunction.js"></script>
+    <script>
+      /* 
+        5.5.4 写一个函数，按照指定的条件，得到某个数组中第一个满足条件的元素 find
+      */
+
+      var arr = [5, 12, 8, 130, 44];
+      var element = MyFunctions.find(arr, function(item) {
+        return item > 10;
+      });
+      console.log(element);
+    </script>
+  </body>
+</html>

@@ -34,7 +34,7 @@ var MyFunctions = {
     }
 
     for (var i = 2; i < num; i++) {
-      if (num % 2 === 0) {
+      if (num % i === 0) {
         return false;
       }
     }
@@ -256,23 +256,23 @@ var MyFunctions = {
   /**
    * 为数组排序
    * @param {Array} arr 数组
-   * @param {Function} compare 回调
+   * @param {Function} compareFn 定义排序顺序的函数。返回值应该是一个数字，其符号表示两个元素的相对顺序
    * 第一个数减去第二个数，大于0，返回正数
    * 第一个数减去第二个数，等于0，返回0
    * 第一个数减去第二个数，小于0，返回负数
    */
-  sort: function (arr, compare) {
+  sort: function (arr, compareFn) {
     /* 
     if (
-        compare === undefined
+        compareFn === undefined
           ? function (o1, o2) {
               return o1 > o2;
             }
-          : compare(arr[j], arr[j + 1]) > 0
+          : compareFn(arr[j], arr[j + 1]) > 0
       ) 
     */
-    if (!compare) {
-      compare = function (o1, o2) {
+    if (!compareFn) {
+      compareFn = function (o1, o2) {
         // return o1 > o2;
         if (o1 > o2) {
           return 1;
@@ -283,12 +283,12 @@ var MyFunctions = {
         }
       };
     }
-    // console.log(compare);
+    // console.log(compareFn);
 
     for (var i = 1; i < arr.length; i++) {
       for (var j = 0; j < arr.length - i; j++) {
-        // console.log(compare(arr[j], arr[j+1]));
-        if (compare(arr[j], arr[j + 1]) > 0) {
+        // console.log(compareFn(arr[j], arr[j+1]));
+        if (compareFn(arr[j], arr[j + 1]) > 0) {
           var temp = arr[j + 1];
           arr[j + 1] = arr[j];
           arr[j] = temp;
@@ -298,6 +298,44 @@ var MyFunctions = {
   },
 
   // 5.5.3 写一个函数，按照指定的条件对某个数组进行筛选 filter
+  /**
+   * 按照指定的条件对某个数组进行筛选
+   * @param {Array} arr 数组
+   * @param {Function} conditionFn 回调函数，接收一个数据项，返回一个布尔值
+   * @returns 返回新数组
+   */
+  /* filter: function (arr, conditionFn) {
+    var newArr = [];
+    for(var i = 0; i < arr.length; i++) {
+      if(conditionFn(arr[i])) {
+        newArr.push(arr[i]);
+      }
+    }
+    return newArr;
+  }, */
+  filter: function (arr, conditionFn) {
+    var newArr = [];
+    for (var i = 0; i < arr.length; i++) {
+      if (conditionFn(arr[i], i)) {
+        newArr.push(arr[i]);
+      }
+    }
+    return newArr;
+  },
+
   // 5.5.4 写一个函数，按照指定的条件，得到某个数组中第一个满足条件的元素 find
+  /**
+   * find() 方法返回数组中满足提供的测试函数的第一个元素的值
+   * @param {*} arr
+   * @param {Function} conditionFn 回调函数，接收一个数据项，返回一个布尔值
+   */
+  find: function (arr, conditionFn) {
+    for (var i = 0; i < arr.length; i++) {
+      if (conditionFn(arr[i])) {
+        return arr[i];
+      }
+    }
+  },
+
   // 5.5.5 写一个函数，按照指定的条件，得到某个数组中满足条件的元素数量 count
 };
