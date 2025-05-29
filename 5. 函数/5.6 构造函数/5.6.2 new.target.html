@@ -16,7 +16,7 @@
             `我叫${this.name}, 今年${this.age}岁，性别：${this.gender}`
           );
         };
-        if (new.target) { // 2. 通常用于判断某个函数是否是通过new在调用。
+        if (new.target === User) { // 2. 通常用于判断某个函数是否是通过new在调用。
           this.name = name;
           this.age = age;
           this.gender = gender;
