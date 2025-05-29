@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script src="../../common/BetterFunction.js"></script>
+    <script>
+      console.log(MyFunctions.isOdd(3)); // true
+      console.log(MyFunctions.isOdd(4)); // false
+
+      console.log(MyFunctions.isPrime(3)); // true
+      console.log(MyFunctions.isPrime(4)); // false
+
+      console.log(MyFunctions.sumOfArray([1, 2, 3])); // 6
+
+      console.log(MyFunctions.maxOfArray([1, 2, 3])); // 3
+      console.log(MyFunctions.minOfArray([1, 2, 3])); // 1
+
+      console.log(MyFunctions.hasEmptyInArray(new Array(3))); // true
+      console.log(MyFunctions.hasEmptyInArray([1, 2, 3])); // false
+
+      console.log(MyFunctions.isLeap(2020)); // true
+      console.log(MyFunctions.isLeap(2025)); // false
+      if (MyFunctions.isLeap(+prompt("请输入一个年份"))) {
+        console.log("是闰年");
+      } else {
+        console.log("是平年");
+      }
+
+      console.log(MyFunctions.getDays(2020, 2)); // 29
+      console.log(MyFunctions.getDays(2025, 2)); // 28
+      console.log(MyFunctions.getDays(2025, 8)); // 31
+      console.log(MyFunctions.getDays(2025, 11)); // 30
+
+      console.log(
+        MyFunctions.getTopFreqInArray([2, 4, 6, 1, 34, 2, 5, 5, 5, 5, 6, 2, 4, 5, 3])
+      );
+    </script>
+  </body>
+</html>

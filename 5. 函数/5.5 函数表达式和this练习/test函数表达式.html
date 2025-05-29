@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script src="../../common/BetterFunction.js"></script>
+    <script>
+      /* 5.5.2 写一个函数，为数组排序sort。要考虑到这个数组的所有可能（需要传回调）
+        [324,,76,56,345,34,45,45]
+        ["asfas","fgf","asdfasdf"]
+        [{name:"bsdfasdf",age:12},{name:"asdfasf",age:33}]
+      */
+
+      // console.log(MyFunctions.isObject({name:"bsdfasdf",age:"asdfasd"}));
+      var arr = [324, 32, 76, 56, 345, 34, 45, 45];
+      arr = ["dsfas", "fgf", "asdfasdf"];
+      arr = [{name:"bsdfasdf",age:12},{name:"asdfasf",age:33}];
+/*       MyFunctions.sort(arr);
+      console.log(arr);
+      MyFunctions.sort(arr,'age');
+      console.log(arr); */
+      
+      /* MyFunctions.sort(arr, function(o1, o2) {
+        return o1 >  o2;
+      }); */
+      MyFunctions.sort(arr, function(o1, o2) {
+        return o1.name >  o2.name;
+      });
+      console.log(arr);
+    </script>
+  </body>
+</html>
