@@ -323,7 +323,7 @@ var MyFunctions = {
     return newArr;
   },
 
-  // 5.5.4 写一个函数，按照指定的条件，得到某个数组中第一个满足条件的元素 find
+  // 5.5.4 写一个函数，按照指定的条件，得到某个数组中第一个满足条件的元素 find。否则返回 undefined。
   /**
    * find() 方法返回数组中满足提供的测试函数的第一个元素的值
    * @param {*} arr
@@ -335,6 +335,9 @@ var MyFunctions = {
         return arr[i];
       }
     }
+    // return undefined;
+    // return;
+    // 不写return，默认返回undefined
   },
 
   // 5.5.5 写一个函数，按照指定的条件，得到某个数组中满足条件的元素数量 count
