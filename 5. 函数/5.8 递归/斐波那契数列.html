@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /* 求斐波拉契数列第n位的值
+        1  1  2  3  5  8  13  21  ...
+        f(1): 1   f(2): 1
+        f(3) = f(2) + f(1)    f(5) = f(4)+f(3)
+        f(n) = f(n-1) + f(n-2)
+       */
+
+      // 斐波拉契数列的第n位
+    //   function fibonacciSequence(n) {
+    //     if (n == 1 || n == 2) {
+    //       return 1;
+    //     }
+    //     return fibonacciSequence(n - 1) + fibonacciSequence(n - 2);
+    //   }
+    //   console.log(fibonacciSequence(8)); // 21
+
+      // 优化
+      // console.log(fibonacciSequence(3)); // Uncaught TypeError: Cannot read properties of undefined (reading '8') 这个错误是由于 JavaScript 的变量提升（hoisting）机制导致的。问题在于你调用 fibonacciSequence(3) 的时机在初始化 cache 之前。
+      var cache = [];
+      // 调用函数放在cache定义后，就可以解决变量提升问题
+        console.log(fibonacciSequence(8)); // 21
+      function fibonacciSequence(n) {
+        if (cache[n]) {
+          return cache[n];
+        }
+        if (n == 1 || n == 2) {
+          cache[n] = 1;
+          return cache[n];
+        }
+        cache[n] = fibonacciSequence(n - 1) + fibonacciSequence(n - 2);
+        return cache[n];
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /* 
+        f(5, 1)               销毁当前函数，避免执行栈空间被占用
+          f(4, 5)             销毁当前函数，避免执行栈空间被占用
+            f(3, 20)          销毁当前函数，避免执行栈空间被占用
+              f(2, 60)        销毁当前函数，避免执行栈空间被占用
+                f(1, 120) 
+      */
+      function factorialHelper(n, total) {
+        if (n === 1) {
+          return total;
+        }
+        return factorialHelper(n - 1, n * total); // 如果尾调用是调用自身函数，则称为尾递归
+      }
+
+      // 简化尾递归阶乘调用
+      function factorial(n) {
+        return factorialHelper(n, 1); // 调用函数不是表达式的一部分，则该语句称为尾调用
+      }
+
+      console.log(factorial(5)); // 120
+    </script>
+  </body>
+</html>
