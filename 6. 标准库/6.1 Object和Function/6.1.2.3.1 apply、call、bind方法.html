@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function fn(a, b) {
+        console.log(this.name, this.age);
+        console.log(a, b);
+      }
+      var user1 = {
+        name: "user1",
+        age: 18,
+      };
+      var user2 = {
+        name: "user2",
+        age: 28,
+      };
+
+      fn(); // "" undefined 不能直接调用，直接调用this是window
+
+      // 1. apply方法：调用函数，同时指定函数中的this指向，参数以数组传递
+      fn.apply(user1, [1, 2]);
+
+      // 2. call方法：调用函数，同时指定函数中的this指向，参数以列表传递
+      fn.call(user2, 1, 2);
+
+      // 3. bind方法：得到一个新函数，该函数中的this始终指向指定的值。
+      var newFn = fn.bind(user1, 1, 2);
+      newFn();
+      // bind好处：调用多次，this指向不会改变，始终执行绑定的值
+      newFn();
+      newFn();
+      newFn();
+    </script>
+  </body>
+</html>

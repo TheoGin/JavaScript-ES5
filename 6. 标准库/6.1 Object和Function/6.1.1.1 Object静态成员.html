@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var obj = {
+        x: 123,
+        y: "abc",
+        z: true,
+      };
+      // 1. keys(某个对象)，得到某个对象的所有属性名数组
+      console.log(Object.keys(obj)); // ['x', 'y', 'z']
+      // 2. values(某个对象)，得到某个对象的所有属性值数组
+      console.log(Object.values(obj)); // [123, 'abc', true]
+      // 3. entries(某个对象)，得到某个对象的所有属性名和属性值的数组
+      console.log(Object.entries(obj)); // [0: (2) ['x', 123],1: (2) ['y', 'abc'],2: (2) ['z', true]]
+
+      var arr = [234, 65, 2, 2];
+      console.log(Object.keys(arr)); //['0', '1', '2', '3']
+      console.log(Object.values(arr)); // [234, 65, 2, 2]
+      console.log(Object.entries(arr)); // [0: (2) ['0', 234],1: (2) ['1', 65],2: (2) ['2', 2], 3: (2) ['3', 2]]
+    </script>
+  </body>
+</html>

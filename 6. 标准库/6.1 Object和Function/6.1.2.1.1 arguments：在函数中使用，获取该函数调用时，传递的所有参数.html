@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function test(a, b) {
+        console.log(a, b); // 1 2
+        // arguments：在函数中使用，获取该函数调用时，传递的所有参数
+        console.log(arguments); // Arguments(2) [1, 2, callee: ƒ, Symbol(Symbol.iterator): ƒ]
+        // arguments是一个类数组（也称为伪数组：没有通过Array构造函数创建的类似于数组结构的对象），伪数组会缺少大量的数组实例方法
+      }
+      test(1, 2);
+
+      function test(a, b) {
+        console.log(a, b); // 1 2
+        console.log(arguments); // Arguments(5) [1, 2, 4, 5, 6, callee: ƒ, Symbol(Symbol.iterator): ƒ]
+      }
+      test(1, 2, 4, 5, 6);
+
+      function test() {
+        // 没有形参，arguments也可以拿到传递过来的参数
+        console.log(arguments); // Arguments(5) [1, 2, 4, 5, 6, callee: ƒ, Symbol(Symbol.iterator): ƒ]
+      }
+      test(1, 2, 4, 5, 6);
+    </script>
+  </body>
+</html>

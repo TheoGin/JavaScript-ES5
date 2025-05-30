@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var obj = {
+        x: 123,
+        y: "abc",
+        z: true,
+      };
+      // 1. toString方法：得到某个对象的字符串格式。默认情况下，该方法返回"[object Object]";
+      console.log(obj.toString()); // [object Object]
+
+      // 数组、Number、Boolean对toString进行了重写
+      console.log([2, 1, 3, 4, 5].toString()); // 2,1,3,4,5
+      console.log(new Number(123).toString()); // '123'
+      console.log(new Boolean(true).toString()); // 'true'
+
+      // Number重写实现理解
+      function MyNumber(n) {
+        // ...
+        this.toString = function () {
+          return "" + n;
+        };
+      }
+      console.log(new MyNumber(123).toString()); // '123'
+
+      console.log(MyNumber.toString());
+      /* Function 实例的 toString() 方法返回一个表示该函数源码的字符串。
+        function MyNumber(n) {
+          // ...
+          this.toString = function () {
+            return "" + n;
+          };
+        }
+      */
+    </script>
+  </body>
+</html>

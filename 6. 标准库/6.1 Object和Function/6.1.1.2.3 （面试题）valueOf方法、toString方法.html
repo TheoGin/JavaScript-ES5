@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var obj = {
+        x: 13,
+        y: 34534,
+        valueOf: function () {
+          return 123;
+        },
+      };
+      /* Number背后的转换规则比较复杂。
+      第一步，调用对象自身的valueOf方法。如果返回原始类型的值，则直接对该值使用Number函数，不再进行后续步骤。
+      第二步，如果valueOf方法返回的还是对象，则改为调用对象自身的toString方法。如果toString方法返回原始类型的值，则对该值使用Number函数，不再进行后续步骤。
+      第三步，如果toString方法返回的是对象，就报错。
+      */
+      console.log(obj + 1); // 124
+      // 如果调用了valueOf已经得到了原始类型，则不再调用toString
+      console.log(obj.valueOf() + 1); // 124
+      console.log(obj.valueOf().toString() + 1); // '1231'
+    </script>
+  </body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // --------传递两个参数--------
+      test(1, 2);
+      function test(a, b) {
+        /* a, b
+          a: 1
+          b: 2
+          arguments: [1, 2]
+        */
+        arguments[0] = "abc";
+        /* a, b
+          a: 'abc'
+          b: 2
+          arguments: ['abc', 2]
+        */
+        b = 123;
+        /* a, b
+          a: 'abc'
+          b: 123
+          arguments: ['abc', 123]
+        */
+        console.log(a, b); // 'abc' 123
+        // 2. arguments数组中的值，会与对应的形参映射
+        console.log(arguments); // Arguments(2) ['abc', 123]
+      }
+
+      // --------一个参数都不传递--------
+      test();
+      function test(a, b) {
+        /* a, b
+          a: undefined
+          b: undefined
+          arguments: [] // 两个参数事先没有占位，无法映射
+        */
+        arguments[0] = "abc";
+        /* a, b
+          a: undefined
+          b: undefined
+          arguments: ["abc"] 
+        */
+        b = 123;
+        /* a, b
+          a: undefined
+          b: 123
+          arguments: ["abc"]
+        */
+        console.log(a, b); // undefined 123
+        // 2. arguments数组中的值，会与对应的形参映射
+        console.log(arguments); // Arguments(2) ['abc']
+      }
+
+      // --------传递一个参数--------
+      test(1);
+      function test(a, b) {
+        /* a, b
+          a: 1
+          b: undefined
+          arguments: [1] // 第二个参数事先没有占位，导致第二个参数无法映射
+        */
+        arguments[0] = "abc";
+        /* a, b
+          a: "abc"
+          b: undefined
+          arguments: ["abc"] 
+        */
+        b = 123;
+        /* a, b
+          a: "abc"
+          b: 123
+          arguments: ["abc"] 
+        */
+        console.log(a, b); // "abc" 123
+        // 2. arguments数组中的值，会与对应的形参映射
+        console.log(arguments); // Arguments(2) ['abc']
+      }
+    </script>
+  </body>
+</html>

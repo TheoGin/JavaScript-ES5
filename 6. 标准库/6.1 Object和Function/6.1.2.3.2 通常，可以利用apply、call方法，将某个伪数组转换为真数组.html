@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function fn() {
+        // 伪数组会缺少大量的数组实例方法
+        console.log(arguments); // Arguments(8) [1, 2, 4, 3, 5, 7, 5, 9, callee: ƒ, Symbol(Symbol.iterator): ƒ]
+        
+        // 可以利用apply、call方法，将某个伪数组 --> 转换为真数组
+        // [].slice(); // 不直接调用
+        var newArr = [].slice.call(arguments); // 将arguments转换为真数组
+        console.log(newArr); //  [1, 2, 4, 3, 5, 7, 5, 9]
+
+        var newArr = [].slice.apply(arguments); // 将arguments转换为真数组
+        console.log(newArr); //  [1, 2, 4, 3, 5, 7, 5, 9]
+      }
+      fn(1, 2, 4, 3, 5, 7, 5, 9);
+    </script>
+  </body>
+</html>
