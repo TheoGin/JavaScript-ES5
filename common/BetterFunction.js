@@ -348,4 +348,36 @@ var MyFunctions = {
     }
     return cnt;
   },
+  /**
+   * 得到一个最小值到最大值之间的随机整数
+   * @param {number} min 最小值
+   * @param {number} max 最大值（取不到最大值）
+   */
+  /* getRandom(min, max) {
+    // return min + Number.parseInt(Math.random() * (max - min));
+    // 或者括号括一整个
+    return parseInt(Math.random() * (max - min) + min);
+  }, */
+  /**
+   * 得到一个最小值到最大值之间的随机整数
+   * @param {number} min 最小值
+   * @param {number} max 最大值（取得到最大值）
+   */
+  getRandom(min, max) {
+    /* 
+    正数：
+      Math.random()               0 ~ 1
+      Math.random() * 10          0 ~ 10
+      5 + Math.random() * 10      5 ~ 15  
+    min = 5, max = 15时，5 + Math.random() * 10 ---> min + Math.random() * (max - min)
+    负数：
+      0 ~ -3   -5 ~ -3
+      假如是-3.14, parseInt(-3.14)得到的是-3，而取不到最大值-3，就出问题了，而正数是取不到最大值 ---> Math.floor
+    */
+    // return (min > 0 ? min - 1 : 0) + Number.parseInt(Math.random() * (max + 1)); // 错误写法
+    // return min + Number.parseInt(Math.random() * (max + 1 - min));
+    // 或者括号括一整个
+    // return parseInt(min + Math.random() * (max + 1 - min));
+    return Math.floor(min + Math.random() * (max + 1 - min)); // +1是为了取到最大值
+  },
 };

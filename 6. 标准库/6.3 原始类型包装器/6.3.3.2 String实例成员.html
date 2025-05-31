@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var str = new String("abcde");
+      console.log(str);
+      /* 字符串是一个伪数组
+      String {'abcde'}
+      0: "a"
+      1: "b"
+      2: "c"
+      3: "d"
+      4: "e"
+      length: 5
+      [[Prototype]]: String
+      [[PrimitiveValue]]: "abcde"
+      */
+
+      // 1. length：字符串长度
+      console.log(str.length); // 5
+
+      // 字符串是一个伪数组，可以像数组一样遍历
+      for (var i = 0; i < str.length; i++) {
+        console.log(str[i]);
+      }
+    </script>
+  </body>
+</html>

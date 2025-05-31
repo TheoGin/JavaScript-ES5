@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      console.log("A" + 3); // 'A3'，不能通过相加得到下一个字母
+
+      // String.fromCharCode：通过unicode编码创建字符串
+      var alphabetStr = "";
+      for (var i = 65; i < 65 + 26; i++) {
+        // console.log(String.fromCharCode(i));
+        alphabetStr += String.fromCharCode(i);
+      }
+      console.log(alphabetStr); // ABCDEFGHIJKLMNOPQRSTUVWXYZ
+    </script>
+  </body>
+</html>
