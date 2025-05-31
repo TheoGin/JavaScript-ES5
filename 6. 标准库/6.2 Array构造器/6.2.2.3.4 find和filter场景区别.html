@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var arr = [
+        {
+          name: "a",
+          age: 18,
+          score: 45,
+        },
+        {
+          name: "b",
+          age: 18,
+          score: 65,
+        },
+        {
+          name: "c",
+          age: 18,
+          score: 85,
+        },
+      ];
+      //
+      // 查找第一个满足条件的元素
+      var resultItem = arr.find(function (item) {
+        return item.score >= 60;
+      });
+      console.log(resultItem); // {name: 'b', age: 18, score: 65}
+
+      // 查找所有满足条件的元素
+      var resultArr = arr.filter(function (item) {
+        return item.score >= 60;
+      });
+      console.log(resultArr);
+    </script>
+  </body>
+</html>

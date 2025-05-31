@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var arr = [37, 25, 48, 55, 30];
+      // some：是否至少有一个元素满足条件
+      var isEvery = arr.some(function (item, index, array) {
+        return item >= 60; // 判断是否至少有一个同学及格
+      });
+      console.log(isEvery); // false
+
+      var arr = [32, 41, 63, 87, 54];
+      var isEvery = arr.some(function (item, index, array) {
+        return item >= 60; // 判断是否至少有一个同学及格
+      });
+      console.log(isEvery); // true
+    </script>
+  </body>
+</html>

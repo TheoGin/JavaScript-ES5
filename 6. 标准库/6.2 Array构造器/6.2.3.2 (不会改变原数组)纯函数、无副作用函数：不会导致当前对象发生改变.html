@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var arr1 = [1, 2, 3];
+      var arr2 = [4, 5, 6];
+      var arr3 = [7, 8, 9];
+      var newArr = arr1.concat(arr2, arr3);
+      console.log(newArr); // [1, 2, 3, 4, 5, 6, 7, 8, 9]
+      // 1. concat不会改变原数组
+      console.log(arr1); // [1,2,3]
+      console.log(arr2); // [4,5,6]
+      console.log(arr3); // [7,8,9]
+
+      var arr = [32, 41, 63, 87, 544];
+      // 2. includes: 数组中是否包含满足条件的元素
+      console.log(arr.includes(63)); // true
+      // includes是严格相等比较
+      console.log(arr.includes("63")); // false
+      console.log(arr.includes(63, 3)); // false
+
+      var arr = [
+        {
+          x: 1,
+          y: 2,
+        },
+        {
+          x: 3,
+          y: 4,
+        },
+      ];
+
+      // includes无法实现对象的查找，因为includes是严格相等比较，而对象比较的是地址
+      console.log(
+        arr.includes({
+          x: 1,
+          y: 2,
+        })
+      ); // false
+    </script>
+  </body>
+</html>

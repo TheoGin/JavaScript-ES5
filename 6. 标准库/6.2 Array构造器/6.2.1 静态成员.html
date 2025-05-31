@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function fn() {
+        console.log(arguments, Array.isArray(arguments)); // Arguments(6) [1, 2, 3, 4, 5, 6] false
+
+        // 1. from方法：可以将一个伪数组转换为真数组
+        var arr = Array.from(arguments);
+
+        // 2. isArray方法：判断一个给定的数据，是否为一个真数组
+        console.log(arr, Array.isArray(arr)); // [1, 2, 3, 4, 5, 6] true
+      }
+      fn(1, 2, 3, 4, 5, 6);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var arr = [1, 2, 3, 4];
+      var sum = arr.reduce(function (acc, item) {
+        console.log(acc, item);
+        return item + acc;
+      });
+      console.log(sum); // 10
+
+      var arr = [1]; // 只有一项，没有进循环，直接返回这一项
+      var sum = arr.reduce(function (acc, item) {
+        console.log("回调", acc, item);
+        return item + acc;
+      });
+      console.log(sum); // 1
+
+      // 只有一项若要进循环，则要给acc初始值
+      var sum = arr.reduce(function (acc, item) {
+        console.log("回调", acc, item); // 回调 0 1
+        return item + acc;
+      }, 0);
+      console.log(sum); // 1
+
+      /* 
+      var arr = [];
+      var sum = arr.reduce(function (acc, item) {
+        console.log("回调", acc, item);
+        return item + acc;
+      });
+      console.log(sum); // 一项都没有，会报错Uncaught TypeError: Reduce of empty array with no initial value
+      */
+      // 用初始值来解决报错的问题
+      var arr = [];
+      var sum = arr.reduce(function (acc, item) {
+        console.log("回调", acc, item);
+        return item + acc;
+      }, 0);
+      console.log(sum); // 0（初始值）
+    </script>
+  </body>
+</html>

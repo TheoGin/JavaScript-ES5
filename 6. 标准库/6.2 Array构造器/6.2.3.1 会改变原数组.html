@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var arr = new Array(5);
+      // 1. fill方法：用某个数据填充数组
+      arr.fill("abc");
+      console.log(arr); // ['abc', 'abc', 'abc', 'abc', 'abc']
+
+      var arr = [32, 12, 93, 74];
+      // 4. reverse：将当前数组颠倒顺序
+      arr.reverse(); // 颠倒顺序，而不是降序
+      console.log(arr); // [74, 93, 12, 32]
+
+      var arr = [11, 3, 211, 74, 9];
+      arr.sort(); // 不传回调函数时，会出问题，因为默认排序是将元素转换为字符串，然后按照它们的 UTF-16 码元值升序排序。'11' < '3'、'211' < '3'按照字符串规则比较，所以导致了 11, 211, 3的顺序
+      console.log(arr); // [11, 211, 3, 74, 9]
+
+      arr.sort(function (a, b) {
+        return b - a;
+      }); // 传回调函数就不会按照字符串规则比较
+      console.log(arr); // [211, 74, 11, 9, 3]
+
+      // 随机打乱顺序(洗牌) shuffle
+      arr.sort(function() {
+        // Math.random()生成[0, 1)之间的数，减去一半，则生成[-0.5, 0.5)之间的数，得到正数负数概率便相同
+        return Math.random() - 0.5;
+      })
+    </script>
+  </body>
+</html>
