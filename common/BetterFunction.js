@@ -179,8 +179,12 @@ var MyFunctions = {
      * 34: 1
      */
     var records = {}; //记录出现频率
+    // var isNumber = false;
     for (var i = 0; i < arr.length; i++) {
       var num = arr[i];
+      // if(typeof num === 'number') {
+      //   isNumber = true;
+      // }
       // if(num in records) {
       if (records[num]) {
         records[num]++;
@@ -188,11 +192,13 @@ var MyFunctions = {
         records[num] = 1;
       }
     }
+
     var result; //记录最终结果的对象
     for (var prop in records) {
       if (!result || records[prop] > result.frequency) {
         result = {
-          number: +prop,
+          // number: isNumber? +prop : prop, // 数字转换为数字，字符串就不转换
+          number: prop,
           frequency: records[prop],
         };
       }
@@ -284,7 +290,7 @@ var MyFunctions = {
         }
       };
     }
-    // console.log(compareFn);
+    console.log(arr);
 
     for (var i = 1; i < arr.length; i++) {
       for (var j = 0; j < arr.length - i; j++) {
@@ -380,4 +386,36 @@ var MyFunctions = {
     // return parseInt(min + Math.random() * (max + 1 - min));
     return Math.floor(min + Math.random() * (max + 1 - min)); // +1是为了取到最大值
   },
+  /**
+   * 获取符串中只能包含大写字母、小写字母、数字
+   * @returns 
+   */
+   /* getUpperAndLowerAlphabetAndNumStr() {
+    var str = "";
+    for (var i = 65; i < 65 + 26; i++) {
+      str += String.fromCharCode(i);
+    }
+    for (var i = 97; i < 97 + 26; i++) {
+      str += String.fromCharCode(i);
+    }
+    for (var i = 0; i <= 9; i++) {
+      str += "" + i;
+    }
+    return str;// ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789
+  }, */
+
+  // 书写一个函数，产生一个指定长度的随机字符串，字符串中只能包含大写字母、小写字母、数字
+  /**
+   * 产生一个指定长度的随机字符串，字符串中只能包含大写字母、小写字母、数字
+   * @param {*} len 指定长度
+   */
+  /* getRandomStr(len) {
+    var str = this.getUpperAndLowerAlphabetAndNumStr();
+    // var str = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+    var resultStr = "";
+    for (var i = 0; i < len; i++) {
+      resultStr += str[this.getRandom(0, str.length - 1)];
+    }
+    return resultStr;
+  }, */
 };

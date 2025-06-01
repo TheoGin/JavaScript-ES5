@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script src="../../common/BetterFunction.js"></script>
+    <script>
+      /* 从一个标准的身份证号中取出用户的出生年月日和性别，保存到对象中
+        例如，"524713199703020014"
+        得到对象：
+        birthYear: 1997
+        birthMonth: 3
+        birthDay: 2
+        gender: "男"  // 性别看倒数第二位，奇数为男，偶数为女
+      */
+      /* var pid = "524713199703020014";
+      // 应用场景：填写身份证号码，自动帮忙填充 出生年月日和性别
+      function getUserInfo(pid) {
+        return {
+          birthYear: +pid.substring(6, 10),
+          birthMonth: +pid.substring(10, 12),
+          birthDay: +pid.substring(12, 14),
+          gender: +pid.substring(16, 17) % 2 === 0 ? "女" : "男",
+        };
+      }
+      console.log(getUserInfo(pid)); */
+
+      var pid = "524713199703020014";
+      // 应用场景：填写身份证号码，自动帮忙填充 出生年月日和性别
+      function getUserInfo(pid) {
+        return {
+          // birthYear: +pid.substring(6, 10),
+          birthYear: +pid.substr(6, 4), // 用substr取固定长度会更方便
+          birthMonth: parseInt(pid.substr(10, 2)),
+          birthDay: Number(pid.substr(12, 2)),
+          // gender: +pid.substr(16, 1) % 2 === 0 ? "女" : "男",
+          gender: pid[pid.length - 2] % 2 === 0 ? "女" : "男", // 数学运算会自动转换为数字
+        };
+      }
+      console.log(getUserInfo(pid));
+    </script>
+  </body>
+</html>

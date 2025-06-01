@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script src="../../common/BetterFunction.js"></script>
+    <script>
+      // 找到某个字符串中出现最多的字符，打印字符和它出现的次数
+      var str = "abdsjrljfaoesdlfabsfsda";
+      console.log(MyFunctions.getTopFreqInArray(str)); // {number: 'a', frequency: 4}
+    //   console.log(MyFunctions.getTopFreqInArray([1, 2, 32, 1, 2, 7, 1, 4])); // number: '1', frequency: 3}
+
+      // 将一个伪数组转换为真数组
+      // var arr = [].slice.call(str);
+      // var arr = [].slice.apply(str);
+      var arr = Array.from(str);
+      console.log(arr);
+      console.log(MyFunctions.getTopFreqInArray(arr)); // {number: 'a', frequency: 4}
+    </script>
+  </body>
+</html>

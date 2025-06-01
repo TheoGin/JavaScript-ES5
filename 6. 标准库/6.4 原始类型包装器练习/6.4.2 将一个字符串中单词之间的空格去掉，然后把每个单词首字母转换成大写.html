@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 将一个字符串中单词之间的空格去掉，然后把每个单词首字母转换成大写。比如："hello world"  ->  "HelloWorld"
+      // 此解法遇到\r\n就会有问题
+      /* var str = "   they were on  \t the upper floor\r of the\r\n building. \n ";
+      var words = str.split();
+      var resultStr = "";
+      for (var prop in words) {
+        // words[prop][0] = words[prop][0].toUpperCase();
+        // console.log(words[prop][0].toUpperCase());
+        // resultStr += words[prop][0].toUpperCase() + words[prop].substring(1);
+        resultStr += words[prop].charAt(0).toUpperCase() + words[prop].substring(1);
+      }
+      console.log(resultStr); */
+
+      /* var str =
+        "   they were on  \t the upper floor\r of the\r \n building. \n ";
+      var resultStr = "";
+      for (var i = 0; i < str.length; i++) {
+        var flag =
+          str[i] !== " " &&
+          str[i] !== "\t" &&
+          str[i] !== "\r" &&
+          str[i] !== "\n";
+        if (i === 0 && flag) {
+          resultStr += str[i++].toUpperCase();
+        }
+        if (flag) {
+          resultStr += str[i];
+        } else if (
+          (str[i + 1] > "A" && str[i + 1] < "Z") ||
+          (str[i + 1] > "a" && str[i + 1] < "z")
+        ) {
+          resultStr += str[i + 1].toUpperCase();
+          i++;
+        }
+      }
+      console.log(resultStr); */
+
+      /* var str =
+        "   they were on  \t the upper floor\r of the\r\n building. \n ";
+      function bigCamel(str) {
+        var resultStr = "";
+        // windows系统换行是先回车再换行，Mac、Linux换行就是\n
+        // var empties = [' ', '\t', '\r', '\n']
+        var empties = " \t\r\n";
+        console.log(empties.includes("\t"));
+        for (var i = 0; i < str.length; i++) {
+          var flag = !empties.includes(str[i]);
+          if (i === 0 && flag) {
+            resultStr += str[i++].toUpperCase();
+          }
+          if (flag) {
+            resultStr += str[i];
+          } else if (
+            (str[i + 1] > "A" && str[i + 1] < "Z") ||
+            (str[i + 1] > "a" && str[i + 1] < "z")
+          ) {
+            resultStr += str[i + 1].toUpperCase();
+            i++;
+          }
+        }
+        return resultStr
+      }
+      console.log(bigCamel(str)); */
+
+      /* var str = "they were on  \t the upper floor\r of the\r\n building. \n ";
+      function bigCamel(str) {
+        var resultStr = "";
+        // windows系统换行是先回车再换行，Mac、Linux换行就是\n
+        var empties = " \t\r\n";
+        for (var i = 0; i < str.length; i++) {
+          if (!empties.includes(str[i])) {
+            // if (i > 0 && empties.includes(str[i - 1])) {
+            if (empties.includes(str[i - 1]) || str[i-1] === undefined) {
+              resultStr += str[i].toUpperCase();
+            } else {
+              resultStr += str[i];
+            }
+          }
+        }
+        return resultStr;
+      }
+      console.log(bigCamel(str)); */
+
+      // 法一：常规法
+      /* var str = "they were on  \t the upper floor\r of the\r\n building. \n ";
+      function bigCamel(str) {
+        var resultStr = "";
+        // windows系统换行是先回车再换行，Mac、Linux换行就是\n
+        var empties = " \t\r\n";
+        for (var i = 0; i < str.length; i++) {
+          if (!empties.includes(str[i])) {
+            // i = 0的时候前一项是undefined
+            if (i === 0 || empties.includes(str[i - 1])) {
+              resultStr += str[i].toUpperCase();
+            } else {
+              resultStr += str[i];
+            }
+          }
+        }
+        return resultStr;
+      }
+      console.log(bigCamel(str)); */
+
+      /* var str = "they were on  the upper floor of the   building.  ";
+      function bigCamel(str) {
+        var words = str.split(" "); // 参数传正则，就可以解决\t\r\n
+        // console.log(words.join(''));
+        var resultStr = "";
+        for (var prop in words) {
+          if (words[prop].length > 0) {
+            resultStr +=
+              words[prop][0].toUpperCase() + words[prop].substring(1);
+          }
+        }
+        return resultStr;
+      }
+      console.log(bigCamel(str)); */
+
+      var str = "they were on  tHe upper flOor of the   building.  ";
+      function bigCamel(str) {
+        // 参数传正则，就可以解决\t\r\n，目前只考虑空格
+        return str
+          .split(" ")
+          .filter(function (item) {
+            return item.length > 0;
+          })
+          .map(function (item) {
+            // return item[0].toUpperCase() + item.substring(1);
+            return item[0].toUpperCase() + item.substring(1).toLowerCase();
+          })
+          .join("");
+      }
+      console.log(bigCamel(str));
+    </script>
+  </body>
+</html>

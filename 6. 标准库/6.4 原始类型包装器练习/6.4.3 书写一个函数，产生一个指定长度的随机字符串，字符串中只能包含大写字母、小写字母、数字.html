@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script src="../../common/BetterFunction.js"></script>
+    <script>
+      /**
+       * 获取符串中只能包含大写字母、小写字母、数字
+       * @returns
+       */
+      function getUpperAndLowerAlphabetAndNumStr() {
+        var str = "";
+        for (var i = 65; i < 65 + 26; i++) {
+          str += String.fromCharCode(i);
+        }
+        for (var i = 97; i < 97 + 26; i++) {
+          str += String.fromCharCode(i);
+        }
+        for (var i = 0; i <= 9; i++) {
+          str += "" + i;
+        }
+        return str; // ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789
+      }
+
+      // 书写一个函数，产生一个指定长度的随机字符串，字符串中只能包含大写字母、小写字母、数字
+      /**
+       * 产生一个指定长度的随机字符串，字符串中只能包含大写字母、小写字母、数字
+       * @param {*} len 指定长度
+       */
+      function getRandomStr(len) {
+        var str = getUpperAndLowerAlphabetAndNumStr();
+        // var str = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+        var resultStr = "";
+        for (var i = 0; i < len; i++) {
+          var index = MyFunctions.getRandom(0, str.length - 1);
+          resultStr += str[index];
+        }
+        return resultStr;
+      }
+      console.log(getRandomStr(40));
+    </script>
+  </body>
+</html>

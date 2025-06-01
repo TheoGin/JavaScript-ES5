@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 将字符串按照字符编码的顺序重新升序排序
+      var str = "xxTgCOz9dkQuP8GSVS8TYneC1MDSiEyLKlxswELV";
+      var arr = Array.from(str)
+        .map(function (item) {
+          return str.charCodeAt(str.indexOf(item));
+        })
+        .sort(function (a, b) {
+          return a - b;
+        })
+        .map(function (item) {
+          return String.fromCharCode(item);
+        })
+        .join("");
+      console.log(arr); // 1889CCDEEGKLLMOPQSSSTTVVYdegiklnsuwxxxyz
+
+      var str = "xxTgCOz9dkQuP8GSVS8TYneC1MDSiEyLKlxswELV";
+      // Array.sort() 默认排序是将元素转换为字符串，然后按照它们的 UTF-16 码元值升序排序。
+      var arr = Array.from(str).sort().join('');
+      console.log(arr); // 1889CCDEEGKLLMOPQSSSTTVVYdegiklnsuwxxxyz
+      
+      /* var arr = Array.from(str).sort(function(a, b) {
+        return a > b; // 不能降序
+      }).join(''); */
+      var arr = Array.from(str).sort().reverse().join('');
+      console.log(arr); // 1889CCDEEGKLLMOPQSSSTTVVYdegiklnsuwxxxyz
+    </script>
+  </body>
+</html>
