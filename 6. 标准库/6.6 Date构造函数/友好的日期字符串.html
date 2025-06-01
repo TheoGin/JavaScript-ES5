@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function getDateString(date) { // 用正则还可以优化
+        // 年份如果是公元前，就在前面填充0
+        var year = date.getFullYear().toString().padStart(4, "0");
+        var month = (date.getMonth() + 1).toString().padStart(2, "0");
+        var day = date.getDate().toString().padStart(2, "0");
+
+        var hour = date.getHours().toString().padStart(2, "0");
+        var minute = date.getMinutes().toString().padStart(2, "0");
+        var second = date.getSeconds().toString().padStart(2, "0");
+
+        return `${year}-${month}-${day} ${hour}:${minute}:${second}`;
+      }
+      console.log(getDateString(new Date(2025, 5, 1, 5, 2, 3))); // 2025-06-01 05:02:03
+    </script>
+  </body>
+</html>
