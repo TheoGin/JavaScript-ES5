@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var reg = /^-?\d+$/gim;
+
+      // 1. global：针对字符串中所有可能的匹配项测试正则表达式，还是仅针对第一个匹配项。
+      console.log(reg.global); // true
+      reg.global = false;
+      // global 是一个正则表达式实例的只读属性。
+      console.log(reg.global); // true
+
+      // 2. ignoreCase：匹配文本的时候是否忽略大小写。
+      console.log(reg.ignoreCase); // true
+
+      // 3. multiline：是否进行多行搜索。
+      console.log(reg.multiline); // true
+
+      // 4. source：正则表达式的文本。
+      console.log(reg.source); // ^-?\d+$
+    </script>
+  </body>
+</html>

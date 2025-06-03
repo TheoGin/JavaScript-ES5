@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var reg = /abc/g;
+      var s = "111abc321abc314";
+      // 1. test方法：验证某个字符串是否满足规则
+      console.log(reg.lastIndex, reg.test(s), reg.lastIndex); // 0 true 6
+      // lastIndex：该索引表示从哪里开始下一个匹配
+      console.log(reg.lastIndex, reg.test(s), reg.lastIndex); // 6 true 12
+      console.log(reg.lastIndex, reg.test(s), reg.lastIndex); // 12 false 0
+
+      console.log(reg.lastIndex, reg.test(s), reg.lastIndex); // 0 true 6
+      console.log(reg.lastIndex, reg.test(s), reg.lastIndex); // 6 true 12
+      console.log(reg.lastIndex, reg.test(s), reg.lastIndex); // 12 false 0
+
+      
+      var reg = /abc/; // 默认不是全局搜索
+      var s = "111abc321abc314";
+      // 不是全局匹配，每次都从下标0开始匹配
+      console.log(reg.lastIndex, reg.test(s), reg.lastIndex); // 0 true 0
+      console.log(reg.lastIndex, reg.test(s), reg.lastIndex); // 0 true 0
+      console.log(reg.lastIndex, reg.test(s), reg.lastIndex); // 0 true 0
+      // 可以手动更改lastIndex
+      reg.lastIndex = 6
+      console.log(reg.lastIndex, reg.test(s), reg.lastIndex); // 6 true 6
+      console.log(reg.lastIndex, reg.test(s), reg.lastIndex); // 6 true 6
+      console.log(reg.lastIndex, reg.test(s), reg.lastIndex); // 6 true 6
+
+      // 判断匹配多少处
+      var reg = /abc/g;
+      var s = "111abc321abc314";
+      var n = 0;
+      while (reg.test(s)) {
+        n++;
+      }
+      console.log(`共匹配了${n}次`); // 2
+    </script>
+  </body>
+</html>

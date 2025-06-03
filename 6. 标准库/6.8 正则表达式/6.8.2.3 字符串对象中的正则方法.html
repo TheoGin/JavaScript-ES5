@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 1. split(separator/regExp, limit?)方法
+      // 按照逗号、空格、横杠、制表符进行分割
+      var s = "they were on , the upper floor- of the\r\n building. \n ";
+      console.log(s.split(/[, -\s]/)); // ['they', 'were', 'on', '', '', 'the', 'upper', 'floor', '', 'of', 'the', '', '', 'building.', '', '', '']
+      console.log(s.split(/[,\s-]/, 3)); // ['they', 'were', 'on']
+
+      // 2. search(regexp) 方法：用于在 String 对象中执行正则表达式的搜索，寻找匹配项。
+      var s = "123abc321aaa";
+      var result = s.search(/\d+/g);
+      console.log(result); // 0
+      // 非全局匹配
+      var result = s.search(/\d+/);
+      console.log(result); // 0
+
+      // 3. match(regexp) 方法：检索字符串与正则表达式进行匹配的结果。
+      var s = "123abc321aaa";
+      var result = s.match(/\d+/g);
+      console.log(result); // ['123', '321']
+      // 非全局匹配：只有一项（数组格式）
+      var result = s.match(/\d+/);
+      console.log(result); // ['123', index: 0, input: '123abc321aaa', groups: undefined]
+
+      // 4. replace(pattern, replacement)方法
+      var s = "they were on  \t the upper floor\r of the\r\n building. \n ";
+      // - pattern 可以是字符串或 RegExp，replacement 可以是字符串或一个在每次匹配时调用的函数。
+      // - 如果 pattern 是字符串，则只会替换第一个匹配项。原始的字符串不会改变。
+      s = s.replace(" ", ","); // 只会替换第一处的空格
+      console.log(s); // they,were on  	 the upper floor...
+
+      var s = "they were on  \t the upper floor\r of the\r\n building. \n ";
+      // - replace() 方法返回一个新字符串，其中一个、多个或所有匹配的 pattern 被替换为 replacement。
+      s = s.replace(/\s/g, ",");
+      console.log(s); // they,were,on,,,,the,upper,floor,,of,the,,,building.,,,
+
+      var s = "they were on  \t the upper floor\r of the\r\n building. \n ";
+      s = s.replace(/\b[a-z]/g, "a");
+      console.log(s); // ahey aere an  	 ahe apper aloor...
+
+      var s = "they were on  \t the upper floor\r of the\r\n building. \n ";
+      // 将空白字符、制表符去掉，并将首字母转为大写
+      s = s.replace(/\s*\b[a-z]\s*/g, function (match) {
+        console.log(match);
+        /* 
+        t
+         w
+         o
+           t
+         u
+         f
+ 
+         o
+         t
+       
+         b
+        */
+        return match.toUpperCase().trim();
+      });
+      console.log(s); // TheyWereOnTheUpperFloorOfTheBuilding.
+    </script>
+  </body>
+</html>

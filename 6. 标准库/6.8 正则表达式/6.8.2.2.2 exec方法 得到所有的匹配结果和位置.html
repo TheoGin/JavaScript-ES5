@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var reg = /\d+/g;
+      var s = "1234abc321aaa";
+
+        var resultArr;
+      // 得到所有的匹配结果和位置
+      while ((resultArr = reg.exec(s))) { // 不写var，等价 window.resultArr = reg.exec(s)
+        console.log(resultArr, Array.isArray(resultArr));
+        /* 2. exec方法：execute，执行匹配，得到匹配结果。得到的是真数组
+          ['1234', index: 0, input: '1234abc321aaa', groups: undefined] true
+          ['321', index: 7, input: '1234abc321aaa', groups: undefined] true
+        */
+        console.log(`匹配结果：${resultArr[0]}, 匹配位置${resultArr.index}`);
+        /* 
+          匹配结果：1234, 匹配位置0
+          匹配结果：321, 匹配位置7
+        */
+      }
+
+      // 得到所有的匹配结果和位置
+      /*  while (true) {
+        var resultArr = (resultArr = reg.exec(s));
+        // if(resultArr === null) {
+        if (!resultArr) {
+          break;
+        }
+        console.log(`匹配结果：${resultArr[0]}, 匹配位置${resultArr.index}`);
+      } */
+    </script>
+  </body>
+</html>

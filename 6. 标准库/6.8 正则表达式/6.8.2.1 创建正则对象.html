@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 1. 字面量模式
+      var reg1 = /^-?\d+$/;
+
+      // 2. 构造函数模式
+      var reg2 = new RegExp("^-?\d+$");
+      var reg3 = RegExp("^-?\d+$");
+      console.log(reg1); // /^-?\d+$/
+      console.log(reg2); // /^-?\d+$/
+      console.log(reg3); // /^-?\d+$/
+      console.log(reg1 === reg2); // false
+      console.log(reg1 === reg3); // false
+
+      var reg1 = /^-?\d+$/;
+      // 是否使用new关键字的区别：字符串没有区别，传递字面量模式有点区别
+      var reg2 = new RegExp(reg1);
+      var reg3 = RegExp(reg1);
+      console.log(reg1); // /^-?\d+$/
+      console.log(reg2); // /^-?\d+$/
+      console.log(reg3); // /^-?\d+$/
+      console.log(reg1 === reg2); // false
+      console.log(reg1 === reg3); // true
+    </script>
+  </body>
+</html>

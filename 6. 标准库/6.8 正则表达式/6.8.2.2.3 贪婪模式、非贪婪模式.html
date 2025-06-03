@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var reg = /\d+/g;
+      var s = "111abc321abc";
+      // 1. 正则表达式，默认情况下，适用贪婪模式
+      console.log(reg.lastIndex, reg.test(s), reg.lastIndex); // 0 true 3
+      console.log(reg.lastIndex, reg.test(s), reg.lastIndex); // 3 true 9
+      console.log(reg.lastIndex, reg.test(s), reg.lastIndex); // 9 false 0
+
+      // 2. 在量词后，加上?，表示进入非贪婪模式
+      var reg = /\d+?/g;
+      var s = "111abc321abc";
+      console.log(reg.lastIndex, reg.test(s), reg.lastIndex); // 0 true 1
+      console.log(reg.lastIndex, reg.test(s), reg.lastIndex); // 1 true 2
+      console.log(reg.lastIndex, reg.test(s), reg.lastIndex); // 2 true 3
+      console.log(reg.lastIndex, reg.test(s), reg.lastIndex); // 3 true 7
+      console.log(reg.lastIndex, reg.test(s), reg.lastIndex); // 7 true 8
+    </script>
+  </body>
+</html>
