@@ -388,9 +388,9 @@ var MyFunctions = {
   },
   /**
    * 获取符串中只能包含大写字母、小写字母、数字
-   * @returns 
+   * @returns
    */
-   /* getUpperAndLowerAlphabetAndNumStr() {
+  /* getUpperAndLowerAlphabetAndNumStr() {
     var str = "";
     for (var i = 65; i < 65 + 26; i++) {
       str += String.fromCharCode(i);
@@ -418,4 +418,66 @@ var MyFunctions = {
     }
     return resultStr;
   }, */
+  // 6.7.2 给定用户的生日（年、月、日），计算该用户的年龄
+  /**
+   * 给定用户的生日（年、月、日），计算该用户的年龄
+   * @param {*} year
+   * @param {*} month
+   * @param {*} day
+   */
+  getAge(year, month, day) {
+    /* 闰年2月29号那天生日测试
+    var now = new Date(2020, 2 - 1, 28); // 闰年，但是还没到29号，就还没到生日
+    var now = new Date(2025, 2 - 1, 28); // 平年，没有29号，那就28号那天过生日，就到了今年的生日 
+    */
+    var now = new Date();
+    var age = now.getFullYear() - year;
+    // 生日在闰年那天，但今年不是闰年，就没有29号，传到birthDayThisYear的日期对象就会变成3月1号，就有问题
+    if (month === 2 && day === 29 && !this.isLeap(now.getFullYear())) {
+      day = 28;
+    }
+    var birthDayThisYear = new Date(now.getFullYear(), month - 1, day);
+    // console.log(this.getDateString(birthDayThisYear));
+    // console.log(this.getDateString(birthDayThisYear));
+    
+    // if (now <= birthDayThisYear) {
+    if (now < birthDayThisYear) { // 没有等号
+      age--;
+    }
+    return age;
+  },
+  /* getAge(year, month, day) {
+    var now = new Date();
+    var age = now.getFullYear() - year;
+    if (age < 0) {
+      return;
+    }
+    if (now.getMonth() + 1 < month || now.getMonth() + 1 === month && now.getDate() < day) {
+      age--;
+    }
+    // console.log(this.getDateString(now));
+    // console.log(month);
+    // console.log(now.getDate());
+    // console.log(month);
+    // console.log(day);
+    return age;
+  }, */
+  /**
+   * 年-月-日 时:分:秒
+   * @param {Date} date 日期对象
+   * @returns
+   */
+  getDateString: function (date) {
+    // 用正则还可以优化
+    // 年份如果是公元前，就在前面填充0
+    var year = date.getFullYear().toString().padStart(4, "0");
+    var month = (date.getMonth() + 1).toString().padStart(2, "0");
+    var day = date.getDate().toString().padStart(2, "0");
+
+    var hour = date.getHours().toString().padStart(2, "0");
+    var minute = date.getMinutes().toString().padStart(2, "0");
+    var second = date.getSeconds().toString().padStart(2, "0");
+
+    return `${year}-${month}-${day} ${hour}:${minute}:${second}`;
+  },
 };

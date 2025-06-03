@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script src="../../common/BetterFunction.js"></script>
+    <script>
+      /* function getOneToCurMonthDays(year, month, day) {
+        var sum = day;
+        for (var m = 1; m < month; m++) {
+          sum += MyFunctions.getDays(year, m);
+        }
+        return sum;
+      }
+
+      // 计算还有多少天过生日
+      function getDaysToBirthday(month, day) {
+        // var now = new Date(2025, 2, 25);
+        var now = new Date();
+
+        // 得到今年1月份到今天的天数
+        var sumDaysThisYear = getOneToCurMonthDays(
+          now.getFullYear(),
+          now.getMonth() + 1, // 月份从0开始！！！
+          now.getDate()
+        );
+        console.log("今年：", sumDaysThisYear);
+
+        // 得到今年1月份到生日的天数
+        var sumDaysToBirthday = getOneToCurMonthDays(
+          now.getFullYear(),
+          month,
+          day
+        ); // 初始化为生日那个月的天数
+        console.log("生日：", sumDaysToBirthday);
+
+        if (sumDaysToBirthday < sumDaysThisYear) {
+          return;
+        }
+        return sumDaysToBirthday - sumDaysThisYear;
+      }
+      var days = getDaysToBirthday(9, 22);
+      console.log(days === undefined ? "今年生日已过" : `还有${days}天过生日`); */
+
+      // 计算还有多少天过生日
+      function getDaysToBirthday(month, day) {
+        // var now = new Date(2025, 2, 25);
+        var now = new Date();
+        var thisYear = now.getFullYear();
+
+        var birthday = new Date(thisYear, month - 1, day);
+
+      console.log(MyFunctions.getDateString(now));
+        // 今年生日已过，就算明年的
+        if (birthday < now) {
+          birthday.setFullYear(thisYear + 1);
+        }
+        var distanceLongTime = birthday - now; // 时间戳差值
+        /* if (distanceLongTime < 0) {
+          birthday = new Date(thisYear + 1, month - 1, day); // 不需要重新new，只改年可以用setFullYear
+          distanceLongTime = birthday - now;
+        } */
+
+        /* 
+        现在：2025-06-03 09:39:47
+        生日：2025-06-03 00:00:00
+        还差不到24小时，那就算还有一天才过生日
+        */
+        var days = Math.ceil(distanceLongTime / (24 * 60 * 60 * 1000));
+
+        return days;
+      }
+      var days = getDaysToBirthday(9, 22);
+      console.log(`还有${days}天过生日`);
+    </script>
+  </body>
+</html>

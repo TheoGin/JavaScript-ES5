@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script src="../../common/BetterFunction.js"></script>
+    <script>
+      /* 根据系统当前的月份，输出这一个月每一天的星期
+      2025年6月1日：星期日
+      2025年6月2日：星期一
+      .....
+      2025年6月30日：星期一
+      */
+      
+      // 打印当前月每一天的星期
+      function printWeek() {
+        // var now = new Date(2020, 2 - 1); // 闰年情况测试
+        var now = new Date();
+        var year = now.getFullYear();
+        var month = now.getMonth() + 1;
+        // 得到这一年，这一月的天数
+        var days = MyFunctions.getDays(year, month);
+        // 巧妙获取当月天数：月份传当前月+1，然后天数传0，就会天数减1，退回到上一个月的最后一天
+        var days = new Date(year, month, 0).getDate(); // month从0开始，此处的month已经是当前月的下一个月了
+        console.log(now.getFullYear(), now.getMonth() + 1, days);
+        var weeks = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六']
+        for(var d = 1; d <= days; d++) {
+          now.setDate(d);
+          var index= now.getDay();
+          console.log(`${year}年${month}月${d}日：${weeks[index]}`);
+        }
+      }
+      printWeek();
+
+      // 打印当前月每一天的星期
+      function printWeek() {
+        // var now = new Date(2020, 2 - 1); // 闰年情况测试
+        var now = new Date();
+        var year = now.getFullYear();
+        var month = now.getMonth() + 1;
+        // 得到这一年，这一月的天数
+        var days = new Date(year, month, 0).getDate(); // month从0开始，此处的month已经是当前月的下一个月了
+        console.log(now.getFullYear(), now.getMonth() + 1, days);
+
+        for (var d = 1; d <= days; d++) {
+          console.log(
+            `${year}年${month}月${d}日：星期${getDayOfWeek(year, month, d)}`
+          );
+        }
+      }
+      printWeek();
+
+      // console.log(getDayOfWeek(2025, 6, 2));
+      function getDayOfWeek(year, month, day) {
+        var d = new Date(year, month - 1, day);
+        // console.log(d.getDay());  // 得到星期
+        switch (d.getDay()) {
+          case 0:
+            return "日";
+          case 1:
+            return "一";
+          case 2:
+            return "二";
+          case 3:
+            return "三";
+          case 4:
+            return "四";
+          case 5:
+            return "五";
+          case 6:
+            return "六";
+        }
+      }
+    </script>
+  </body>
+</html>
