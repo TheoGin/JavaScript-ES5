@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var s = "AAAaaaaabbbbbbbbccccccccccdefgggggggg";
+      // 找出该字符串中连续重复出现的【字符】（面试题）
+      var reg = /(\w)\1+/g;
+      // console.log(s.match(reg)); //  ['AAA', 'aaaaa', 'bbbbbbbb', 'cccccccccc', 'gggggggg']
+      // 给捕获组取名
+      // var reg = /(?<char>\w)\k<char>+/g;
+      while ((result = reg.exec(s))) {
+        // console.log(result[0]);
+        // 要的是字符，而不是字符串
+        console.log(result[1]);
+        /* 
+          A
+          a
+          b
+          c
+          g
+        */
+      }
+    </script>
+  </body>
+</html>

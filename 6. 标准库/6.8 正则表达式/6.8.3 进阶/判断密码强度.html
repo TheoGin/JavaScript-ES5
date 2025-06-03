@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var s = "AS@!ds26323425143";
+      // var reg = /(?=.*([a-z]+))(?=.*([A-Z]+))(?=.*([0-9]+))(?=.*([@#_,.]+)).*{6,12}/g; // Invalid regular expression .*{6,12}数量匹配重复了
+      var reg = /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#_,.]).{6,12}/g;
+      console.log(reg.test(s));
+    </script>
+  </body>
+</html>

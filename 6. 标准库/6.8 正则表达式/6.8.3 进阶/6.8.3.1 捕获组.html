@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+
+
+      var s = "2015-5-1, 2019-6-19, 2000-04-28";
+      // 1. 用小括号包裹的部分叫做捕获组，捕获组会出现在匹配结果中
+      // 得到每一个日期，并得到每个日期的年月日
+      var reg = /(\d{4})-(\d{1,2})-(\d{1,2})/g;
+      // console.log(s.match(reg));
+      while ((result = reg.exec(s))) {
+        console.log(result);
+        /* 
+          (4) ['2015-5-1', '2015', '5', '1', index: 0, input: '2015-5-1, 2019-6-19, 2000-04-28', groups: undefined]
+          (4) ['2019-6-19', '2019', '6', '19', index: 10, input: '2015-5-1, 2019-6-19, 2000-04-28', groups: undefined]
+          (4) ['2000-04-28', '2000', '04', '28', index: 21, input: '2015-5-1, 2019-6-19, 2000-04-28', groups: undefined]
+        */
+      }
+
+      var s = "2015-5-1, 2019-6-19, 2000-04-28";
+      // 捕获组可以命名，叫做具名捕获组 ?<捕获名>
+      var reg = /(?<year>\d{4})-(?<month>\d{1,2})-(?<day>\d{1,2})/g;
+      console.log(reg.exec(s)); // (4) ['2015-5-1', '2015', '5', '1', index: 0, input: '2015-5-1, 2019-6-19, 2000-04-28', groups:  {year: '2015', month: '5', day: '1'}]
+      // 1.1 拿到捕获组的值
+      s = s.replace(reg, function (match, g1, g2, g3) { // 1.1.1 第一个参数是匹配项；后面若干个参数是捕获组 
+        return g1 + "/" + g2 + "/" + g3;
+      });
+      console.log(s); // 2015/5/1, 2019/6/19, 2000/04/28
+
+      var s = "2015-5-1, 2019-6-19, 2000-04-28";
+      var reg = /(\d{4})-(\d{1,2})-(\d{1,2})/g;
+      // 1.1.2 也可以通过`$数字`拿到
+      s = s.replace(reg, '$1/$2/$3');
+      console.log(s); // 2015/5/1, 2019/6/19, 2000/04/28
+
+
+      var s = "2015-5-1, 2019-6-19, 2000-04-28";
+      // 捕获组可以命名，叫做具名捕获组 ?<捕获名>
+      var reg = /(?<year>\d{4})-(?<month>\d{1,2})-(?<day>\d{1,2})/g;
+      while(result = reg.exec(s)) {
+        console.log(`${result.groups.year}年${result.groups.month}月${result.groups.day}日`); // 2015年5月1日
+      }
+
+      var s = "2015-5-1, 2019-6-19, 2000-04-28";
+      // 2. 非捕获组?:
+      var reg = /(?:\d{4})-(\d{1,2})-(\d{1,2})/g;
+      console.log(reg.exec(s)); // (3) ['2015-5-1', '5', '1', index: 0, input: '2015-5-1, 2019-6-19, 2000-04-28', groups: undefined]
+
+      var s = "2015-5-1, 2019-6-19, 2000-04-28";
+      // 从左到右
+      var reg = /(\d{4})-(\d{1,2}-(\d{1,2}))/g;
+      console.log(reg.exec(s)); //  4) ['2015-5-1', '2015', '5-1', '1', index: 0, input: '2015-5-1, 2019-6-19, 2000-04-28', groups: undefined]
+    </script>
+  </body>
+</html>

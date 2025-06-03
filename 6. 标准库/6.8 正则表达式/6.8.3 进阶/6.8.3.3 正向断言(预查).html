@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var s = "263232121";
+      var result = "26,323,425,143"; // 面试题
+      // 检查某个字符后面的字符是否满足某个规则，该规则不成为匹配结果，并且不成为捕获组。语法：?=
+      // var reg = /^.*(?=(\d{3})+)$/; // 错误写法，不需要限制开头；而且还要全局匹配
+      var reg = /.*(?=(\d{3})+)$/g; // 错误写法，不需要.*（懵懂）
+      // var reg = /\B(?=(\d{3})+$)/g; // ,263,232,121 ---》 \B是防止开头有逗号
+      // while ((result = reg.exec(s))) {
+      //   console.log(result);
+      // }
+      // s = s.replace(reg, function (match) {
+      //   return match;
+      // });
+      console.log(s.replace(reg, ",")); // 263,232,121
+
+      /* var cnt = 0;
+      var res= '';
+      for(var i = s.length - 1; i >= 0; i--) {
+        if(i % 3 === 0) {
+          s[i]
+        }
+      } */
+    </script>
+  </body>
+</html>

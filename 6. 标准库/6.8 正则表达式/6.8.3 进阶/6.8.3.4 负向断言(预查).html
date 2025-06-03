@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var s = "afg43223444wr423424243";
+      // 负向断言(预查) 语法：?!
+      // 匹配大小写字母，但不是紧挨着数字的字母
+      var reg = /[a-zA-Z](?!\d+)/g;
+      while ((result = reg.exec(s))) {
+        console.log(result);
+      }
+      /* 
+      ['a', index: 0, input: 'afg43223444wr423424243', groups: undefined]
+      ['f', index: 1, input: 'afg43223444wr423424243', groups: undefined]
+      ['w', index: 11, input: 'afg43223444wr423424243', groups: undefined]
+      */
+    </script>
+  </body>
+</html>

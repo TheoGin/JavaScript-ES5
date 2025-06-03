@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /* 判断密码强度
+        密码长度必须是6-12位
+        出现小写字母、大写字母、数字、特殊字符(!@#_,.)  -> 强
+        出现小写字母、大写字母、数字  -> 中
+        出现小写字母、大写字母  -> 轻
+        其他  -> 不满足要求
+      */
+      function judgePwd(pwd) {
+        var lightReg = /(?=.*[a-z])(?=.*[A-Z]).{6,12}/g;
+        var middleReg = /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{6,12}/g;
+        // var strongReg = /(?=.*([a-z]+))(?=.*([A-Z]+))(?=.*([0-9]+))(?=.*([@#_,.]+)).*{6,12}/g; // Invalid regular expression .*{6,12}数量匹配重复了
+        var strongReg =
+          /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#_,.]).{6,12}/g;
+        if (strongReg.test(pwd)) {
+          return "强";
+        } else if (middleReg.test(pwd)) {
+          return "中";
+        } else if (lightReg.test(pwd)) {
+          return "轻";
+        } else {
+          return "不满足要求";
+        }
+      }
+
+      var pwd = "daAAAaa1@";
+      console.log("密码强度：", judgePwd(pwd));
+    </script>
+  </body>
+</html>
