@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 书写一个正则表达式，去匹配一个字符串，得到匹配的次数，和匹配的结果
+      var regExp = /\d{3}/g;
+      var s = "d32412afe21jds3224jfds1234";
+      var resultArr = s.match(regExp);
+      console.log(`共匹配了 ${resultArr.length} 次：`);
+      for (var index in resultArr) {
+        console.log(resultArr[index]);
+      }
+
+      // 法二：
+      var n = 0;
+      var str = "";
+      while ((result = regExp.exec(s))) {
+        str += result[0] + "\n";
+        n++;
+      }
+      /* console.log(`共匹配了 ${n} 次`);
+      console.log(str); */
+      str = `共匹配了 ${n} 次：\n` + str;
+      console.log(str);
+    </script>
+  </body>
+</html>

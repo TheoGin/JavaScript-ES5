@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 过滤敏感词，有一个敏感词数组，需要将字符串中出现的敏感词替换为四个星号。如 ["共产党", "too young too simple", "营销"]
+      /* var sensitivityWords = ["共产党", "too young too simple", "营销"];
+      var s =
+        "过滤共产党敏感词，有一个敏感词too young too simple数组，需要将字符串中出现的敏感词营销替换为四个星号";
+      sensitivityWords.forEach(function (item) {
+        var regExp = new RegExp(item, "g");
+        // console.log(regExp);
+        s = s.replace(regExp, "****");
+      });
+      console.log(s); // 过滤****敏感词，有一个敏感词****数组，需要将字符串中出现的敏感词****替换为四个星号 */
+
+      // 过滤敏感词，有一个敏感词数组，需要将字符串中出现的敏感词替换为四个星号。如 ["暴力", "too young too simple", "色情"]
+      /* var sensitiveWords = ["暴力", "too young too simple", "色情"];
+      function removeSensitiveWords(str, replaceWord) {
+        
+        sensitiveWords.forEach(function (item) {
+          var regExp = new RegExp(item, "g");
+          // console.log(regExp);
+          str = str.replace(regExp, replaceWord);
+        });
+        return str;
+      }
+      var s =
+        "过滤暴力敏感词，有一个敏感词too young too simple数组，需要将字符串中出现的敏感词色情替换为四个星号";
+      console.log(removeSensitiveWords(s, "****")); // 过滤****敏感词，有一个敏感词****数组，需要将字符串中出现的敏感词****替换为四个星号 */
+
+      /* function removeSensitiveWords(str, replaceWord) {
+        var sensitiveWords = ["暴力", "too young too simple", "色情"];
+
+        var regExp = new RegExp(sensitiveWords.join("|"), "g");
+        // console.log(regExp); //  /暴力|too young too simple|色情/g
+
+        return str.replace(regExp, replaceWord);
+      }
+      var s =
+        "过滤色情暴力敏感词，有一个敏感词too young too simple数组，需要将字符串中出现的敏感词色情替换为四个星号";
+      console.log(removeSensitiveWords(s, "****")); // 过滤********敏感词，有一个敏感词****数组，需要将字符串中出现的敏感词****替换为四个星号 */
+
+      var sensitiveWords = ["暴力", "too young too simple", "色情"];
+      function removeSensitiveWords(str, replaceWord) {
+        var regExp = new RegExp(`(${sensitiveWords.join("|")})+`, "g");
+        // console.log(regExp); //  /(暴力|too young too simple|色情)+/g
+
+        return str.replace(regExp, replaceWord);
+      }
+      var s =
+        "过滤色情暴力敏感词，有一个敏感词too young too simple数组，需要将字符串中出现的敏感词色情替换为四个星号";
+      console.log(removeSensitiveWords(s, "****")); // 过滤****敏感词，有一个敏感词****数组，需要将字符串中出现的敏感词****替换为四个星号
+    </script>
+  </body>
+</html>

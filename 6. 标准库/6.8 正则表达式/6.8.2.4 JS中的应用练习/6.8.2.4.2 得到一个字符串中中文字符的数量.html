@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 得到一个字符串中中文字符的数量
+      var reg = /[\u4e00-\u9fa5]/g;
+      var s = "3214得到一个字ewa符串ABCC中中fea文字符的数量dsaf";
+
+      var cnt = 0;
+      while ((result = reg.test(s))) {
+        cnt++;
+      }
+      console.log(cnt); // 15
+
+      var result = s.match(reg);
+      console.log(result); // ['得', '到', '一', '个', '字', '符', '串', '中', '中', '文', '字', '符', '的', '数', '量']
+      console.log(result.length); // 15
+    </script>
+  </body>
+</html>
