@@ -1,0 +1,9 @@
+<!-- 在XML中，User、name、age等叫节点Node -->
+<User>
+    <name>小傅</name>
+    <age>18</age>
+    <gender>男</gender>
+    <img src="" alt=""></img>
+    <!-- 或者自闭和 -->
+    <img src="" alt="" />
+</User>
