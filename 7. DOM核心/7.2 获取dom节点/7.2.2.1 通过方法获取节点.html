@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div name="n" id="score" class="myDivClassName">83</div>
+    <div id="myDivIdName2" class="myDivClassName">456</div>
+    <div name="n">asdfasdfasf</div>
+    <span>span元素1</span>
+    <span>span元素2</span>
+    <ul>
+      <li>
+        <div>
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Optio error
+          reiciendis repellat a quisquam dolorem molestiae voluptas debitis
+          odio. Nihil nemo nostrum odio asperiores, omnis corrupti architecto
+          repellendus quia porro.
+        </div>
+      </li>
+      <li>
+        <div>
+          Ullam corporis culpa recusandae veritatis provident eum. Cum saepe
+          corporis, soluta necessitatibus tempora voluptatibus architecto
+          recusandae? Quibusdam quidem, deserunt odio ex ratione quisquam sint
+          repellendus voluptates unde? Nam, nulla eveniet!
+        </div>
+      </li>
+      <li>
+        <div>
+          Rem rerum a sunt vel quas necessitatibus, commodi expedita assumenda
+          exercitationem nesciunt quidem velit odit facere obcaecati laudantium
+          id temporibus qui inventore itaque vero iste ut minima, consequuntur
+          molestias. Impedit.
+        </div>
+      </li>
+      <li>
+        <div>
+          Quam repudiandae labore, veritatis amet ipsum iure iusto? Facilis
+          commodi repellat nostrum, officia laborum neque maiores quidem labore
+          nisi ab placeat eligendi, ipsa a, sint dicta! Atque tempore debitis
+          illum.
+        </div>
+      </li>
+      <li>
+        <div>
+          Minima corporis laboriosam omnis perspiciatis optio veniam velit
+          quaerat animi adipisci facilis, temporibus perferendis, aspernatur
+          nesciunt pariatur quod placeat hic possimus itaque enim assumenda
+          voluptas ullam. Debitis autem quia id.
+        </div>
+      </li>
+      <li>
+        <div>
+          Consequatur cum dicta voluptates commodi accusamus. Incidunt mollitia
+          non aspernatur libero quibusdam maxime dicta, odio ut deleniti debitis
+          qui cumque corrupti alias vel voluptatibus. Assumenda minima pariatur
+          deserunt autem eligendi?
+        </div>
+      </li>
+      <li>
+        <div>
+          Quam repellat rem minima placeat debitis, ab amet obcaecati. Quaerat
+          esse iusto eligendi nihil veniam a commodi molestiae incidunt,
+          corporis, optio natus ratione nemo exercitationem. Aliquid officiis
+          atque labore perferendis.
+        </div>
+      </li>
+      <li>
+        <div>
+          Labore dolores laboriosam unde quidem consectetur nemo in sit nam
+          asperiores praesentium odit placeat exercitationem, non tempora
+          tempore totam, consequatur cumque voluptatibus tenetur ipsum! Beatae
+          iure magni dignissimos nulla repellat.
+        </div>
+      </li>
+      <li>
+        <div>
+          Animi temporibus dicta cupiditate. Facere, impedit expedita sunt
+          officiis assumenda atque laborum tenetur quia rerum natus dolore?
+          Perferendis, nulla cupiditate itaque alias nisi incidunt eum adipisci
+          optio sint exercitationem repellat?
+        </div>
+      </li>
+      <li>
+        <div>
+          Quaerat ea nisi, itaque laudantium pariatur ex quos repellat odit
+          cupiditate in est inventore nostrum soluta nihil quibusdam tempora
+          consequatur! Eligendi repudiandae praesentium excepturi fugit nihil
+          voluptatibus quisquam, officiis similique?
+        </div>
+      </li>
+    </ul>
+    <script>
+      // 1. document.getElementById方法：通过id获取对应id的元素
+      var score = window.document.getElementById("score");
+      console.log(score); // div#score.myDivClassName 是个对象 | 控制台打印：<div name="n" id="score" class="myDivClassName">83</div>
+
+      // 2. document.getElementsByTagName方法: 通过元素名称获取元素
+      var spans = document.getElementsByTagName("span");
+      console.log(spans); // HTMLCollection(2) [span, span]
+      // 伪数组，可以通过下标获取
+      console.log(spans[0]); // 控制台打印：<span>span元素1</span> | 但其实是个span对象
+      console.log(spans[1]); // 控制台打印：<span>span元素2</span> | 但其实是个span对象
+
+      // 3. document.getElementsByClassName方法：通过元素的类样式获取元素，IE9以下无效
+      var myDivClassNames = document.getElementsByClassName("myDivClassName");
+      console.log(myDivClassNames); // HTMLCollection(2) [div#score.myDivClassName, div#myDivIdName2.myDivClassName, score: div#score.myDivClassName, n: div#score.myDivClassName, myDivIdName2: div#myDivIdName2.myDivClassName]
+
+      /* 
+      <div name="n" id="score" class="myDivClassName">83</div>
+      <div name="n">asdfasdfasf</div>
+      */
+      // 4. document.getElementsByName方法：通过元素的name属性值获取元素
+      var nameAttributes = document.getElementsByName("n");
+      console.log(nameAttributes); // NodeList(2) [div#score.myDivClassName, div]
+
+      // 5. document.querySelector方法：通过CSS选择器获取元素，得到匹配的第一个，IE8以下无效
+      var ulLiDiv = document.querySelector("ul li div"); // 字符串写的是CSS选择器的名字
+      console.log(ulLiDiv); // div 是个对象
+      var myDivClassName = document.querySelector(".myDivClassName"); // 有两个相同类名或id名时，拿到的是第一个，通过querySelectorAll才能拿到全部
+      console.log(myDivClassName); // div#score.myDivClassName 是个对象 | 控制台打印：<div name="n" id="score" class="myDivClassName">83</div>
+
+      // 6. document.querySelectorAll方法：通过CSS选择器获取元素，得到所有匹配的结果，IE8以下无效
+      var myDivClassName = document.querySelectorAll(".myDivClassName"); 
+      console.log(myDivClassName); // NodeList(2) [div#score.myDivClassName, div#myDivIdName2.myDivClassName]
+
+      // 7. document.documentElement属性: 获取根元素html
+      var HTML = document.documentElement;
+      console.log(HTML); // html 是个对象
+    </script>
+  </body>
+</html>
