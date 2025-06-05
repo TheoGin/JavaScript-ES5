@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button id="btn">点我</button>
+    <script>
+      var btn = document.getElementById("btn");
+      var cnt = 0;
+      // 注册事件：将事件处理程序function 与某个事件btn.onclick 关联
+      btn.onclick = function () {
+        console.log(cnt++);
+        console.log(this); // <button class="btn">点我</button>
+        console.log(this === btn); // true
+      };
+    </script>
+  </body>
+</html>

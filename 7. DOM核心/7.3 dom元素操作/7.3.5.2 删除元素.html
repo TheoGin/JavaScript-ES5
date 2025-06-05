@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .red {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <ul class="ul1">
+      <li>选项1-1</li>
+      <li>选项1-2</li>
+      <li>选项1-3</li>
+      <li data-abc="123" class="red">选项1-4</li>
+      <li>选项1-5</li>
+    </ul>
+    <ul class="ul2">
+      <li>选项2-1</li>
+      <li>选项2-2</li>
+      <li>选项2-3</li>
+      <li>选项2-4</li>
+      <li>选项2-5</li>
+    </ul>
+    <script>
+      var ul1 = document.querySelector(".ul1");
+      var ul2 = document.querySelector(".ul2");
+
+      var li14 = ul1.getElementsByTagName("li")[3];
+
+      // 1. removeChild：父元素调用，传入子元素（谋杀）
+      ul1.removeChild(li14); // 移除完，改对象还在内存里，只是在页面（document）上移除了而已
+
+      li14.innerHTML = "123";
+      ul1.appendChild(li14);
+      // 2. remove：把自己删除（自杀）
+      li14.remove();
+      ul2.remove();
+
+      ul1.appendChild(li14);
+    </script>
+  </body>
+</html>

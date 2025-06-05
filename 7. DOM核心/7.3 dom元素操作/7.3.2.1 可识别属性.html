@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      img {
+        width: 200px;
+        height: 200px;
+        border: 2px solid;
+        object-fit: contain;
+      }
+    </style>
+  </head>
+  <body>
+    <p>
+      <input type="text" />
+      <button class="getInputTextContent">获取文本框的内容</button>
+      <button class="setInputTextContent">设置文本框的内容</button>
+    </p>
+    <div class="img">
+      <img src="./1.jpg" alt="" />
+    </div>
+    <p>
+      <input type="checkbox" checked="checked" id="cbGender" />
+      <label for="cbGender" class="genderClass">男</label>
+    </p>
+    <p>
+      <select>
+        <option value="shenzhen">深圳</option>
+        <option value="shanwei">汕尾</option>
+        <option value="guangzhou">广州</option>
+      </select>
+    </p>
+    <p>
+      <textarea>
+        某些表单元素可以获取到某些不存在的属性
+      </textarea>
+    </p>
+    <script>
+      // var input = document.querySelector('input[type="text"]'); // 此处双引号可以省略
+      var input = document.querySelector("input[type=text]");
+      document.querySelector(".getInputTextContent").onclick = function () {
+        // 可识别属性获取：dom对象.属性名，如input的value
+        console.log(input.value); // 获取文本框的值
+      };
+
+      document.querySelector(".setInputTextContent").onclick = function () {
+        // 可识别属性设置
+        input.value = "请输入文本框的内容";
+      };
+
+      var img = document.querySelector("img");
+      var i = 1; //第几张图片
+      // 点击图片切换
+      img.onclick = function () {
+        i++;
+        if (i == 3) {
+          i = 1;
+        }
+        // 可识别属性获取：dom对象.属性名，如img的src
+        img.src = i + ".jpg";
+      };
+
+      // 1. 正常的属性即使没有赋值，也有默认值（如空字符串）
+      console.log(input.value, typeof input.value); // '' string
+
+      var checkbox = document.querySelector("input[type=checkbox]");
+      // 2. 布尔属性在dom对象中，得到的是boolean
+      console.log(checkbox.checked); // true（若未选中，则为false）
+
+      var select = document.querySelector("select");
+      var textarea = document.querySelector("textarea");
+      // 3. 某些表单元素可以获取到某些不存在的属性，如select.value、textarea.value
+      console.log(select.value); // shenzhen
+      select.value = "guangzhou";
+      console.log(select.value); // guangzhou
+      console.log(textarea.value); // '        某些表单元素可以获取到某些不存在的属性'
+
+      // 拿到select选择的值
+      var options = document.querySelectorAll("option");
+      var selectedValue = options[0].firstChild.nodeValue;
+      for (var i = 0; i < options.length; i++) {
+        if (options[i].selected) {
+          selectedValue = options[i].firstChild.nodeValue;
+        }
+      }
+      console.log("selectedValue: ", selectedValue); // selectedValue:  广州
+
+      var label = document.querySelector("label");
+      // 4. 某些属性与标识符冲突，此时，需要更换属性名，如label.htmlFor（for是循环的关键字）、element.className（class是关键字）
+      console.log(label.for); // undefined
+      console.log(label.htmlFor); // cbGender
+
+      console.log(label.class); // undefined
+      console.log(label.className); // genderClass
+    </script>
+  </body>
+</html>

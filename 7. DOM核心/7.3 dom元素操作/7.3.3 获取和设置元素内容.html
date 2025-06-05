@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      div {
+        width: 200px;
+        height: 200px;
+        border: 2px solid;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <p>Lorem ipsum dolor sit amet.</p>
+      <style>
+        div {
+          color: blue;
+        }
+      </style>
+      <p style="display: none">7.3.3 获取和设置元素内容</p>
+      <img src="./1.jpg" alt="" />
+    </div>
+
+    <script>
+      var div = document.querySelector("div");
+      // 1. innerHTML：获取和设置元素的内部HTML文本
+      console.log(div.innerHTML);
+      /* 
+
+      <p>
+        Lorem ipsum dolor sit amet.
+      </p>
+      <style>
+        div {
+          color: blue;
+        }
+      </style>
+      <p style="display: none">7.3.3 获取和设置元素内容</p>
+      <img src="./1.jpg" alt="">
+      */
+
+      // 2. innerText：获取和设置元素内部的纯文本，仅得到元素内部显示出来的文本（不包括换行符、空格；dispaly: none的文本也得不到）
+      console.log(div.innerText); // Lorem ipsum dolor sit amet.
+
+      // 3. textContent：获取和设置元素内部的纯文本，textContent得到的是内部源代码中的文本（包括换行符、空格）
+      console.log(div.textContent);
+      /* 
+      
+        Lorem ipsum dolor sit amet.
+      
+      
+        div {
+          color: blue;
+        }
+      
+      7.3.3 获取和设置元素内容
+      */
+    </script>
+  </body>
+</html>

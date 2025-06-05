@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style></style>
+  </head>
+  <body>
+    <ul class="ul1">
+      <li>选项1-1</li>
+      <li>选项1-2</li>
+      <li>选项1-3</li>
+      <li>选项1-4</li>
+      <li>选项1-5</li>
+    </ul>
+    <ul class="ul2">
+      <li>选项2-1</li>
+      <li>选项2-2</li>
+      <li>选项2-3</li>
+      <li>选项2-4</li>
+      <li>选项2-5</li>
+    </ul>
+    <script>
+      var ul1 = document.querySelector(".ul1");
+      var ul2 = document.querySelector(".ul2");
+      var li14 = ul1.getElementsByTagName("li")[3];
+
+      // 1. 父元素.appendChild(元素)：在某个元素末尾加入一个子元素。
+      // ul2.appendChild(li14); // 会把ul1里面的第四个li移除，再挪到ul2的最后
+      // 父元素.append(元素1, 元素2, ...)，Element.append() 可以附加多个节点和字符串
+      var li21 = ul2.getElementsByTagName("li")[0];
+      // ul1.append(li21, li14);
+      // Node.appendChild() 只能附加一个节点，第二个参数无效
+      // ul2.appendChild(li21, li14);
+
+      var li22 = ul2.getElementsByTagName("li")[1];
+      var li24 = ul2.getElementsByTagName("li")[3];
+      // 2. 父元素.insertBefore(待插入的元素, 哪个元素之前)
+      // ul2.insertBefore(li14, li22); // 把li14插入到li22之前
+      // 没有之后插入的方法，可以利用nextElementSibling
+      // ul2.insertBefore(li14, li24.nextElementSibling) // 把li14插入到li24之后
+      // 最后一个元素没有下个一个兄弟元素？没关系，null就是会插入到最后
+      // ul2.insertBefore(li14, null);
+
+      // 3. 父元素.replaceChild(替换的元素, 被替换的元素)
+      ul2.replaceChild(li14, li22); // 用li14来替换li22
+    </script>
+  </body>
+</html>

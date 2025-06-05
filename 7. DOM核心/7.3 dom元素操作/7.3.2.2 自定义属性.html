@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style></style>
+  </head>
+  <body>
+    <!-- 1. HTML5 建议自定义属性使用data-作为前缀 -->
+    <div test="ttt" data-abc="123" data-bcd="234"></div>
+    <span data-abc-def="123" data-1-abc-1="234"></span>
+    <script>
+      var div = document.querySelector("div");
+      console.log(div.getAttribute("data-abc")); // 123
+      div.setAttribute("data-abc", 789);
+      console.log(div.getAttribute("data-abc")); // 789
+
+      // 2. 如果遵从HTML5 自定义属性规范，可以使用dom对象.dataset.属性名控制属性
+      console.log(div.dataset); // DOMStringMap {abc: '789', bcd: '234'}
+      console.log(div.dataset.abc); // 789
+      div.dataset.abc = "123";
+      console.log(div.dataset.abc); // 123
+
+      // 3. 删除自定义属性
+      //   - removeAttribute("属性名");
+      div.removeAttribute("test");
+
+      //   - delete dom.dataset.属性名（推荐）
+      delete div.dataset.abc;
+      console.log(div.dataset); // DOMStringMap { bcd: '234'}
+
+      // data-自定义属性命名细节
+      var span = document.querySelector("span");
+      console.log(span.dataset); // DOMStringMap {abcDef: '123', 1Abc-1: '234'} data-abc-def="123"会变成驼峰命名
+      console.log(span.dataset.abcDef); // 123
+      // console.log(span.dataset.1Abc-1); // Uncaught SyntaxError: missing ) after argument list
+      // 需要用属性表达式
+      console.log(span.dataset['1Abc-1']); // 234
+    </script>
+  </body>
+</html>
