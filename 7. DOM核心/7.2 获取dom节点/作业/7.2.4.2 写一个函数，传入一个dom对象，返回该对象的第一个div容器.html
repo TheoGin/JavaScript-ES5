@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style></style>
+  </head>
+
+  <body>
+    <div class="container">
+      <ul>
+        <li><a href="">Lorem ipsum dolor sit.</a></li>
+        <li><a href="">Laboriosam esse voluptatibus accusamus!</a></li>
+        <li><a href="">Minima cumque alias numquam!</a></li>
+        <li><a href="">Beatae sit quod earum?</a></li>
+        <li><a href="">Doloremque vitae totam pariatur.</a></li>
+        <li><a href="">Autem ab iusto quae.</a></li>
+        <li><a href="">Mollitia accusamus iure maxime.</a></li>
+        <li><a href="">Sapiente vitae nostrum ex?</a></li>
+        <li><a href="">Aut quos est amet!</a></li>
+        <li><a href="">Laudantium dicta fuga debitis.</a></li>
+      </ul>
+    </div>
+
+    <div class="container2">
+      <span>asdfasfd</span>
+      <strong>asdfasdfgasdfa</strong>
+      <i>asadfasfas</i>
+      <p>aasdfdasf</p>
+      <div class="c3">
+        <p id="test">dfgasdfasfaf</p>
+      </div>
+    </div>
+
+    <script>
+      //写一个函数，传入一个dom对象，返回该对象的第一个div父容器
+      /* function getFirstDivContainer(dom) {
+            return dom.getElementsByTagName('div')[0];
+        }
+        console.log(getFirstDivContainer(document.body)); */
+
+      // 递归实现
+      /* function getFirstParentDivContainer(dom) {
+        var parentEle = dom.parentElement;
+        // parentEle !== null
+        if (parentEle && parentEle.nodeName === "DIV") {
+          return parentEle;
+        }
+        return parentEle !== null && getFirstParentDivContainer(parentEle);
+      } */
+
+      function getFirstParentDivContainer(dom) {
+        /* var parentEle = dom.parentElement; // 或 dom.parentNode，但会找到document
+        // parentEle !== null
+        while (parentEle && parentEle.nodeName !== "DIV") {
+          parentEle = parentEle.parentElement;
+        }
+        return parentEle; */
+
+        for (
+          var parentEle = dom.parentElement;
+          parentEle && parentEle.nodeName !== "DIV";
+          parentEle = parentEle.parentElement
+        ); // 用分号 或者 {}
+        return parentEle;
+      }
+      console.log(getFirstParentDivContainer(document.querySelector(".c3")));
+      console.log(getFirstParentDivContainer(document.querySelector("#test")));
+      console.log(getFirstParentDivContainer(document.querySelector("ul")));
+      console.log(
+        getFirstParentDivContainer(document.querySelector("li:first-child"))
+      );
+      console.log(
+        getFirstParentDivContainer(
+          document.querySelector(".container").getElementsByTagName("a")[2]
+        )
+      );
+    </script>
+  </body>
+</html>
