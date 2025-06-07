@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      .container {
+        overflow: hidden;
+        width: 550px;
+        margin: 0 auto;
+      }
+
+      .container .left {
+        float: left;
+        margin: 0 30px;
+      }
+
+      .container select {
+        width: 100%;
+        height: 200px;
+      }
+
+      .container .mid {
+        padding-top: 70px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="left">
+        <h2>成哥的现任女友</h2>
+        <select id="sel1" multiple>
+          <option value="1">幂幂</option>
+          <option value="2">花花</option>
+          <option value="3">春春</option>
+          <option value="4">盈盈</option>
+          <option value="5">红红</option>
+        </select>
+      </div>
+      <div class="left mid">
+        <p>
+          <button class="btnL2r" title="右移动选中的">&gt;&gt;</button>
+        </p>
+        <p>
+          <button class="btnL2rAll" title="右移动全部">&gt;&gt;|</button>
+        </p>
+        <p>
+          <button class="btnR2l" title="左移动选中的">&lt;&lt;</button>
+        </p>
+        <p>
+          <button class="btnR2lAll" title="左移动全部">|&lt;&lt;</button>
+        </p>
+      </div>
+      <div class="left">
+        <h2>成哥的前女友</h2>
+        <select id="sel2" multiple>
+          <option value="6">坤坤</option>
+        </select>
+      </div>
+    </div>
+
+    <script>
+      var sel1 = document.getElementById("sel1");
+      var sel2 = document.getElementById("sel2");
+
+      document.querySelector(".btnL2r").onclick = function () {
+        move(sel1, sel2);
+      };
+      document.querySelector(".btnL2rAll").onclick = function () {
+        moveAll(sel1, sel2);
+      };
+      document.querySelector(".btnR2l").onclick = function () {
+        move(sel2, sel1);
+      };
+      document.querySelector(".btnR2lAll").onclick = function () {
+        moveAll(sel2, sel1);
+      };
+
+      function move(fromSelect, toSelect) {
+        if (fromSelect.children.length === 0) {
+          alert("当前没有元素可移动！");
+          return;
+        }
+        var isSelected = false;
+        var options = fromSelect.children;
+        console.log(options);
+        for (var i = 0; i < options.length; i++) {
+          var option = options[i];
+          if (option.selected) {
+            i = 0;
+            isSelected = true;
+            // fromSelect.removeChild(option); // 不需要重复写，appendChild的时候，会自动从左边移除，再移动到右边
+            toSelect.appendChild(option);
+          }
+        }
+        
+        if (options.length === 1 && options[0].selected) {
+          toSelect.appendChild(options[0]);
+        }
+        if (!isSelected) {
+          alert("当前没有选择元素！");
+        }
+      }
+
+      function moveAll(fromSelect, toSelect) {
+        if (fromSelect.children.length === 0) {
+          alert("当前没有元素可移动！");
+          return;
+        }
+        var options = fromSelect.children;
+        // console.log(options);
+        var index = toSelect.children.length - 1;
+        for (var i = options.length - 1; i >= 0; i--) {
+          //   fromSelect.removeChild(option);
+          if (index >= 0) {
+            toSelect.insertBefore(
+              options[i],
+              toSelect.children[index].nextElementSibling
+            );
+          } else {
+            toSelect.appendChild(options[i]);
+          }
+        }
+      }
+    </script>
+  </body>
+</html>

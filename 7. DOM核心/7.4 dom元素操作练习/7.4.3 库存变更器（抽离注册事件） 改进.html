@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      span {
+        min-width: 50px;
+        display: inline-block;
+        text-align: center;
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <p>库存的最小值为0</p>
+    <div>
+      库存：
+      <button>-1000</button>
+      <button>-100</button>
+      <button>-10</button>
+      <button>-</button>
+      <span id="inventoryNum">0</span>
+      <button>+</button>
+      <button>+10</button>
+      <button>+100</button>
+      <button>+1000</button>
+    </div>
+
+    <script>
+      var inventoryNum = document.getElementById("inventoryNum");
+
+      var btns = document.querySelectorAll("button");
+      for (var i = 0; i < btns.length; i++) {
+        var txtStr = btns[i].innerText;
+        regEvent(btns[i], txtStr[0]);
+      }
+
+      function regEvent(btn, op) {
+        btn.onclick = function () {
+          if (op === "+") {
+            increase(getNum(this));
+          } else if (op === "-") {
+            decrease(getNum(this));
+          }
+        };
+      }
+
+      function getNum(btn) {
+        var nums = btn.innerText.split(/[+|-]/);
+        // 拿到相加或相减的数值
+        if (+nums[1] === 0) {
+          return 1;
+        }
+        return +nums[1];
+      }
+
+      function increase(num) {
+        inventoryNum.innerText = +inventoryNum.innerText + num;
+      }
+
+      function decrease(num) {
+        var val = +inventoryNum.innerText - num;
+        if (val < 0) {
+          val = 0;
+        }
+        inventoryNum.innerText = val;
+      }
+    </script>
+  </body>
+</html>

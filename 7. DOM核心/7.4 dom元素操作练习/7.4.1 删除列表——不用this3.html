@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      .container {
+        width: 400px;
+        margin: 0 auto;
+      }
+
+      .container li {
+        margin: 20px 0;
+      }
+
+      .container button {
+        margin-left: 10px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <p>
+        <button id="btnClear">清空</button>
+      </p>
+      <ul class="list">
+        <li>项目1<button>删除</button></li>
+        <li>项目2<button>删除</button></li>
+        <li>项目3<button>删除</button></li>
+        <li>项目4<button>删除</button></li>
+        <li>项目5<button>删除</button></li>
+        <li>项目6<button>删除</button></li>
+        <li>项目7<button>删除</button></li>
+        <li>项目8<button>删除</button></li>
+        <li>项目9<button>删除</button></li>
+        <li>项目10<button>删除</button></li>
+      </ul>
+    </div>
+
+    <script>
+      var list = document.querySelector(".list");
+      document.getElementById("btnClear").onclick = function () {
+        list.innerHTML = "";
+      };
+
+      var delBtns = list.querySelectorAll("button");
+      // 不用this：通过内层函数引用外层变量（通过真数组循环，借助函数嵌套函数），使其引用保留在内存在中
+      Array.from(delBtns).forEach(function(btn) {
+        btn.onclick = function() {
+          // btn.parentNode().remove(); // Uncaught TypeError: btn.parentNode is not a function
+          btn.parentNode.remove();
+        }
+      })
+    </script>
+  </body>
+</html>

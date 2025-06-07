@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      span {
+        min-width: 50px;
+        display: inline-block;
+        text-align: center;
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <p>库存的最小值为0</p>
+    <div>
+      库存：
+      <button data-op-val="-1000">-1000</button>
+      <button data-op-val="-100">-100</button>
+      <button data-op-val="-10">-10</button>
+      <button data-op-val="-1">-</button>
+      <span id="inventoryNum">0</span>
+      <button data-op-val="1">+</button>
+      <button data-op-val="10">+10</button>
+      <button data-op-val="100">+100</button>
+      <button data-op-val="1000">+1000</button>
+    </div>
+
+    <script>
+      var inventoryNumEle = document.getElementById("inventoryNum");
+
+      var btns = document.querySelectorAll("button");
+      for (var i = 0; i < btns.length; i++) {
+        btns[i].onclick = function () {
+          var inventoryNum = parseInt(inventoryNumEle.innerText);
+
+          var opVal = parseInt(this.dataset.opVal);
+          // 加某个数（正数或负数）
+          var result = inventoryNum + opVal;
+          if (result < 0) {
+            result = 0;
+          }
+          inventoryNumEle.innerHTML = result;
+        };
+      }
+    </script>
+  </body>
+</html>
