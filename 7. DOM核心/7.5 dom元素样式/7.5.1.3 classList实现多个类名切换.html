@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .item {
+        width: 100px;
+        height: 100px;
+      }
+      .red {
+        background-color: red;
+      }
+
+      .green {
+        background-color: green;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="item red"></div>
+    <script>
+      var div = document.querySelector("div");
+      div.onclick = function () {
+        if (this.classList.contains("red")) {
+          this.classList.remove("red");
+          this.classList.add("green");
+        } else {
+          this.classList.remove("green");
+          this.classList.add("red");
+        }
+      };
+    </script>
+  </body>
+</html>

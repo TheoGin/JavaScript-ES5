@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .item {
+        /* width: 100px; */
+        height: 100px;
+      }
+      .red {
+        background: red !important;
+      }
+
+      .item::before {
+        content: "";
+        display: block;
+        width: 50px;
+        height: 50px;
+        background-color: #008c8c;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- CSSStyleDeclaration {0: 'background-color', accentColor: '', additiveSymbols: '', alignContent: '', alignItems: '', alignSelf: '', …} -->
+    <!-- <div class="item red" style="background-color: green;"></div> -->
+
+    <div class="item red" style="background: green; width: auto"></div>
+    <script>
+      var div = document.querySelector("div");
+      // 1. dom.style：得到【行内】样式对象
+      console.log(div.style); // CSSStyleDeclaration {0: 'background-image', 1: 'background-position-x', 2: 'background-position-y', 3: 'background-size', 4: 'background-repeat', 5: 'background-attachment', 6: 'background-origin', 7: 'background-clip', 8: 'background-color', accentColor: '', additiveSymbols: '', alignContent: '', alignItems: '', alignSelf: '', …} 速写属性会生成展开的伪数组
+
+      // console.log(div.style.background-color); // Uncaught ReferenceError: color is not defined
+
+      // 行内写啥，获取到的就是啥，而不是最终计算的结果
+      console.log(div.style.backgroundColor); // green
+      console.log(div.style.width); // auto
+
+      // 2. window.getComputedStyle(dom元素)：得到某个元素最终计算的样式
+      console.log(window.getComputedStyle(div)); // CSSStyleDeclaration { … } 对象
+      console.log(getComputedStyle(div).backgroundColor); // rgb(255, 0, 0) 红色（颜色绝对值）
+      console.log(getComputedStyle(div).width); // 751.2px
+
+      // getComputedStyle(dom元素)可以有第二个参数，用于得到某个元素的某个伪元素样式
+      console.log(getComputedStyle(div, "before").width); // 50px
+      console.log(getComputedStyle(div, "before").height); // 50px
+      console.log(getComputedStyle(div, "before").backgroundColor); // rgb(0, 140, 140)
+    </script>
+  </body>
+</html>

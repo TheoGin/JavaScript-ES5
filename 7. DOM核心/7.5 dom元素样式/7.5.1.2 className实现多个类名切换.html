@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .item {
+        width: 100px;
+        height: 100px;
+      }
+      .red {
+        background-color: red;
+      }
+
+      .green {
+        background-color: green;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="item red"></div>
+    <script>
+      var div = document.querySelector("div");
+      div.onclick = function () {
+        // if (this.className.includes("red")) { // 可能出现iteredm的情况——》用正则
+        // search(regexp) 方法：用于在 String 对象中执行正则表达式的搜索，寻找匹配项。返回找到下标，找不到返回-1
+        if (this.className.search(/\bred\b/) !== -1) {
+          this.className = this.className.replace(/\bred\b/, "green");
+        } else {
+          this.className = this.className.replace(/\bgreen\b/, "red");
+        }
+      };
+    </script>
+  </body>
+</html>

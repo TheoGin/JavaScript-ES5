@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .item {
+        width: 100px;
+        height: 100px;
+        background-color: gray;
+      }
+      .red {
+        background-color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="item red"></div>
+    <script>
+      var div = document.querySelector("div");
+      div.onclick = function () {
+        // this.classList.toggle("red", true); // 等价：this.classList.add("red")
+
+        // this.classList.toggle("red", false); // 等价：this.classList.remove("red")
+
+        // toggle：用于添加/移除一个类名（有就添加、没有就移除，实现了切换）
+        this.classList.toggle("red");
+      };
+    </script>
+  </body>
+</html>
