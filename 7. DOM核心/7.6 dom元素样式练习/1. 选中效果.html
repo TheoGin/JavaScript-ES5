@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      body {
+        margin: 0;
+      }
+      header {
+        width: 100%;
+        background: #333;
+        color: #eee;
+      }
+      nav {
+        overflow: hidden;
+      }
+      span {
+        float: left;
+        line-height: 50px;
+        margin: 0 15px;
+        cursor: pointer;
+      }
+
+      span.active {
+        color: gold;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <span>Lorem.</span>
+        <span class="active">Explicabo.</span>
+        <span>Harum?</span>
+        <span>Delectus?</span>
+        <span>Commodi.</span>
+        <span>Ullam!</span>
+        <span>Tempora!</span>
+      </nav>
+    </header>
+    <script>
+      var spans = document.querySelectorAll("span");
+
+      function removeActive() {
+        for (var i = 0; i < spans.length; i++) {
+          // spans[i].className = "";
+          spans[i].classList.remove("active");
+        }
+      }
+
+      for (var i = 0; i < spans.length; i++) {
+        spans[i].onclick = function () {
+          // 去掉之前激活的类名
+          removeActive();
+
+          // 设置当前点击的类名
+          // this.className = "active";
+          this.classList.add("active");
+        };
+      }
+    </script>
+  </body>
+</html>
