@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      div {
+        width: 100px;
+        height: 100px;
+        background-color: lightblue;
+        position: relative;
+      }
+
+      button {
+        position: absolute;
+        right: -200px;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <button>点我</button>
+    </div>
+    <p>P元素</p>
+
+    <script>
+      document.querySelector("button").onclick = function () {
+        console.log("button");
+      };
+
+      document.querySelector("div").onclick = function () {
+        console.log("div");
+      };
+
+      document.body.onclick = function () {
+        console.log("body");
+      };
+
+      document.documentElement.onclick = function () {
+        console.log("html");
+      };
+
+      document.onclick = function () {
+        console.log("document");
+      };
+
+      window.onclick = function () {
+        console.log("window");
+      };
+    </script>
+  </body>
+</html>
