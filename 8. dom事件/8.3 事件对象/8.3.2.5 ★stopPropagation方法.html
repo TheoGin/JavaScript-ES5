@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style></style>
+  </head>
+  <body>
+    <div>
+      <p>
+        <span>
+          <button>点击</button>
+        </span>
+      </p>
+    </div>
+
+    <script>
+      var div = document.querySelector("div");
+      var p = document.querySelector("p");
+      var span = document.querySelector("span");
+      var button = document.querySelector("button");
+      div.onclick =
+        span.onclick =
+        button.onclick =
+          function (e) {
+            console.log(e.currentTarget.tagName); // 等价于 this.tagName
+          };
+      p.onclick = function (e) {
+        // 阻止事件冒泡
+        e.stopPropagation();
+        console.log("p");
+      };
+    </script>
+  </body>
+</html>

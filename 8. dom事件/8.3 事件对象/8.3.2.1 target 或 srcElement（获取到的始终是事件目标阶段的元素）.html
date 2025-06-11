@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      div {
+        background-color: lightblue;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <button>Lorem.</button>
+      <button>Dolorum!</button>
+      <button>Consequatur.</button>
+      <button>Eveniet.</button>
+      <button>Error?</button>
+      <button>Eum!</button>
+      <button>Unde.</button>
+      <button>Fugit.</button>
+      <button>Hic.</button>
+      <button>Consequatur?</button>
+    </div>
+    <script>
+      var div = document.querySelector("div");
+      div.onclick = function (e) {
+        var source = e.target || e.srcElement; // 兼容性做法
+        console.log(source);
+      };
+    </script>
+  </body>
+</html>

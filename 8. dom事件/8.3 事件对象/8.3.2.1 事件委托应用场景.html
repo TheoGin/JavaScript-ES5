@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      div {
+        background-color: lightblue;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <p>
+        Lorem ipsum dolor sit.
+        <button>删除</button>
+      </p>
+      <p>
+        Pariatur eveniet iste nostrum?
+        <button>删除</button>
+      </p>
+      <p>
+        Debitis adipisci blanditiis eligendi.
+        <button>删除</button>
+      </p>
+      <p>
+        Excepturi aperiam modi blanditiis!
+        <button>删除</button>
+      </p>
+      <p>
+        Alias reiciendis in nulla!
+        <button>删除</button>
+      </p>
+      <p>
+        Doloribus excepturi placeat hic.
+        <button>删除</button>
+      </p>
+      <p>
+        Adipisci eveniet deserunt ipsa.
+        <button>删除</button>
+      </p>
+      <p>
+        Delectus dolor asperiores consequuntur!
+        <button>删除</button>
+      </p>
+      <p>
+        Aliquid autem minima in?
+        <button>删除</button>
+      </p>
+      <p>
+        Amet itaque enim rem.
+        <button>删除</button>
+      </p>
+    </div>
+    <script>
+      var div = document.querySelector("div");
+      // 事件委托：通过给祖先元素注册事件，在程序处理程序中判断事件源进行不同的处理。
+      div.onclick = function (e) {
+        // console.log(e.target.tagName === e.target.nodeName); // true，两个效果一样
+
+        if (e.target.tagName === "BUTTON") {
+          e.target.parentElement.remove();
+        }
+      };
+    </script>
+  </body>
+</html>

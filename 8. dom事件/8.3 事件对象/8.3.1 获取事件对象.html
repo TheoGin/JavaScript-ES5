@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- onclick属性值直接写JS代码（不推荐），获取事件对象参数已经预留好 event -->
+    <button onclick="console.log(event);">点击1</button>
+    <button id="btn2">点击2</button>
+
+    <script>
+      var btn2 = document.getElementById("btn2");
+      btn2.onclick = function (e) {
+        e = e || window.event; // 兼容性做法
+        console.log(e);
+      };
+    </script>
+  </body>
+</html>

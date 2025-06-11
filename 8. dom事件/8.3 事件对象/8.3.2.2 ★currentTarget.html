@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      div {
+        background-color: lightblue;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <p>
+        Lorem ipsum dolor sit.
+        <button>按钮</button>
+      </p>
+    </div>
+    <script>
+      var div = document.querySelector("div");
+      div.onclick = function (e) {
+        console.log(e.currentTarget); // 当前绑定事件的元素
+        console.log(this); // 当前绑定事件的元素
+        /* 
+        <div>
+          <p>
+            Lorem ipsum dolor sit.
+            <button>按钮</button>
+          </p>
+        </div>
+        */
+        console.log(e.currentTarget === this); // true
+      };
+    </script>
+  </body>
+</html>

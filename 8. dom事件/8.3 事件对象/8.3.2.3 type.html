@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style></style>
+  </head>
+  <body>
+    <button id="btn1">按钮1</button>
+    <button id="btn2">按钮2</button>
+    <script>
+      var button1 = document.getElementById("btn1");
+      var button2 = document.getElementById("btn2");
+
+      var handler = function (e) {
+        // 字符串，得到事件的类型
+        console.log(e.type);
+      };
+
+      button1.onclick = handler; // click
+      button2.onmousedown = handler; // mousedown
+    </script>
+  </body>
+</html>
