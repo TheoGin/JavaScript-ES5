@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      div {
+        background-color: lightblue;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <button id="btn">点击</button>
+      <button id="removeBtn">移除点击按钮的事件</button>
+    </div>
+
+    <script>
+      var btn = document.getElementById("btn");
+      function handler1() {
+        console.log("first add btn event");
+      }
+      function handler2() {
+        console.log("second add btn event");
+      }
+      btn.addEventListener("click", handler1);
+      btn.addEventListener("click", handler2);
+
+      var div = document.querySelector("div");
+      div.addEventListener(
+        "click",
+        function () {
+          console.log("div 冒泡");
+        },
+        // 2. 添加和移除事件时，可以将第三个参数写为一个对象，进行相关配置
+        {
+          capture: false,
+          once: true,
+        }
+      );
+
+      function divHandler() {
+        console.log("div 捕获");
+      }
+      div.addEventListener("click", divHandler, true);
+
+      var removeBtn = document.getElementById("removeBtn");
+      removeBtn.addEventListener("click", function () {
+        /* btn.removeEventListener("click", function () {
+          console.log("first add btn event");
+        }); */
+        // 上面无法移除，因为函数对象地址不一样
+        // dom2中如果要移除事件，不能使用匿名函数
+        btn.removeEventListener("click", handler1);
+        btn.removeEventListener("click", handler2);
+
+        // 移除捕获阶段的事件
+        div.removeEventListener("click", divHandler, true);
+      });
+    </script>
+  </body>
+</html>

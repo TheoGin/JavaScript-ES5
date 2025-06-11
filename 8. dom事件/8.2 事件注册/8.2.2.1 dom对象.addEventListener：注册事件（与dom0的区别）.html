@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      div {
+        background-color: lightblue;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <button id="btn">点击</button>
+    </div>
+
+    <script>
+      var btn = document.getElementById("btn");
+
+      // dom对象.addEventListener：注册事件
+      btn.addEventListener("click", function () {
+        console.log("first add btn event");
+      });
+      // 1. dom2可以为某个元素的同一个事件，添加多个处理程序，按照注册的先后顺序运行
+      btn.addEventListener("click", function () {
+        console.log("second add btn event");
+      });
+
+      var div = document.querySelector("div");
+      div.addEventListener(
+        "click",
+        function () {
+          console.log("div 冒泡");
+        },
+        false // 捕获默认为false
+      );
+      div.addEventListener(
+        "click",
+        function () {
+          console.log("div 捕获");
+        },
+        // 2. dom2允许开发者控制事件处理的阶段，使用第三个参数，表示是否在捕获阶段触发
+        true // 开启捕获
+      );
+    </script>
+  </body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button id="btn1">点击1</button>
+    <!-- 不推荐写在元素属性里，因为要解耦合 -->
+    <!-- onclick属性值直接写JS代码 -->
+    <button onclick="console.log('button');">点击2</button>
+    <!-- 可以调用函数 -->
+    <button onclick="test();">点击3</button>
+
+    <script>
+      var btn1 = document.getElementById("btn1");
+      // 没有注册事件的默认值就为null
+      console.log(btn1.onclick); // null
+
+      // 将事件名称前面加上on，作为dom的属性名，给该属性赋值为一个函数，即为事件注册。
+      btn1.onclick = function () {
+        console.log("button");
+      };
+
+      // 重新赋值会覆盖前面注册事件的赋值
+      btn1.onclick = function () {
+        console.log("reassign button event");
+      };
+
+      // 移除：重新给事件属性赋值，通常赋值为null和undefined（没有注册事件的默认值就为null）
+      btn1.onclick = null;
+
+      function test() {
+        console.log("test button");
+      }
+    </script>
+  </body>
+</html>
