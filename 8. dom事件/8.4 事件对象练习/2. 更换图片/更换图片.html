@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style>
+      .btnsContainer button {
+        margin-right: 20px;
+      }
+      img {
+        margin-top: 30px;
+        width: 200px;
+        height: 200px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="btnsContainer"></div>
+    <!-- <img src="./img/1.jpg" alt="" /> -->
+    <!-- src通过js设置 -->
+    <img src="" alt="" />
+    <script>
+      var btnsContainer = document.querySelector(".btnsContainer");
+      //   btnsContainer.style.marginBottom = '30px'
+      var img = document.querySelector("img");
+      var imgs = ["img/1.jpg", "img/2.jpg", "img/3.jpg", "img/4.jpg"];
+
+      // 默认设置为数组第一项
+      img.src = imgs[0];
+
+      imgs.forEach(function (src, index) {
+        var button = document.createElement("button");
+        button.innerHTML = `第${index + 1}张图片`;
+        // button.style.marginRight = "20px";
+
+        // 法一：缺点：如果其他地方动态增加图片没办法绑定事件——》事件委托
+        /* button.onclick = function (e) {
+          //   img.src = `img/${index + 1}.jpg`;
+          img.src = src;
+        }; */
+
+        // 法二：事件委托（结合自定义属性）
+        button.dataset.src = src;
+
+        btnsContainer.appendChild(button);
+      });
+
+      // 法二：事件委托（结合自定义属性）
+      btnsContainer.onclick = function (e) {
+        // if (e.target.tagName === "BUTTON") {
+        // 或者
+        if (e.target.dataset.src) {
+          img.src = e.target.dataset.src;
+        }
+      };
+    </script>
+  </body>
+</html>

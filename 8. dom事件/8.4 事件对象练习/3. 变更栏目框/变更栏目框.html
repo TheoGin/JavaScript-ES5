@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>变更栏目框</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      .container {
+        width: 390px;
+        height: 655px;
+        margin: 0 auto;
+        margin-top: 20px;
+      }
+      .top {
+        width: 100%;
+        height: 10%;
+        border-bottom: 2px solid #ccc;
+      }
+      .content {
+        width: 100%;
+        height: 90%;
+      }
+      .top ul {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: space-around;
+      }
+      li {
+        width: 25%;
+        height: 100%;
+        list-style: none;
+        text-align: center;
+        /* 将box-sizing设置为border-box，可以随意修改padding而不用修改盒子大小 */
+        box-sizing: border-box;
+        padding-top: 35px;
+        font-size: 18px;
+        color: #2c7bbb;
+        cursor: pointer;
+      }
+      li:hover {
+        color: #d32228;
+      }
+      .current {
+        border-bottom: 4px solid #d32228;
+        color: #d32228;
+      }
+      img {
+        margin-top: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="top">
+        <ul>
+          <li class="current">电玩</li>
+          <li>网游</li>
+          <li>手游</li>
+          <li>数码</li>
+        </ul>
+      </div>
+      <div class="content">
+        <img src="./images/1.png" alt="" width="390" />
+        <!-- <img src="" alt="" width="390" /> -->
+      </div>
+    </div>
+    <script>
+      document.querySelectorAll;
+      var ul = document.querySelector("ul");
+      var img = document.querySelector(".content img");
+      var imgs = [
+        "./images/1.png",
+        "./images/2.png",
+        "./images/3.png",
+        "./images/4.png",
+      ];
+      /* img.src = imgs[0]; */
+      var lis = ul.querySelectorAll("li");
+      Array.from(lis).forEach(function (li, index) {
+        // li.dataset.src = `./images/${index + 1}.png`;
+        li.dataset.src = imgs[index];
+        console.log(li.dataset.src);
+      });
+
+      ul.addEventListener("click", function (e) {
+        // if (e.target.tagName === "LI") {
+        if (e.target.dataset.src) {
+          var current = document.querySelector(".top .current");
+          current.classList.remove("current");
+          e.target.classList.add("current");
+
+          img.src = e.target.dataset.src;
+        }
+      });
+    </script>
+  </body>
+</html>
