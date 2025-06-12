@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      div {
+        width: 200px;
+        height: 200px;
+        background-color: #f75d5d;
+        border-radius: 50%;
+        cursor: move;
+
+        /* 移动元素需要是绝对定位 */
+        position: absolute;
+        left: 100px;
+        top: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <div></div>
+
+    <script>
+      // 法一：用e.movementX和Y
+      var div = document.querySelector("div");
+      var style = getComputedStyle(div);
+      var divLeft = parseFloat(style.left);
+      var divTop = parseFloat(style.top);
+      // console.log(left, top); // 100 Window {window: Window, self: Window, document: document, name: '', location: Location, …} top是window，只读属性，不能修改————》要改名
+      div.onmousedown = function () {
+        window.onmousemove = function (e) {
+          // console.log("move");
+
+          // 移动慢没问题，移动快会有效率问题，因为getComputedStyle计算耗时
+          /* var style = getComputedStyle(div);
+            var left = parseFloat(style.left);
+            var top = parseFloat(style.top);
+            console.log(left, top);
+            div.style.left = left + e.movementX + "px";
+            div.style.top = top + e.movementY + "px"; */
+
+          divLeft += e.movementX;
+          divTop += e.movementY;
+          div.style.left = divLeft + "px";
+          div.style.top = divTop + "px";
+        };
+        /* div.onmouseup = function () {
+            console.log("up");
+            div.onmousemove = null;
+          }; */
+        // 离开的时候也需要移除onmousemove事件
+        window.onmouseup = window.onmouseleave = function (e) {
+          window.onmousemove = null;
+        };
+      };
+
+      //   // 法二：用pageX和Y，兼容性好
+      //   var div = document.querySelector("div");
+      //   div.onmousedown = function (e) {
+      //     // 如果不是鼠标左键
+      //     if (e.button !== 0) {
+      //       return;
+      //     }
+      //     // 每次按下鼠标都需要重新计算最新的left和top
+      //     var style = getComputedStyle(div);
+      //     var divLeft = parseFloat(style.left);
+      //     var divTop = parseFloat(style.top);
+      //     // 先拿到原先的pageX和Y
+      //     var pageX = e.pageX;
+      //     var pageY = e.pageY;
+      //     // 移动太快的时候，div.onmousemove、div.onmouseup、div.onmouseleave用div会有问题——》改为window的事件
+      //     /*
+      //     如果你鼠标移动够快，突然就出去了，它还来不及触发这个事件，那后续的事件触发可以这样子处理。把这个地方，给它改成window全局对象，全局对象它仍然可以注册事件的可以认为它整个窗口，也是一个节点，它也有这些事件。给整个窗口注册你刚才的问题，不就是移出去过后要出问题，那就给整个网页注册。这个事件，它是无论如何都会触发的，除非你鼠标跑到浏览器外边去了。否则的话，他一定会触发这个事件好，那么同样的道理，当鼠标在整个窗口里边抬起，当鼠标在整个窗口里边离开的时候，然后把事件给它移除，把整个窗口的事件移除。可以用这种方式来处理，这样就没问题。随便你怎么甩移动的，再快都没问题啊，这就是鼠标移动事件。
+      //     */
+      //     window.onmousemove = function (e) {
+      //       /* // 错误写法
+      //       divLeft += (e.pageX - pageX);
+      //       divTop += (e.pageY - pageY);
+      //       div.style.left = divLeft + "px";
+      //       div.style.top = divTop + "px"; */
+      //       var disX = e.pageX - pageX;
+      //       var disY = e.pageY - pageY;
+
+      //       div.style.left = divLeft + disX + "px";
+      //       div.style.top = divTop + disY + "px";
+      //     };
+      //     // 离开的时候也需要移除onmousemove事件
+      //     window.onmouseup = window.onmouseleave = function (e) {
+      //       // 左键抬起才移除事件
+      //       if (e.button === 0) {
+      //         window.onmousemove = null;
+      //       }
+      //     };
+      //   };
+    </script>
+  </body>
+</html>
