@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      div {
+        width: 500px;
+        height: 500px;
+        background-color: lightblue;
+        border: 2px solid;
+        padding: 50px;
+        margin: 0 auto;
+      }
+      p {
+        width: 100px;
+        height: 100px;
+        background-color: red;
+        padding: 50px;
+
+        /* 背景默认为边框盒，改为内容盒 */
+        background-clip: content-box;
+
+        border: 2px dotted;
+      }
+    </style>
+  </head>
+  <body>
+    <span>lorem2000</span>
+    <div>
+      <p></p>
+    </div>
+    <span>lorem1000</span>
+    <script>
+      var div = document.querySelector("div");
+      var p = document.querySelector("p");
+      p.onmousemove = function (e) {
+        // 1. page：pageX、pageY，当前鼠标距离页面的横纵坐标
+        console.log(e.pageX, e.pageY);
+
+        // 2. client: clientX、clientY，鼠标相对于视口的坐标
+        console.log(e.clientX, e.clientY);
+
+        // 3. x、y，等同于clientX、clientY
+        console.log(e.x, e.y);
+
+        // 4. offset：offsetX、offsetY，鼠标相对于事件源的内边距的坐标（盒子左上角为坐标：0, 0）
+        console.log(e.offsetX, e.offsetY);
+
+        // 5. screen: screenX、screenY，鼠标相对于屏幕
+        console.log(e.screenX, e.screenY);
+
+        // 6. movement：movementX、movementY，只在鼠标移动事件中有效，相对于上一次鼠标位置，偏移的距离
+        console.log(e.movementX, e.movementY);
+      };
+    </script>
+  </body>
+</html>

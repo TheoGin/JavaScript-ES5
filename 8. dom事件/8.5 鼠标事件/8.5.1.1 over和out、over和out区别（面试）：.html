@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      div {
+        width: 300px;
+        height: 300px;
+        background-color: lightblue;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <button>点击</button>
+    </div>
+
+    <script>
+      var div = document.querySelector("div");
+      var btn = document.querySelector("button");
+
+      // 1. over和out，不考虑子元素，从父元素移动到子元素，对于父元素而言，仍然算作离开
+      /* div.onmouseover = function () {
+        console.log("鼠标进入：over");
+      };
+
+      div.onmouseout = function () {
+        console.log("鼠标离开：out");
+      };
+
+      btn.onmouseover = function (e) {
+        e.stopPropagation(); // 阻止鼠标进入冒泡
+      };
+
+      btn.onmouseout = function (e) {
+        e.stopPropagation(); // 阻止鼠标离开冒泡
+      }; */
+
+      // 2. enter和leave，考虑子元素，子元素仍然是父元素的一部分
+      //   - mouseenter和mouseleave不会冒泡
+      div.onmouseenter = function (e) {
+        // e.bubbles属性用于查看是否冒泡，返回一个布尔值
+        console.log("鼠标进入：enter", e.bubbles); // 鼠标进入：enter false
+      };
+
+      div.onmouseleave = function (e) {
+        console.log("鼠标离开：leave", e.bubbles); // 鼠标离开：leave false
+      };
+    </script>
+  </body>
+</html>

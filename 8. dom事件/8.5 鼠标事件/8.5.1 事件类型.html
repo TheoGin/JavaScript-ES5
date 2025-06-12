@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button>点击</button>
+
+    <script>
+      var btn = document.querySelector("button");
+
+      // 1. click：用户单击主鼠标按钮（一般是左键）或者按下在聚焦时按下回车键时触发
+      btn.onclick = function () {
+        console.log("被鼠标点击了");
+      };
+
+      // 2. dblclick：用户双击主鼠标按键触发（频率取决于系统配置）
+      btn.ondblclick = function () {
+        console.log("被鼠标双击了");
+      };
+
+      // 3. mousedown：用户按下鼠标任意按键时触发
+      btn.onmousedown = function () {
+        console.log("鼠标按下");
+      };
+
+      // 4. mouseup：用户抬起鼠标任意按键时触发
+      btn.onmouseup = function () {
+        console.log("鼠标抬起");
+      };
+
+      // 5. mousemove：鼠标在元素上移动时触发
+      btn.onmousemove = function () {
+        console.log("鼠标移动");
+      };
+
+      // 6. mouseover：鼠标进入元素时触发（over     在……上 ）
+      btn.onmouseover = function () {
+        console.log("进入元素：over");
+      };
+
+      // 7. mouseout：鼠标离开元素时触发
+      btn.onmouseout = function () {
+        console.log("离开元素：out");
+      };
+
+      // 8. mouseenter：鼠标进入元素时触发，该事件不会冒泡
+      btn.onmouseenter = function () {
+        console.log("进入元素：enter");
+      };
+
+      // 9. mouseleave：鼠标离开元素时触发，该事件不会冒泡
+      btn.onmouseleave = function () {
+        console.log("离开元素：leave");
+      };
+    </script>
+  </body>
+</html>

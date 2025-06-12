@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style></style>
+  </head>
+  <body>
+    <button>按钮</button>
+
+    <script>
+      var btn = document.querySelector("button");
+      btn.onmouseup = function (e) {
+        // 所有的鼠标事件，事件处理程序中的事件对象，都为 MouseEvent
+        console.log(e); // MouseEvent {isTrusted: true, screenX: 800, screenY: 108, clientX: 32, clientY: 21, …}
+
+        // 1. altKey：触发事件时，是否按下了键盘的alt键
+        // 2. ctrlKey：触发事件时，是否按下了键盘的ctrl键
+        // 3. shiftKey：触发事件时，是否按下了键盘的shift键
+        console.log(e.altKey, e.ctrlKey, e.shiftKey); // true true true （三个键同时按下）
+
+        /* 4. button：触发事件时，鼠标按键类型
+            - 0：左键
+            - 1：中键
+            - 2：右键 
+        */
+        console.log(e.button);
+      };
+    </script>
+  </body>
+</html>
