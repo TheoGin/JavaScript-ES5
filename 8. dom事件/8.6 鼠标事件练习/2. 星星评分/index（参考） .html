@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .left {
+        float: left;
+        margin-left: 10px;
+        line-height: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="divstars" class="left">
+      <img src="./images/empty.png" alt="" />
+      <img src="./images/empty.png" alt="" />
+      <img src="./images/empty.png" alt="" />
+      <img src="./images/empty.png" alt="" />
+      <img src="./images/empty.png" alt="" />
+    </div>
+    <div id="divword" class="left"></div>
+
+    <script>
+      var srcShining = "./images/shining.png";
+      var srcEmpty = "./images//empty.png";
+      var divword = document.getElementById("divword");
+      var divstars = document.getElementById("divstars");
+      var words = ["满意", "一般满意", "还不错", "很满意", "非常满意"];
+      var starIndex = -1; // 记录评分，点击的是第几个星星（当前有几颗星星点亮下标）
+
+      // 通过事件委托（利用事件冒泡）
+      divstars.onmouseover = function (e) {
+        if (e.target.tagName === "IMG") {
+          // 当前鼠标所在位置的星星点亮
+          e.target.src = srcShining;
+
+          // 处理之前的星星点亮
+          var pre = e.target.previousElementSibling;
+          while (pre) {
+            pre.src = srcShining;
+            pre = pre.previousElementSibling;
+          }
+
+          // 处理之后的星星置为空
+          var next = e.target.nextElementSibling;
+          while (next) {
+            next.src = srcEmpty;
+            next = next.nextElementSibling;
+          }
+
+          // 处理评分文本
+          // var index = Array.from(e.target.parentElement.children).indexOf(e.target);
+          var index = Array.from(divstars.children).indexOf(e.target);
+          divword.innerHTML = words[index];
+        }
+      };
+
+      // 处理点击
+      divstars.onclick = function (e) {
+        if (e.target.tagName === "IMG") {
+          // 点击第几个星星的下标
+          starIndex = Array.from(divstars.children).indexOf(e.target);
+        }
+      };
+
+      divstars.onmouseleave = function () {
+        // 如果是undefined，则赋值为空字符串
+        divword.innerHTML = words[starIndex] || "";
+        /* if (starIndex === -1) {
+          // 星星置为空
+          for (var i = 0; i < divstars.children.length; i++) {
+            divstars.children[i].src = srcEmpty;
+          }
+        }else {
+           for (var i = 0; i < divstars.children.length; i++) {
+            if (i <= starIndex) {
+              divstars.children[i].src = srcShining;
+            } else {
+              divstars.children[i].src = srcEmpty;
+            }
+          }
+        } */
+        // 合并书写
+        for (var i = 0; i < divstars.children.length; i++) {
+          if (i <= starIndex) {
+            divstars.children[i].src = srcShining;
+          } else {
+            divstars.children[i].src = srcEmpty;
+          }
+        }
+      };
+    </script>
+  </body>
+</html>
