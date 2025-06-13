@@ -1,4 +1,7 @@
 // 写成立即执行函数，可以防止污染全局变量
+/**
+ * 初始化
+ */
 (function () {
   // 配置信息
   var config = {
@@ -51,19 +54,13 @@
    * 初始化可移动div的尺寸
    */
   function initDivMoveSize() {
-    setDivMoveSize();
-  }
-
-  /**
-   * 设置可移动div的尺寸
-   */
-  function setDivMoveSize() {
+    // 设置可移动div的尺寸
     config.divMove.style.width = config.divMoveSize.width + "px";
     config.divMove.style.height = config.divMoveSize.height + "px";
   }
 
   /**
-   * 初始小图div事件
+   * 初始小图div的鼠标事件
    */
   function initDivSmallEvent() {
     config.divSmall.onmouseenter = function () {
