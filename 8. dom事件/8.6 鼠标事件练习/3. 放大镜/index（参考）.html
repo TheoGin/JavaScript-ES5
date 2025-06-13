@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .small {
+        width: 350px;
+        height: 350px;
+
+        /* 背景图会更换，不要在这里写死 */
+        /* background: url("./images/mouse.jpg") no-repeat; */
+        border: 1px solid #ccc;
+
+        /* 背景图默认覆盖的是边框盒，改为填充盒，不然会有一个像素挡到图片 */
+        background-clip: padding-box;
+
+        /* 边框会占尺寸 */
+        box-sizing: border-box;
+        position: relative;
+        /* margin-left: 100px; */
+      }
+      .big {
+        width: 540px;
+        height: 540px;
+        border: 1px solid #ccc;
+        background-clip: padding-box;
+
+        /* 边框会占尺寸 */
+        box-sizing: border-box;
+        position: absolute;
+        left: 360px;
+        top: 0;
+        display: none;
+      }
+      .move {
+        position: absolute;
+        /* top: 0;
+        left: 0; */
+        /* width: 235px;
+        height: 235px; */
+        background-color: rgba(200, 200, 50, 0.5);
+        border: 1px solid #ccc;
+        cursor: move;
+        display: none;
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="small">
+      <div class="move"></div>
+      <div class="big"></div>
+    </div>
+    <script src="./index.js"></script>
+  </body>
+</html>
