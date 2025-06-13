@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .imgs {
+        margin-left: 10px;
+      }
+
+      .imgs .title {
+        vertical-align: 6px;
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="imgs">
+      <img src="./images/empty.png" alt="" />
+      <img src="./images/empty.png" alt="" />
+      <img src="./images/empty.png" alt="" />
+      <img src="./images/empty.png" alt="" />
+      <img src="./images/empty.png" alt="" />
+      <span class="title">满意</span>
+    </div>
+
+    <script>
+      var imgs = document.querySelectorAll("img");
+      var srcShining = "./images/shining.png";
+      var srcEmpty = "./images//empty.png";
+      var span = document.querySelector(".title");
+      var div = document.querySelector(".imgs");
+      var titles = ["满意", "一般满意", "还不错", "很满意", "非常满意"];
+      var cnt = -1;
+      Array.from(imgs).forEach(function (img, index) {
+        img.onmouseover = function () {
+          img.src = srcShining;
+          span.innerText = titles[index];
+          span.style.display = "inline-block";
+          cnt = index;
+        };
+        img.onmouseout = function () {
+          img.src = srcEmpty;
+          span.style.display = "none";
+        };
+        // img.onmousedown = function () {
+        //   for (var i = 0; i <= cnt; i++) {
+        //     imgs[i].src = srcShining;
+        //   }
+        //   span.innerText = titles[index];
+        //   span.style.display = "inline-block";
+
+        //   img.onmouseout = null;
+        // };
+      });
+      div.onmouseover = function () {
+        for (var i = 0; i <= cnt; i++) {
+          imgs[i].src = srcShining;
+        }
+        for (; i < imgs.length; i++) {
+          imgs[i].src = srcEmpty;
+        }
+      };
+      div.onmouseout = function () {
+        for (var i = 0; i <= cnt; i++) {
+          imgs[i].src = srcEmpty;
+        }
+      };
+      div.onmousedown = function (e) {
+        div.onmouseout = null;
+        for (var i = 0; i <= cnt; i++) {
+          imgs[i].onmouseout = null;
+          imgs[i].src = srcShining;
+        }
+        span.innerText = titles[cnt];
+        span.style.display = "inline-block";
+      };
+    </script>
+  </body>
+</html>
