@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .original-img {
+        width: 350px;
+        height: 350px;
+        background: url("./images/mouse.jpg") no-repeat;
+        border: 1px solid #ccc;
+        position: relative;
+      }
+      .amplifier-img {
+        width: 540px;
+        height: 540px;
+        background: url("./images/mouseBigSize.jpg") no-repeat left top;
+        border: 1px solid #ccc;
+        position: absolute;
+        left: 360px;
+        top: 0;
+      }
+      .modal {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 235px;
+        height: 235px;
+        background-color: rgba(200, 200, 50, 0.5);
+        border: 1px solid #ccc;
+        cursor: move;
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="original-img">
+      <!-- <img src="./images/mouse.jpg" alt="" /> -->
+      <div class="modal"></div>
+      <div class="amplifier-img">
+        <!-- <img src="./images/mouseBigSize.jpg" alt="" /> -->
+      </div>
+    </div>
+    <script>
+      var modal = document.querySelector(".modal");
+      var small = document.querySelector(".original-img");
+      var smallStyle = getComputedStyle(small);
+      var modalStyle = getComputedStyle(modal);
+      var width = parseFloat(smallStyle.width) - parseFloat(modalStyle.width),
+        height = parseFloat(smallStyle.height) - parseFloat(modalStyle.height);
+
+        console.log(width, height);
+      small.onmousemove = function (e) {
+        modal.style.display = "block";
+
+        var offsetX = e.offsetX + 235;
+        var offsetY = e.offsetY + 235;
+
+        // if (offsetX > width) {
+        //   offsetX = width;
+        // }
+        // if (offsetY > height) {
+        //   offsetY = height;
+        // }
+
+        console.log('width, height', width, height);
+        console.log('e.offsetX, e.offsetY', e.offsetX, e.offsetY);
+        modal.style.left = e.offsetX + "px";
+        modal.style.top = e.offsetY + "px";
+      };
+
+      small.onmouseleave = function () {
+        modal.style.display = "none";
+      };
+    </script>
+  </body>
+</html>
