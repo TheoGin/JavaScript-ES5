@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="text" />
+    <script>
+      var input = document.querySelector("input");
+
+      input.onkeydown = function (e) {
+        // console.log("键盘按下了：key down", e.charCode); // 已弃用
+
+        // 1. code（不区分大小写）：得到按键字符串，适配键盘布局（如AltLeft、AltRight）
+        console.log("键盘按下了：key down", e.code); // 键盘按下了：key down KeyA
+
+        // 2. key（区分大小写）：得到按键字符串，不适配键盘布局。能得到打印字符（区分大小写）
+        console.log("键盘按下了：key down", e.key); // 键盘按下了：key down a   |   键盘按下了：key down A
+
+        // 3. keyCode（以前用的比较多，现在已弃用）、which：得到键盘编码（不是ASCII码）
+        console.log("键盘按下了：key down", e.keyCode); // 键盘按下了：key down 65（按下字母大小写都是65）
+      };
+    </script>
+  </body>
+</html>

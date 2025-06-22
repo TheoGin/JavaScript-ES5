@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      div {
+        width: 200px;
+        height: 200px;
+        background-color: lightblue;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <input type="text" />
+    </div>
+    <script>
+      var div = document.querySelector("div");
+      var input = document.querySelector("input");
+
+      // 绑定范围要大，否则失去焦点，按键就无效；或者给div绑定也无效，因为div无法聚焦 ——》把给input绑定换成document或window
+      document.onkeydown = function (e) {
+        console.log("键盘按下了：key down");
+      };
+
+      document.onkeypress = function (e) {
+        console.log("键盘按下了：key press");
+      };
+
+      document.onkeyup = function () {
+        console.log("键盘抬起了：key up");
+      };
+    </script>
+  </body>
+</html>

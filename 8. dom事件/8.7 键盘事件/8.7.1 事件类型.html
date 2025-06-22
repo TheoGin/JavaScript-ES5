@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="text" />
+    <script>
+      var input = document.querySelector("input");
+
+      // keydown、keypress 如果阻止了事件默认行为，文本不会显示
+
+      // 1. keydown（按住不动）：按下键盘上任意键触发，如果按住不放，会重复触发（打字的时候，按住一个字符会一直触发）此事件
+      input.onkeydown = function (e) {
+        console.log("键盘按下了：key down");
+
+        // 阻止输入之后的默认行为，内容输不进文本框，在onkeydown阻止后，onkeypress也无效
+        // return false;
+        // e.preventDefault();
+      };
+
+      // 2. keypress（按下之后会有反馈效果）：按下键盘上一个字符键（能打印的字符和回车）时触发
+      input.onkeypress = function (e) {
+        console.log("键盘按下了：key press");
+
+        // 阻止输入之后的默认行为，内容输不进文本框
+        // return false;
+        e.preventDefault();
+      };
+
+      // 3. keyup：抬起键盘上任意键触发
+      input.onkeyup = function () {
+        console.log("键盘抬起了：key up");
+      };
+    </script>
+  </body>
+</html>
