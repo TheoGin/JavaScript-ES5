@@ -8,17 +8,28 @@
   </head>
 
   <body>
-    <input type="text" />
+    <input type="text" placeholder="请输入整数" />
     <script>
       // 制作一个只能书写整数的文本框，必须使用type=text的文本框
       var input = document.querySelector("input");
-      input.onkeydown = function (e) {
+
+      // 用onkeypress只监听能打印的字符和回车，其他的不监听，提高效率
+      input.onkeypress = function (e) {
+        // e.key拿到的是键盘的字符——》需要转为ASCII码
+        console.log(String.fromCharCode(e.key)); // 错误写法，String.fromCharCode是将ASCII码转换为字符
+        console.log(e.key.charCodeAt(0)); // charCodeAt：得到指定位置的字符的ASCII码
+        if (e.key.charCodeAt(0) < 48 || e.key.charCodeAt(0) > 57) {
+          // return false;
+          e.preventDefault();
+        }
+      };
+      /* input.onkeydown = function (e) {
         if (isNaN(input.value)) {
           console.log(111);
           input.value = parseInt(input.value);
           e.preventDefault();
         }
-      };
+      }; */
     </script>
   </body>
 </html>
