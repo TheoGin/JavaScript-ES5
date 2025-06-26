@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      div {
+        width: 200px;
+        height: 200px;
+        background-color: lightblue;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <textarea></textarea>
+    </div>
+
+    <script>
+      var div = document.querySelector("div");
+      div.oncopy = function (e) {
+        // e.preventDefault(); // 阻止复制
+      };
+
+      div.onpaste = function (e) {
+        e.preventDefault(); // 阻止粘贴
+
+        var clipboardData = e.clipboardData || window.clipboardData; // 兼容性做法
+        // getData获取剪切板的数据，参数为MIME类型
+        console.log(clipboardData.getData("text/plain")); // 获取剪切板的文本类型数据
+        var data = "来自剪切板：" + clipboardData.getData("text/plain");
+
+        // 设置剪切板的文本类型数据
+        clipboardData.setData("text/plain"); // 浏览器为了安全，不然这样做，所以看不到效果
+
+        // 清空剪切板的文本类型数据
+        clipboardData.clearData("text/plain");
+      };
+
+      div.oncut = function (e) {
+        e.preventDefault(); // 阻止剪切
+      };
+    </script>
+  </body>
+</html>

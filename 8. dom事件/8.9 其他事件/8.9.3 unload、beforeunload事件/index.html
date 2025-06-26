@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 1. beforeunload: window的事件，关闭窗口时运行，可以阻止关闭窗口。如：在窗口关闭前，可以关闭ajax连接
+      window.onbeforeunload = function () {
+        console.log("你确定要关闭吗");
+
+        return "该网页正在运行重要内容，关闭网页可能会损坏你的计算机，是否真的要关闭？";
+      };
+
+      // 2. unload：window的事件，关闭窗口时运行
+      window.onunload = function () {
+        console.log("关闭窗口时运行");
+      };
+    </script>
+  </body>
+</html>

@@ -25,6 +25,15 @@
       };
 
       // 赋值粘贴还有问题，需要用后面粘贴事件解决
+      input.onpaste = function (e) {
+        // var clipboardData = e.clipboardData; // 错误写法，会导致数字也无法粘贴
+        var text = e.clipboardData.getData("text/plain");
+
+        // 只允许粘贴数字
+        if (!text || !/\d+/.test(text)) {
+          e.preventDefault();
+        }
+      };
 
       /* input.onkeydown = function (e) {
         if (isNaN(input.value)) {

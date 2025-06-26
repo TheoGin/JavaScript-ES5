@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      div {
+        width: 200px;
+        height: 200px;
+        background-color: lightblue;
+      }
+    </style>
+  </head>
+  <body>
+    <div></div>
+
+    <script>
+      var div = document.querySelector("div");
+      div.oncontextmenu = function (e) {
+        // 阻止div默认右击行为
+        e.preventDefault();
+      };
+    </script>
+  </body>
+</html>
