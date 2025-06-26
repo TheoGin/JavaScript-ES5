@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      .noinput {
+        color: #ccc;
+      }
+    </style>
+  </head>
+  <body>
+    <input type="text" class="noinput" value="请输入关键字" />
+
+    <script>
+      var input = document.querySelector("input");
+
+      // 1. focus：元素聚焦的时候触发（能与用户发生交互的元素，如a元素、表单元素、video、audio元素，都可以聚焦），该事件不会冒泡
+      input.onfocus = function (e) {
+        console.log('focus事件不会冒泡', e.bubbles); // focus事件不会冒泡 false
+        
+
+        // if (this.value === "请输入关键字") {
+
+        // 1. 可以不用硬编码，用this.defaultValue表示一开始input元素里面value的初始值
+        // if (this.value === this.defaultValue) {
+
+        // 2. 如果输入的是"请输入关键字"（一般用户不会输入这几个字），重新聚焦的时候，也会清空
+        // 解决1：可以通过是否有键盘按下，有输入过就修改布尔标志变量，来解决这个问题，但有点麻烦
+        // 解决2：通过类名解决这个问题，但凡有输入，就不会有noinput这个类名
+        if (this.value === this.defaultValue && this.className === "noinput") {
+          this.value = "";
+          this.className = "";
+        }
+      };
+
+      // 2. blur：元素失去焦点时触发，该事件不会冒泡。
+      input.onblur = function (e) {
+        console.log('blur事件不会冒泡', e.bubbles); // blur事件不会冒泡 false
+
+        if (!this.value) {
+          this.value = "请输入关键字";
+          this.className = "noinput";
+        }
+      };
+    </script>
+  </body>
+</html>

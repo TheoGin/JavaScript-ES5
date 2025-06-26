@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <select>
+      <option value="1">Lorem.</option>
+      <option value="2">Adipisci!</option>
+      <option value="3">Aspernatur!</option>
+      <option value="4">Cupiditate.</option>
+      <option value="5">Libero!</option>
+      <option value="6">Earum.</option>
+      <option value="7">Dolor?</option>
+      <option value="8">Vitae.</option>
+      <option value="9">Officia!</option>
+      <option value="10">Sint!</option>
+    </select>
+
+    <input type="text" />
+
+    <textarea></textarea>
+
+    <script>
+      var select = document.querySelector("select");
+      var input = document.querySelector("input");
+      var textarea = document.querySelector("textarea");
+      
+      // 4. change：文本改变事件（input、select、textarea）
+      select.onchange = function (e) {
+        /** this.options[this.selectedIndex].innerHTML 拿到当前选中的值
+         * this.options表示select所有子节点
+         * this.selectedIndex表示当前选中的下标索引
+         */
+        console.log(this.value); // 拿到当前选中的value
+        console.log(this.options[this.selectedIndex].innerHTML); // 拿到当前选中的值
+      };
+
+      // change事件：失去焦点后，内容发生变化的时候才会触发；重新输入，而内容要改回去，失去焦点后，不会触发
+      // bluer事件：失去焦点就会触发
+      input.onchange = function(e) {
+        console.log('input[text]内容发生变化change: ',  input.value);
+        console.log(e.bubbles); // true
+      }
+
+      // 5. input（常用于验证）: 文本改变事件，即时触发
+      input.oninput = textarea.oninput = function(e) {
+        if(!this.value) {
+          console.log('请输入内容');
+        }
+        console.log('input事件触发 ',  this.value);
+        console.log(e.bubbles); // true
+      }
+    </script>
+  </body>
+</html>

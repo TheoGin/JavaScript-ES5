@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form action="https://www.taobao.com">
+      <p>
+        <input type="text" placeholder="请输入账号" />
+      </p>
+      <button>按钮1</button>
+      <button>按钮2</button>
+    </form>
+
+    <script>
+      // 如果监听button元素的submit事件（会冒泡），若有多个按钮，则可能需要些很多次
+      // 在【源头form元素】监听submit事件，来阻止提交默认行为，只需写一次
+      // var form = document.forms[0]; // 可能遇到获取form元素的写法
+      var form = document.querySelector("form");
+      var input = document.querySelector("input");
+
+      // 3. submit：提交表单事件，仅在form元素有效。
+      form.onsubmit = function (e) {
+        if (!input.value.trim()) {
+          console.log("请输入内容");
+
+          // console.log('onsubmit会冒泡', e.bubbles); // onsubmit会冒泡 true
+
+          // return false;
+          e.preventDefault();
+        }
+      };
+    </script>
+  </body>
+</html>
