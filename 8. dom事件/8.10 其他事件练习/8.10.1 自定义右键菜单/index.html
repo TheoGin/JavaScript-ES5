@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .pink {
+        width: 200px;
+        height: 200px;
+        background-color: pink;
+        position: relative;
+        float: left;
+      }
+      .green {
+        width: 300px;
+        height: 300px;
+        background-color: #008c8c;
+        position: relative;
+        float: right;
+      }
+      .menu {
+        list-style: none;
+        padding: 10px;
+        margin: 0;
+        border: 1px solid #ccc;
+        width: 200px;
+        line-height: 2;
+        box-sizing: border-box;
+        background-color: #fff;
+        position: absolute;
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="pink">
+      <ul class="menu">
+        <li>菜单1</li>
+        <li>菜单2</li>
+        <li>菜单3</li>
+        <li>菜单4</li>
+        <li>菜单5</li>
+        <li>菜单6</li>
+        <li>菜单7</li>
+        <li>菜单8</li>
+        <li>菜单9</li>
+        <li>菜单10</li>
+      </ul>
+    </div>
+
+    <div class="green">
+      <ul class="menu">
+        <li>菜单1</li>
+        <li>菜单2</li>
+        <li>菜单3</li>
+        <li>菜单4</li>
+        <li>菜单5</li>
+        <li>菜单6</li>
+        <li>菜单7</li>
+        <li>菜单8</li>
+        <li>菜单9</li>
+        <li>菜单10</li>
+      </ul>
+    </div>
+
+    <script>
+      var pink = document.querySelector(".pink");
+      var green = document.querySelector(".green");
+      pink.oncontextmenu = green.oncontextmenu = function (e) {
+        e.preventDefault();
+
+        // offsetX、offsetY，鼠标相对于事件源的内边距的坐标
+        console.log(e.offsetX, e.offsetY);
+        this.querySelector(".menu").style.left = e.offsetX + "px";
+        this.querySelector(".menu").style.top = e.offsetY + "px";
+        this.querySelector(".menu").style.display = "block";
+      };
+
+      var menus = document.querySelectorAll(".menu");
+      document.onclick = function () {
+        Array.from(menus).forEach(function (menu) {
+          menu.style.display = "none";
+        });
+      };
+    </script>
+  </body>
+</html>
