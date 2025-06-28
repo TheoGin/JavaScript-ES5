@@ -5,18 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <style>
-      .pink {
+      .container1 {
         width: 200px;
         height: 200px;
         background-color: pink;
-        position: relative;
         float: left;
       }
-      .green {
+      .container2 {
         width: 300px;
         height: 300px;
         background-color: #008c8c;
-        position: relative;
         float: right;
       }
       .menu {
@@ -24,64 +22,60 @@
         padding: 10px;
         margin: 0;
         border: 1px solid #ccc;
-        width: 200px;
+        /* width: 200px; */
+        min-width: 200px;
         line-height: 2;
         box-sizing: border-box;
         background-color: #fff;
-        position: absolute;
+
+        /* 错误写法，会导致页面有滚动条 */
+        /* position: absolute; */
+
+        /* 相对于视口（可视区域），鼠标点击一定在可视区域 */
+        position: fixed;
         display: none;
       }
     </style>
   </head>
   <body>
-    <div class="pink">
-      <ul class="menu">
-        <li>菜单1</li>
-        <li>菜单2</li>
-        <li>菜单3</li>
-        <li>菜单4</li>
-        <li>菜单5</li>
-        <li>菜单6</li>
-        <li>菜单7</li>
-        <li>菜单8</li>
-        <li>菜单9</li>
-        <li>菜单10</li>
-      </ul>
-    </div>
+    <div class="container1"></div>
 
-    <div class="green">
-      <ul class="menu">
-        <li>菜单1</li>
-        <li>菜单2</li>
-        <li>菜单3</li>
-        <li>菜单4</li>
-        <li>菜单5</li>
-        <li>菜单6</li>
-        <li>菜单7</li>
-        <li>菜单8</li>
-        <li>菜单9</li>
-        <li>菜单10</li>
-      </ul>
-    </div>
+    <div class="container2"></div>
 
+    <ul class="menu">
+      <li>菜单1</li>
+      <li>菜单2</li>
+      <li>菜单3</li>
+      <li>菜单4</li>
+      <li>菜单5</li>
+      <li>菜单6</li>
+      <li>菜单7</li>
+      <li>菜单8</li>
+      <li>菜单9</li>
+      <li>菜单10</li>
+    </ul>
     <script>
-      var pink = document.querySelector(".pink");
-      var green = document.querySelector(".green");
-      pink.oncontextmenu = green.oncontextmenu = function (e) {
+      var div1 = document.querySelector(".container1");
+      var div2 = document.querySelector(".container2");
+      var menu = document.querySelector(".menu");
+      div1.oncontextmenu = div2.oncontextmenu = function (e) {
         e.preventDefault();
 
-        // offsetX、offsetY，鼠标相对于事件源的内边距的坐标
-        console.log(e.offsetX, e.offsetY);
-        this.querySelector(".menu").style.left = e.offsetX + "px";
-        this.querySelector(".menu").style.top = e.offsetY + "px";
-        this.querySelector(".menu").style.display = "block";
+        // clientX、clientY，鼠标相对于视口的坐标
+        console.log(e.clientX, e.clientY);
+        menu.style.left = e.clientX + "px";
+        menu.style.top = e.clientY + "px";
+        menu.style.display = "block";
+
+        console.log("contextmenu");
       };
 
-      var menus = document.querySelectorAll(".menu");
-      document.onclick = function () {
-        Array.from(menus).forEach(function (menu) {
-          menu.style.display = "none";
-        });
+      // document.onclick = function () { // 右键默认菜单会有问题，会导致右键不是这两个div的时候，自定义右键菜单不会隐藏——》mousedown，鼠标左键、中键、右键 按下都可以隐藏
+      window.onmousedown = function () {
+        // onmousedown先运行，再运行oncontextmenu，即先隐藏，再显示，所以不会有顺序问题
+        console.log("window.onmousedown");
+
+        menu.style.display = "none";
       };
     </script>
   </body>

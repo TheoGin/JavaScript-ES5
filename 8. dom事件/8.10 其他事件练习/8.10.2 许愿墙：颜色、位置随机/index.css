@@ -1,0 +1,45 @@
+.hope-container .item {
+  width: 180px;
+  height: 180px;
+  /* background-color: aquamarine; */
+  border-radius: 10px;
+  /* position: relative; */
+  position: fixed;
+  padding: 20px;
+  box-sizing: border-box;
+  cursor: move;
+}
+
+.hope-container .item .close {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  cursor: pointer;
+}
+
+.input-hope-container {
+  position: fixed;
+  bottom: 30px;
+  /* left: 0;
+    right: 0;
+    margin: auto; */
+  left: 50%;
+  margin-left: -150px;
+  width: 300px;
+  height: 40px;
+  box-sizing: border-box;
+}
+
+.input-hope-container input {
+  width: 100%;
+  height: 100%;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  outline: none;
+  font-size: 20px;
+  padding: 0 10px;
+}
+
+.input-hope-container input:focus {
+  border-color: #000;
+}
