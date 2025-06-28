@@ -36,6 +36,7 @@ function getRandom(min, max) {
   initFormEvent();
   initClose();
   initMouseMove();
+  initResize();
 
   /**
    * 初始化一开始两个div
@@ -127,18 +128,23 @@ function getRandom(min, max) {
         var divTop = parseFloat(style.top);
         console.log("left, top", divLeft, divTop);
 
-        target.onmousemove = function (e) {
+        window.onmousemove = function (e) {
           console.log(e.movementX, e.movementY);
-          var disLeft = divLeft + e.movementX;
-          var disTop = divTop + e.movementY;
-          console.log(disLeft, disTop);
-          target.style.left = disLeft + "px";
-          target.style.top = disTop + "px";
+        // var disLeft = divLeft + e.movementX;
+        // var disTop = divTop + e.movementY;
+        // console.log(disLeft, disTop);
+        // target.style.left = disLeft + "px";
+        // target.style.top = disTop + "px"; 
+          // 要用累加！！！因为每一次移动会改变left和top，而有没有重新获取计算后的，所以需要累加
+          divLeft += e.movementX;
+          divTop += e.movementY;
+          target.style.left = divLeft + "px";
+          target.style.top = divTop + "px";
         };
 
         // target.onmouseleave = function () {
-        target.onmouseup = target.onmouseleave = function () {
-          target.onmousemove = null;
+        window.onmouseup = window.onmouseleave = function () {
+          window.onmousemove = null;
         };
       }
     }; */
@@ -151,6 +157,8 @@ function getRandom(min, max) {
         var style = getComputedStyle(target);
         var divLeft = parseFloat(style.left);
         var divTop = parseFloat(style.top);
+
+        // pageX、pageY，当前鼠标距离页面的横纵坐标
         var pageX = e.pageX;
         var pageY = e.pageY;
 
@@ -170,7 +178,7 @@ function getRandom(min, max) {
             disX = document.documentElement.clientWidth - 190;
           }
 
-          if (disY > document.documentElement.clientWidth - 190) {
+          if (disY > document.documentElement.clientHeight - 190 - 70 - 10) {
             disY = document.documentElement.clientHeight - 190 - 70 - 10;
           }
 
@@ -183,6 +191,28 @@ function getRandom(min, max) {
           window.onmousemove = null;
         };
       }
+    };
+  }
+
+  function initResize() {
+    window.onresize = function () {
+      Array.from(document.querySelectorAll(".item")).forEach(function (div) {
+        if (div.style.left < 0) {
+          div.style.left = 0;
+        }
+
+        if (div.style.top < 0) {
+          div.style.top = 0;
+        }
+
+        if (div.style.left > document.documentElement.clientWidth - 190) {
+          div.style.left = document.documentElement.clientWidth - 190;
+        }
+
+        if (div.style.top > document.documentElement.clientWidth - 190) {
+          div.style.top = document.documentElement.clientHeight - 190 - 70 - 10;
+        }
+      });
     };
   }
 })();
