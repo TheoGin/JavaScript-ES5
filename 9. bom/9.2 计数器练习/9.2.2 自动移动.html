@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      div {
+        width: 100px;
+        height: 100px;
+        background-color: red;
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+      p {
+        margin-top: 300px;
+      }
+    </style>
+  </head>
+  <body>
+    <div></div>
+    <p>
+      <button class="startBtn">开始移动</button>
+      <button class="stopBtn">停止移动</button>
+    </p>
+    <script>
+      var div = document.querySelector("div");
+      var startBtn = document.querySelector(".startBtn");
+      var stopBtn = document.querySelector(".stopBtn");
+
+      var left = 0;
+      function move() {
+        /* var style = getComputedStyle(div);
+        var left = parseFloat(style.left);
+        div.style.left = ++left + "px"; */
+        div.style.left = ++left + "px";
+      }
+
+      var timerId;
+      startBtn.onclick = function () {
+        // 防止频繁点击，不停地开计时器
+        if (timerId) {
+          return;
+        }
+        timerId = setInterval(move, 16);
+      };
+
+      stopBtn.onclick = function () {
+        clearInterval(timerId);
+        // 上面只是清除定时器，但timerId的值不会变，可以置为null或undefined
+        timerId = null;
+      };
+    </script>
+  </body>
+</html>
