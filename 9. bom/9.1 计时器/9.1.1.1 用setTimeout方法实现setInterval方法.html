@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      h1 {
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>0</h1>
+    <button class="start">点击开始</button>
+    <button class="clear">清除定时器</button>
+    <script>
+      var h1 = document.querySelector("h1");
+      var btnStart = document.querySelector(".start");
+      var btnClear = document.querySelector(".clear");
+
+      var timerId,
+        num = 0;
+      btnStart.onclick = function () {
+        interval(function () {
+          h1.innerHTML = ++num;
+        }, 1000);
+      };
+
+      // 指定间隔时间duration到达后运行callback函数
+      function interval(callback, duration) {
+        timerId = setTimeout(function () {
+          callback();
+          interval(callback, duration);
+        }, duration);
+      }
+
+      btnClear.onclick = function () {
+        clearTimeout(timerId);
+      };
+    </script>
+  </body>
+</html>

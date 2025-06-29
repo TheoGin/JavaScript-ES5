@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button class="start">点击开始</button>
+    <button class="clear">清除定时器</button>
+    <script>
+      var btnStart = document.querySelector(".start");
+      var btnClear = document.querySelector(".clear");
+
+      var timer1, timer2, timer3;
+      btnStart.onclick = function () {
+        // 2. 计时器会返回一个数字，该数字表示计时器的编号
+        timer1 = setTimeout(function () {
+          console.log("计数器完成1");
+        }, 3000); // 3000毫秒之后，运行指定的函数
+        timer2 = setTimeout(function () {
+          console.log("计数器完成2");
+        }, 3000);
+        timer3 = setTimeout(function () {
+          console.log("计数器完成3");
+        }, 3000);
+
+        // 1. 计时器是异步的，当时机成熟之后才会执行
+        console.log(timer1, timer2, timer3);
+        console.log("点击事件");
+      };
+
+      btnClear.onclick = function () {
+        // clearTimeout方法：清除计时器
+        clearTimeout(timer1);
+        clearTimeout(timer2);
+        clearTimeout(timer3);
+      };
+    </script>
+  </body>
+</html>
