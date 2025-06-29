@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .box1 {
+        width: 300px;
+        height: 300px;
+        background-color: #bbbbbb;
+        margin: 100px;
+        margin-left: 3000px;
+        margin-top: 3000px;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .box2 {
+        width: 200px;
+        height: 200px;
+        background-color: #888888;
+        margin: 100px;
+        overflow: hidden;
+      }
+
+      .box3 {
+        width: 100px;
+        height: 100px;
+        background-color: #333333;
+        margin: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box1">
+      <div class="box2">
+        <div class="box3"></div>
+      </div>
+    </div>
+
+    <script>
+      var div1 = document.querySelector(".box1");
+      var div2 = document.querySelector(".box2");
+      var div3 = document.querySelector(".box3");
+      
+      // 获取该元素相对于整个网页左上角的偏移坐标
+      function getPagePosition(div) {
+        var leftSum = div.offsetLeft;
+        var topSum = div.offsetTop;
+        var parent = div.offsetParent;
+
+        // 逐层往外找，然后进行累加，直到 body的offsetParent为null 就停止循环
+        while (parent) {
+          leftSum += parent.offsetLeft;
+          topSum += parent.offsetTop;
+          parent = parent.offsetParent;
+        }
+
+        return {
+          x: leftSum,
+          y: topSum,
+        };
+      }
+    </script>
+  </body>
+</html>

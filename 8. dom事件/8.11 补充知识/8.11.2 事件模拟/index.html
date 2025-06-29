@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      div {
+        width: 100px;
+        height: 100px;
+        background-color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <form action="https://www.baidu.com">
+      <div></div>
+    </form>
+    <button class="btn1">按钮1</button>
+    <button class="btn2">按钮2</button>
+    <button class="btn3">鼠标移入按钮1</button>
+    <button class="btn4">鼠标移出按钮1</button>
+
+    <script>
+      var div = document.querySelector("div");
+      var form = document.querySelector("form");
+      var btn1 = document.querySelector(".btn1");
+      var btn2 = document.querySelector(".btn2");
+      var btn3 = document.querySelector(".btn3");
+      var btn4 = document.querySelector(".btn4");
+
+      div.onclick = function () {
+        // 表单提交用 点击div 模拟
+        form.submit();
+      };
+
+      btn1.onclick = function () {
+        console.log("按钮1被点击了");
+      };
+
+      btn2.onclick = function () {
+        console.log("按钮2被点击了");
+
+        // 按钮1的点击用 点击按钮2 模拟
+        btn1.click();
+      };
+
+      btn1.onmouseenter = function () {
+        btn1.style.background = "red";
+        btn1.style.color = "#fff";
+      };
+
+      btn1.onmouseleave = function () {
+        btn1.style.background = "initial";
+        btn1.style.color = "initial";
+      };
+
+    // 模拟其他事件，需要创建事件对象，然后传入dispatchEvent
+      btn3.onclick = function () {
+        var event = new MouseEvent("mouseenter", {
+          bubbles: false,
+        });
+        btn1.dispatchEvent(event);
+      };
+
+      btn4.onclick = function () {
+        var event = new MouseEvent("mouseleave", {
+          bubbles: false,
+        });
+        btn1.dispatchEvent(event);
+      };
+    </script>
+  </body>
+</html>
