@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      p {
+        text-align: center;
+        font-size: 32px;
+      }
+    </style>
+  </head>
+  <body>
+    <p class="countdown">倒计时：5</p>
+    <p class="clickNum">点击数：0</p>
+    <p>
+      <button class="btnAddClickNum">点击</button>
+      <button class="btnReset">重置</button>
+    </p>
+
+    <script>
+      var countdown = document.querySelector(".countdown");
+      var clickNum = document.querySelector(".clickNum");
+      var btnAddClickNum = document.querySelector(".btnAddClickNum");
+      var btnReset = document.querySelector(".btnReset");
+
+      var second = 5;
+      var num = 0;
+      var timerId;
+      // var flag = false; // 及时结束，不再开启计时器
+
+      btnAddClickNum.onclick = function () {
+        if (second <= 0) {
+          clearInterval(timerId);
+          timerId = null;
+          // flag = true;
+          return;
+        }
+
+        clickNum.innerHTML = `点击数：${++num}`;
+
+        if (timerId) {
+          return;
+        }
+        // if(flag) {
+        //   return;
+        // }
+        timerId = setInterval(() => {
+          second--;
+          countdown.innerHTML = `倒计时：${second}`;
+        }, 1000);
+      };
+
+      btnReset.onclick = function () {
+        second = 5;
+        num = 0;
+        countdown.innerHTML = `倒计时：${second}`;
+        clickNum.innerHTML = `点击数：${num}`;
+      };
+    </script>
+  </body>
+</html>
