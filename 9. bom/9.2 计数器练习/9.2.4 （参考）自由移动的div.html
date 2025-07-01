@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .move {
+        width: 100px;
+        height: 100px;
+        background-color: red;
+        border-radius: 50%;
+        /* position: absolute; */
+        /* 要用固定定位才是在可视窗口，才不会有滚动条闪动问题 */
+        position: fixed;
+        top: 0;
+        left: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="move">
+      <!-- 该div自动向右下移动，遇到边界反弹 -->
+    </div>
+    <script>
+      var div = document.querySelector(".move"),
+        x = 0, // 初始坐标x
+        y = 0, // 初始坐标y
+        xDis = 2, // 每次移动x的距离
+        yDis = 2, // 每次移动y的距离
+        duration = 6, // 移动的间隔时间
+        width = 100,
+        height = 100;
+
+      setInterval(function () {
+        x += xDis;
+        y += yDis;
+        // 要减去自身宽高
+        var clientWidth = document.documentElement.clientWidth - width;
+        var clientHeight = document.documentElement.clientHeight - height;
+
+        // 边界判定
+        if (y > clientHeight) {
+          y = clientHeight;
+          yDis = -yDis;
+        }
+
+        if (x > clientWidth) {
+          x = clientWidth;
+          xDis = -xDis;
+        }
+
+        if (x <= 0) {
+          x = 0;
+          xDis = -xDis;
+        }
+
+        if (y <= 0) {
+          y = 0;
+          yDis = -yDis;
+        }
+
+        div.style.left = x + "px";
+        div.style.top = y + "px";
+      }, duration);
+    </script>
+  </body>
+</html>

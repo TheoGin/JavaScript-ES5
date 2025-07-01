@@ -14,7 +14,9 @@
         height: 100px;
         background-color: red;
         border-radius: 50%;
-        position: absolute;
+        /* position: absolute; */
+        /* 要用固定定位才是在可视窗口，才不会有滚动条闪动问题 */
+        position: fixed;
         top: 0;
         left: 0;
       }
@@ -30,8 +32,8 @@
         isTopAdd = true;
 
       // 要减去自身宽高
-      var clientWidth = document.documentElement.clientWidth - 108;
-      var clientHeight = document.documentElement.clientHeight - 108;
+      var clientWidth = document.documentElement.clientWidth - 100;
+      var clientHeight = document.documentElement.clientHeight - 100;
 
       setInterval(function () {
         if (divLeft > clientWidth) {
