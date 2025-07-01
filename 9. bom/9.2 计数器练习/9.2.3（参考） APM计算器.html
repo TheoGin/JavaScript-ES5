@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      p {
+        text-align: center;
+        font-size: 2em;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- <p class="countdown">倒计时：5</p> 给变化的内容单独加个元素 -->
+    <p>倒计时：<span class="countdown">5</span></p>
+    <p>点击数：<span class="clickNum">0</span></p>
+    <p>
+      <button class="btnAddClickNum">点击</button>
+      <button class="btnReset">重置</button>
+    </p>
+
+    <script>
+      var countdown = document.querySelector(".countdown"),
+        clickNum = document.querySelector(".clickNum"),
+        btnAddClickNum = document.querySelector(".btnAddClickNum"),
+        btnReset = document.querySelector(".btnReset"),
+        second = 5, // 倒计时
+        num = 0,
+        timerId; // 计时器id
+      var isOver = false; // 是否结束
+
+      btnAddClickNum.onclick = function () {
+        if (isOver) {
+          return;
+        }
+
+        if (num === 0) {
+          setCountdown();
+        }
+
+        setNum(num + 1);
+      };
+
+      btnReset.onclick = function () {
+        setNum(0);
+
+        setSecond(5);
+
+        isOver = false;
+      };
+
+      // 重复代码写成函数
+      function setNum(n) {
+        num = n;
+        clickNum.innerHTML = num;
+      }
+
+      function setSecond(s) {
+        second = s;
+        countdown.innerHTML = second;
+      }
+
+      // 开启一个倒计时
+      function setCountdown() {
+        if (timerId) {
+          return;
+        }
+        timerId = setInterval(() => {
+          setSecond(second - 1);
+
+          if (second === 0) {
+            clearInterval(timerId); // 记得清除定时器
+            timerId = null;
+            isOver = true; // 结束了
+          }
+        }, 1000);
+      }
+    </script>
+  </body>
+</html>

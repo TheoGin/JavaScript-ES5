@@ -32,7 +32,7 @@
 
       btnAddClickNum.onclick = function () {
         if (second <= 0) {
-          clearInterval(timerId);
+          clearInterval(timerId); // 记得清除定时器
           timerId = null;
           // flag = true;
           return;

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      div {
+        width: 100px;
+        height: 100px;
+        background-color: red;
+        border-radius: 50%;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div></div>
+    <script>
+      var div = document.querySelector("div"),
+        divLeft = 0,
+        divTop = 0,
+        isLeftAdd = true,
+        isTopAdd = true;
+
+      // 要减去自身宽高
+      var clientWidth = document.documentElement.clientWidth - 108;
+      var clientHeight = document.documentElement.clientHeight - 108;
+
+      setInterval(function () {
+        if (divLeft > clientWidth) {
+          isLeftAdd = false;
+        }
+        if (divLeft < 0) {
+          isLeftAdd = true;
+        }
+        if (isLeftAdd) {
+          divLeft++;
+        } else {
+          divLeft--;
+        }
+
+        if (divTop > clientHeight) {
+          isTopAdd = false;
+        }
+        if (divTop < 0) {
+          isTopAdd = true;
+        }
+        if (isTopAdd) {
+          divTop++;
+        } else {
+          divTop--;
+        }
+
+        div.style.left = divLeft + "px";
+        div.style.top = divTop + "px";
+      }, 10);
+    </script>
+  </body>
+</html>
