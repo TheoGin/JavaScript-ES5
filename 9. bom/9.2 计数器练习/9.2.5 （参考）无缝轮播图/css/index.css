@@ -16,7 +16,8 @@ ul {
 }
 
 .imgs {
-  width: calc(520 * 5px);
+  /* 宽度不固定的，用行内样式写，然后再用js改 */
+  /* width: calc(520 * 5px); */
   transition: all 0.5s;
 }
 
@@ -32,7 +33,7 @@ ul {
   clear: both;
 }
 
-.arrow {
+.arrow .item {
   width: 20px;
   height: 30px;
   background-color: rgba(0, 0, 0, 0.3);
@@ -42,8 +43,12 @@ ul {
   margin: auto 0;
   color: #fff;
   line-height: 30px;
-  text-align: center;
+  /* 箭头不在圆角地方，所以不居中 */
+  /* text-align: center; */
   cursor: pointer;
+}
+
+.banner .arrow {
   display: none;
 }
 
@@ -51,20 +56,24 @@ ul {
   display: block;
 }
 
-.arrow:hover {
+.arrow .item:hover {
   /* background-color: #aaa; */
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-.left {
+.arrow .left {
   left: 0;
   /* 左上、右上、右下、左下 */
   border-radius: 0 20px 20px 0;
+  padding-left: 2px;
+  box-sizing: border-box;
 }
 
-.right {
+.arrow .right {
   right: 0;
   border-radius: 20px 0 0 20px;
+  padding-left: 8px;
+  box-sizing: border-box;
 }
 
 .dots {
