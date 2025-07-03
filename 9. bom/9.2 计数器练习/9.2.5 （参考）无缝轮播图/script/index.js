@@ -142,7 +142,7 @@ function switchTo(index, direction) {
     // var realDivImgsTotalWidth = config.imgWidth * (config.imgNum + 2); // 不要加2，因为额外图片是帮助滚动的，不应该对整个长度产生影响
     var realDivImgsTotalWidth = config.imgWidth * config.imgNum; // 实际整个长度。不能包含两个额外的，实际的组成环才是正常的整个长度
 
-    // 向左移动：
+    /* // 向左移动：
     if (direction === "left") {
       // 目标left < 当前left
       if (targetMarginLeft < curMarginLeft) {
@@ -167,6 +167,27 @@ function switchTo(index, direction) {
         moveTotalDistance =
           realDivImgsTotalWidth - Math.abs(targetMarginLeft - curMarginLeft);
       }
+    } */
+    // 合并书写
+    var mulDirection;
+    // 向左移动：
+    if (direction === "left") {
+      mulDirection = -1;
+    } else {
+      mulDirection = 1;
+    }
+    if (
+      (direction === "left" && targetMarginLeft < curMarginLeft) ||
+      (direction === "right" && targetMarginLeft > curMarginLeft)
+    ) {
+      // 移动距离：目标left - 当前left（正数相加）
+      moveTotalDistance = targetMarginLeft - curMarginLeft;
+    } else {
+      // 当前left > 目标left
+      // 移动距离：整个长度 - |目标left - 当前left|
+      moveTotalDistance =
+        mulDirection *
+        (realDivImgsTotalWidth - Math.abs(targetMarginLeft - curMarginLeft));
     }
 
     // 3. 计算每次移动距离。
