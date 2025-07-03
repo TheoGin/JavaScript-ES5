@@ -1,93 +1,257 @@
-var banner = {
-  imgArr: ["./img/1.jpg", "./img/2.webp", "./img/3.jpg", "./img/4.jpg", "./img/5.webp"],
-  imgsDiv: document.querySelector(".imgs"),
-  width: 520,
-  curImgIndex: 0,
-  dotsDiv: document.querySelector(".dots"),
-  leftDiv: document.querySelector(".left"),
-  rightDiv: document.querySelector(".right"),
-  duration: 2000,
+var config = {
+  imgWidth: 520,
+  dotWidth: 12,
+  doms: {
+    divImgs: document.querySelector(".imgs"),
+    divDots: document.querySelector(".dots"),
+    divArrow: document.querySelector(".arrow"),
+    divBanner: document.querySelector(".banner"),
+  },
+  curImgIndex: 0, // 当前实际图片索引
+  timer: {
+    // JS实现动画配置对象
+    id: null,
+    duration: 16, // 浏览器刷新频率：16.6666ms（毫秒）不断在刷新，就是不断重绘，单位毫秒
+    total: 1000, // 动画总共运动时长，单位毫秒
+  },
+  autoTimer: { // 自动播放定时器配置
+    id: null,
+    duration: 2000
+  },
 };
 
+// 总共的图片数量
+config.imgNum = config.doms.divImgs.children.length;
+
+/**
+ * 初始化图片列表和小圆点宽度
+ */
+function initSize() {
+  // div.imgs宽度不固定的，用js动态计算。数量多加2：用于无缝衔接的图片元素
+  config.doms.divImgs.style.width =
+    config.imgWidth * (config.imgNum + 2) + "px";
+
+  // 所有小圆点宽度不固定的，用js动态计算
+  config.doms.divDots.style.width = config.dotWidth * config.imgNum + "px";
+}
+
+/**
+ * 初始化小圆点元素；克隆用于无缝衔接的图片元素
+ */
+function initElement() {
+  // 初始化小圆点元素
+  for (var i = 0; i < config.imgNum; i++) {
+    var span = document.createElement("span");
+    config.doms.divDots.appendChild(span);
+  }
+
+  // 克隆用于无缝衔接的图片元素
+  var children = config.doms.divImgs.children;
+  var firstChild = children[0],
+    lastChild = children[children.length - 1];
+  var newImg = firstChild.cloneNode(true);
+  config.doms.divImgs.appendChild(newImg);
+  newImg = lastChild.cloneNode(true);
+  config.doms.divImgs.insertBefore(newImg, firstChild);
+}
+
+/**
+ * 设置小圆点是否激活
+ */
+function setDotsIsActiveStatus() {
+  for (var i = 0; i < config.imgNum; i++) {
+    if (i === config.curImgIndex) {
+      config.doms.divDots.children[i].className = "active";
+    } else {
+      config.doms.divDots.children[i].className = "";
+    }
+  }
+}
+
+/**
+ * 初始化第一张图片的位置
+ */
+function initDivImgsPosition() {
+  /* curImgIndex
+         0:        -imgWidth
+         1:        -2 * imgWidth
+         2:        -3 * imgWidth
+         3:        -4 * imgWidth
+     ----> (-curImgIndex - 1) * imgWidth
+  */
+  config.doms.divImgs.style.marginLeft =
+    (-config.curImgIndex - 1) * config.imgWidth + "px";
+}
+
+/**
+ * 轮播图所有初始化汇总方法
+ */
 function init() {
-  initInterval();
+  initSize();
+  initElement();
+  setDotsIsActiveStatus();
+  initDivImgsPosition();
 }
 
 init();
 
-var timerId;
-
 /**
- * 初始化定时器
- */
-function initInterval() {
-  timerId = setInterval(function () {
-    banner.curImgIndex++;
-    if (banner.curImgIndex >= banner.imgArr.length) {
-      banner.curImgIndex = 0;
-    }
-    setImgsMarginLeft();
-
-    activeDot();
-  }, banner.duration);
-}
-
-/**
- * 设置图片列表div左边距
- */
-function setImgsMarginLeft() {
-  banner.imgsDiv.style.marginLeft = -banner.width * banner.curImgIndex + "px";
-}
-
-/**
- * 激活小圆点
- */
-function activeDot() {
-  var spanActive = document.querySelector(".dots span.active");
-  spanActive.className = "";
-  banner.dotsDiv.children[banner.curImgIndex].className = "active";
-}
-
-// 左箭头事件
-banner.leftDiv.onclick = function () {
-  clearInterval(timerId);
-  setCurImgIndex(banner.curImgIndex - 1);
-  initInterval();
-};
-
-// 右箭头事件
-banner.rightDiv.onclick = function () {
-  clearInterval(timerId);
-  setCurImgIndex(banner.curImgIndex + 1);
-  initInterval();
-};
-
-/**
- * 设置当前图片索引
+ * 图片切换到索引index，图片方向没有传递默认向左移动
  * @param {*} index
+ * @param {*} direction
  */
-function setCurImgIndex(index) {
-  if (index < 0) {
-    index = banner.imgArr.length - 1;
+function switchTo(index, direction) {
+  if (index === config.curImgIndex) {
+    // 当前图片索引就是要移动的图片索引，不做任何处理
+    return; // 排除 目标left = 当前left 的情况
   }
-  if (index >= banner.imgArr.length) {
-    index = 0;
+  if (!direction) {
+    // 图片方向没有传递默认向左移动
+    direction = "left";
   }
-  banner.curImgIndex = index;
 
-  setImgsMarginLeft();
+  // 小圆点也要跟着移动
+  config.curImgIndex = index; // 重新设置当前索引
+  setDotsIsActiveStatus();
 
-  activeDot();
+  var targetMarginLeft = (-index - 1) * config.imgWidth; // 目标left
+  // config.doms.divImgs.style.marginLeft = targetMarginLeft + "px"; // 不用动画过程，就写完了
+  // 把上面一行代码换成动画的移动过程
+  animateSwitch();
+
+  /**
+   * JS实现动画运动过程
+   */
+  function animateSwitch() {
+    // 如果一直点击，就会开启很多个事件，所以先把之前的事件清除掉，只触发最后一次
+    stopAnimate();
+
+    // 1. 计算动画运动次数
+    var animatePlayNum = Math.ceil(config.timer.total / config.timer.duration); // 可能算出小数，例如：total为11ms，duration为3ms，则会算出小数，要向上取整，多一次来运动动画最后一次除数的余数
+    var curNumber = 0;
+
+    // 2. 计算总距离moveTotalDistance
+    var moveTotalDistance; // 移动距离
+    var style = getComputedStyle(config.doms.divImgs);
+    var curMarginLeft = parseFloat(style.marginLeft);
+
+    // var realDivImgsTotalWidth = config.imgWidth * (config.imgNum + 2); // 不要加2，因为额外图片是帮助滚动的，不应该对整个长度产生影响
+    var realDivImgsTotalWidth = config.imgWidth * config.imgNum; // 实际整个长度。不能包含两个额外的，实际的组成环才是正常的整个长度
+
+    // 向左移动：
+    if (direction === "left") {
+      // 目标left < 当前left
+      if (targetMarginLeft < curMarginLeft) {
+        // 移动距离：目标left - 当前left（负数相加）
+        moveTotalDistance = targetMarginLeft - curMarginLeft;
+      } else {
+        // 目标left > 当前left
+        //  移动距离：-（整个长度 - |目标left - 当前left|）
+        moveTotalDistance = -(
+          realDivImgsTotalWidth - Math.abs(targetMarginLeft - curMarginLeft)
+        );
+      }
+    } else {
+      // 向右移动：
+      // 目标left > 当前left
+      if (targetMarginLeft > curMarginLeft) {
+        // 移动距离：目标left - 当前left（正数相加）
+        moveTotalDistance = targetMarginLeft - curMarginLeft;
+      } else {
+        // 当前left > 目标left
+        // 移动距离：整个长度 - |目标left - 当前left|
+        moveTotalDistance =
+          realDivImgsTotalWidth - Math.abs(targetMarginLeft - curMarginLeft);
+      }
+    }
+
+    // 3. 计算每次移动距离。可能算出小数，要向上取整，多一次来移动最后一次除数的余数
+    var everyDistance = Math.ceil(moveTotalDistance / animatePlayNum);
+
+    config.timer.id = setInterval(function () {
+      curMarginLeft += everyDistance;
+
+      // if (Math.abs(curMarginLeft) > realDivImgsTotalWidth) {
+      // 还要判断方向，不然会有闪动问题！！！
+      if (
+        direction === "left" &&
+        Math.abs(curMarginLeft) > realDivImgsTotalWidth
+      ) {
+        // 图片向左移动，移动一点点到额外辅助图片元素（大于 实际图片总宽度），就迅速移到实际的图片元素
+        curMarginLeft += realDivImgsTotalWidth;
+      } else if (
+        direction === "right" &&
+        Math.abs(curMarginLeft) < config.imgWidth
+      ) {
+        // 图片向右移动，移动一点点到额外辅助图片元素（小于 一个图片元素的宽度），就迅速移到实际的图片元素
+        curMarginLeft -= realDivImgsTotalWidth;
+      }
+
+      config.doms.divImgs.style.marginLeft = curMarginLeft + "px"; // 用动画就是慢慢的改变，而不是一下改变！！ 有问题，会挪不会回来
+
+      // 要控制运动次数之后结束动画，不然动画就会一直下去！！！
+      curNumber++;
+      console.log(curNumber, animatePlayNum);
+      
+      if (curNumber === animatePlayNum) {
+        stopAnimate();
+      }
+    }, config.timer.duration);
+  }
+
+  /**
+   * 清除计时器
+   */
+  function stopAnimate() {
+    clearInterval(config.timer.id);
+    config.timer.id = null;
+  }
 }
 
-banner.dotsDiv.onclick = function (e) {
-  if (e.target.tagName === "SPAN") {
-    var index = Array.from(banner.dotsDiv.children).indexOf(e.target);
-
-    clearInterval(timerId);
-
-    setCurImgIndex(index);
-
-    initInterval();
+// 箭头点击事件。用事件委托
+config.doms.divArrow.onclick = function (e) {
+  // 箭头点击是看到图片的方向，与图片移动方向相反
+  if (e.target.classList.contains("left")) {
+    toLeft();
+  } else if (e.target.classList.contains("right")) {
+    toRight();
   }
+};
+
+function toLeft() {
+  var index = config.curImgIndex - 1;
+  if (index < 0) {
+    index = config.imgNum - 1;
+  }
+  switchTo(index, "right"); // 而不只是调用setDotsIsActiveStatus函数！！！
+}
+
+function toRight() {
+  var index = (config.curImgIndex + 1) % config.imgNum;
+  switchTo(index, "left"); // 而不只是调用setDotsIsActiveStatus函数！！！
+}
+
+// 小圆点点击事件
+config.doms.divDots.onclick = function (e) {
+  if (e.target.tagName === "SPAN") {
+    var index = Array.from(config.doms.divDots.children).indexOf(e.target);
+    switchTo(index, index > config.curImgIndex ? "left" : "right");
+  }
+};
+
+config.autoTimer.id = setInterval(function () {
+  toRight();
+}, config.autoTimer.duration);
+
+// 鼠标进入时轮播图自动播放停止，即清除定时器
+config.doms.divBanner.onmouseenter = function () {
+  clearInterval(config.autoTimer.id);
+  config.autoTimer.id = null;
+};
+
+// 鼠标离开时轮播图自动播放又开始，即重新开启定时器
+config.doms.divBanner.onmouseleave = function () {
+  config.autoTimer.id = setInterval(function () {
+    toRight();
+  }, config.autoTimer.duration);
 };

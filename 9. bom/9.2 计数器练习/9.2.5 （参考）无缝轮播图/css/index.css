@@ -18,13 +18,15 @@ ul {
 .imgs {
   /* 宽度不固定的，用行内样式写，然后再用js改 */
   /* width: calc(520 * 5px); */
-  transition: all 0.5s;
+  /* transition: all 0.5s; */
 }
 
 .imgs img {
   float: left;
   width: 520px;
   height: 280px;
+  /* 解决间隙 */
+  display: block;
 }
 
 .clearfix::after {

@@ -9,7 +9,8 @@
   <body>
     <div class="banner">
       <!-- 宽度不固定的，用行内样式写，然后再用js改 -->
-      <div class="imgs clearfix" style="width: 2600px">
+      <!-- <div class="imgs clearfix" style="width: 2600px"> -->
+      <div class="imgs clearfix">
         <a href="">
           <img src="./img/1.jpg" alt="" />
         </a>
@@ -19,25 +20,29 @@
         <a href="">
           <img src="./img/3.jpg" alt="" />
         </a>
-        <a href="">
+        <!-- <a href="">
           <img src="./img/4.jpg" alt="" />
         </a>
         <a href="">
           <img src="./img/5.webp" alt="" />
-        </a>
+        </a> -->
       </div>
-      <!-- 箭头 -->
+
+      <!-- 箭头。包一个元素，就可以用事件委托 -->
       <div class="arrow">
         <div class="item left">&lt;</div>
         <div class="item right">&gt;</div>
       </div>
+
+      <!-- 所有小圆点宽度不固定的，用行内样式写，然后再用js改 -->
+      <!-- <div class="dots" style="width: 60px"> -->
       <div class="dots">
-      <!-- 小圆点数量不固定的，需要用js生成 -->
-        <span class="active"></span>
+        <!-- 小圆点数量不固定的，需要用js生成 -->
+        <!-- <span class="active"></span>
         <span></span>
         <span></span>
         <span></span>
-        <span></span>
+        <span></span> -->
       </div>
     </div>
 
