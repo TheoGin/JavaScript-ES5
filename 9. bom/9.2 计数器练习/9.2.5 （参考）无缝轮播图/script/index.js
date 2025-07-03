@@ -1,22 +1,25 @@
+// 配置对象
 var config = {
-  imgWidth: 520,
-  dotWidth: 12,
+  imgWidth: 520, // 图片的宽度
+  dotWidth: 12, // 一个小圆点的宽度
   doms: {
-    divImgs: document.querySelector(".imgs"),
-    divDots: document.querySelector(".dots"),
-    divArrow: document.querySelector(".arrow"),
+    // 涉及的dom对象
+    divImgs: document.querySelector(".banner .imgs"),
+    divDots: document.querySelector(".banner .dots"),
+    divArrow: document.querySelector(".banner .arrow"),
     divBanner: document.querySelector(".banner"),
   },
-  curImgIndex: 0, // 当前实际图片索引
+  curImgIndex: 0, // 当前实际图片索引，0 ~ imgNum - 1
   timer: {
-    // JS实现动画配置对象
-    id: null,
-    duration: 16, // 浏览器刷新频率：16.6666ms（毫秒）不断在刷新，就是不断重绘，单位毫秒
-    total: 1000, // 动画总共运动时长，单位毫秒
+    // JS实现动画运动计时器配置对象
+    id: null, // 计时器id
+    duration: 16, // 运动间隔的时间，单位毫秒（浏览器刷新频率：16.6666ms（毫秒）不断在刷新，就是不断重绘）
+    total: 300, // 动画运动总共运动时长，单位毫秒
   },
-  autoTimer: { // 自动播放定时器配置
+  autoTimer: {
+    // 自动移动定时器配置
     id: null,
-    duration: 2000
+    duration: 2000,
   },
 };
 
@@ -24,7 +27,7 @@ var config = {
 config.imgNum = config.doms.divImgs.children.length;
 
 /**
- * 初始化图片列表和小圆点宽度
+ * 初始化元素尺寸（图片列表和小圆点宽度）
  */
 function initSize() {
   // div.imgs宽度不固定的，用js动态计算。数量多加2：用于无缝衔接的图片元素
@@ -39,7 +42,7 @@ function initSize() {
  * 初始化小圆点元素；克隆用于无缝衔接的图片元素
  */
 function initElement() {
-  // 初始化小圆点元素
+  // 创建小圆点元素
   for (var i = 0; i < config.imgNum; i++) {
     var span = document.createElement("span");
     config.doms.divDots.appendChild(span);
@@ -49,7 +52,7 @@ function initElement() {
   var children = config.doms.divImgs.children;
   var firstChild = children[0],
     lastChild = children[children.length - 1];
-  var newImg = firstChild.cloneNode(true);
+  var newImg = firstChild.cloneNode(true); // 深度克隆
   config.doms.divImgs.appendChild(newImg);
   newImg = lastChild.cloneNode(true);
   config.doms.divImgs.insertBefore(newImg, firstChild);
@@ -60,10 +63,11 @@ function initElement() {
  */
 function setDotsIsActiveStatus() {
   for (var i = 0; i < config.imgNum; i++) {
+    var dot = config.doms.divDots.children[i];
     if (i === config.curImgIndex) {
-      config.doms.divDots.children[i].className = "active";
+      dot.className = "active";
     } else {
-      config.doms.divDots.children[i].className = "";
+      dot.className = "";
     }
   }
 }
@@ -79,8 +83,8 @@ function initDivImgsPosition() {
          3:        -4 * imgWidth
      ----> (-curImgIndex - 1) * imgWidth
   */
-  config.doms.divImgs.style.marginLeft =
-    (-config.curImgIndex - 1) * config.imgWidth + "px";
+  var newMarginLeft = (-config.curImgIndex - 1) * config.imgWidth;
+  config.doms.divImgs.style.marginLeft = newMarginLeft + "px";
 }
 
 /**
@@ -128,7 +132,7 @@ function switchTo(index, direction) {
 
     // 1. 计算动画运动次数
     var animatePlayNum = Math.ceil(config.timer.total / config.timer.duration); // 可能算出小数，例如：total为11ms，duration为3ms，则会算出小数，要向上取整，多一次来运动动画最后一次除数的余数
-    var curNumber = 0;
+    var curNumber = 0; // 当前的运动次数
 
     // 2. 计算总距离moveTotalDistance
     var moveTotalDistance; // 移动距离
@@ -165,10 +169,12 @@ function switchTo(index, direction) {
       }
     }
 
-    // 3. 计算每次移动距离。可能算出小数，要向上取整，多一次来移动最后一次除数的余数
-    var everyDistance = Math.ceil(moveTotalDistance / animatePlayNum);
+    // 3. 计算每次移动距离。
+    // var everyDistance = Math.ceil(moveTotalDistance / animatePlayNum); // 错误写法，不需要向上取整！！！
+    var everyDistance = moveTotalDistance / animatePlayNum; // 精确除开
 
     config.timer.id = setInterval(function () {
+      // 改变当前div的marginleft
       curMarginLeft += everyDistance;
 
       // if (Math.abs(curMarginLeft) > realDivImgsTotalWidth) {
@@ -191,8 +197,7 @@ function switchTo(index, direction) {
 
       // 要控制运动次数之后结束动画，不然动画就会一直下去！！！
       curNumber++;
-      console.log(curNumber, animatePlayNum);
-      
+
       if (curNumber === animatePlayNum) {
         stopAnimate();
       }
@@ -234,14 +239,17 @@ function toRight() {
 // 小圆点点击事件
 config.doms.divDots.onclick = function (e) {
   if (e.target.tagName === "SPAN") {
-    var index = Array.from(config.doms.divDots.children).indexOf(e.target);
+    // var index = Array.from(config.doms.divDots.children).indexOf(e.target);
+    var index = Array.from(this.children).indexOf(e.target);
     switchTo(index, index > config.curImgIndex ? "left" : "right");
   }
 };
 
-config.autoTimer.id = setInterval(function () {
+/* config.autoTimer.id = setInterval(function () {
   toRight();
-}, config.autoTimer.duration);
+}, config.autoTimer.duration); */
+// 简化写法，直接传函数名
+config.autoTimer.id = setInterval(toRight, config.autoTimer.duration);
 
 // 鼠标进入时轮播图自动播放停止，即清除定时器
 config.doms.divBanner.onmouseenter = function () {
@@ -251,7 +259,9 @@ config.doms.divBanner.onmouseenter = function () {
 
 // 鼠标离开时轮播图自动播放又开始，即重新开启定时器
 config.doms.divBanner.onmouseleave = function () {
-  config.autoTimer.id = setInterval(function () {
+  /* config.autoTimer.id = setInterval(function () {
     toRight();
-  }, config.autoTimer.duration);
+  }, config.autoTimer.duration); */
+  // 简化写法，直接传函数名
+  config.autoTimer.id = setInterval(toRight, config.autoTimer.duration);
 };
