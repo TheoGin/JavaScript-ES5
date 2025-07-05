@@ -55,30 +55,41 @@ function initModal() {
 })(); */
 
 // 不污染污染全局变量写法三：
-window.myPlugin = {};
+// window.myPlugin = {};
+if (!window.myPlugin) {
+  // 没有才赋值，这样不会覆盖原有的
+  window.myPlugin = {};
+}
 
 window.myPlugin.openConfirm = (function () {
   var divModal, // 遮罩层
-    divCenter, // 中间的div
+    divCenter, // 中间的div容器
     options,
     spanTitle,
     spanClose,
     divContent,
     btnConfirm,
-    btnCancel;
+    btnCancel,
+    isregEvent = false; // 是否注册过事件
 
   function openConfirm(opts) {
     if (typeof opts === "string") {
       options = {
         content: opts,
       };
-    } else {
+    } /*  else {
       options = opts;
-    }
+    } 
     if (!options) {
       // 防止报错
       options = {};
+    }*/
+    // 给opts赋值
+    if (!opts) {
+      // 防止报错
+      opts = {};
     }
+    options = opts;
 
     initModal();
     initCenterDiv();
@@ -89,21 +100,34 @@ window.myPlugin.openConfirm = (function () {
    * 注册事件
    */
   function regEvent() {
+    if (isregEvent) {
+      return;
+    }
     spanClose.onclick = function () {
       divModal.style.display = "none";
     };
 
     btnConfirm.onclick = function () {
       // 确定之后不知道要干嘛——》回调（事件的本质就是回调）
-      options.onConfirm();
+      // options.onConfirm();
+      // 做个判断，防止没穿的时候报错
+      if (options.onConfirm) {
+        options.onConfirm();
+      }
       divModal.style.display = "none";
     };
 
     btnCancel.onclick = function () {
       // 确定之后不知道要干嘛——》回调（事件的本质就是回调）
-      options.onCancel();
+      // options.onCancel();
+      // 做个判断，防止没穿的时候报错
+      if (options.onCancel) {
+        options.onCancel();
+      }
       divModal.style.display = "none";
     };
+
+    isregEvent = true;
   }
 
   /**
@@ -137,11 +161,12 @@ window.myPlugin.openConfirm = (function () {
       btnCancel = document.querySelector('[data-my-plugin-id="cancel"]');
     }
 
-    // 每次打开需要更新配置文本内容，所以写在这里
+    // 设置配置的内容。每次打开需要更新配置文本内容，所以写在这里
     // document.querySelector('[myplugin-id="title"]');
     // spanTitle.innerText = options.title ? options.title : "提示";
     // 上面一行等价于
     spanTitle.innerText = options.title || "提示";
+
     divContent.innerText = options.content || "默认内容文本";
 
     btnConfirm.innerText = options.confirmText || "确定";
@@ -155,7 +180,7 @@ window.myPlugin.openConfirm = (function () {
    * 初始化三个div的内容
    */
   function initDivCenterContent() {
-    // 头部
+    // 头部：创建内部的标题div
     var div = document.createElement("div");
     div.style.height = "40px";
     div.style.background = "#eeeeee";
@@ -171,7 +196,7 @@ window.myPlugin.openConfirm = (function () {
 
     divCenter.appendChild(div);
 
-    // 内容
+    // 内容：创建提示文本div
     div = document.createElement("div");
     div.style.height = "70px";
     div.style.padding = "20px";
@@ -183,7 +208,7 @@ window.myPlugin.openConfirm = (function () {
 
     divCenter.appendChild(div);
 
-    // 底部按钮
+    // 底部按钮：创建按钮div
     div = document.createElement("div");
     div.style.padding = "10px 20px";
     // div.style.height = "50px";
@@ -230,15 +255,8 @@ window.myPlugin.openConfirm = (function () {
       divModal.style.boxSizing = "border-box";
 
       document.body.appendChild(divModal);
-
-      //   // 获取dom在这里就不用重复获取
-      //   spanTitle = document.querySelector('[data-my-plugin-id="title"]');
-      //   spanClose = document.querySelector('[data-my-plugin-id="close"]');
-      //   console.log(spanClose);
     }
     divModal.style.display = "block";
-    // 每次打开需要更新配置文本内容，所以写在这里
-    // document.querySelector('[myplugin-id="title"]');
   }
 
   return openConfirm;
