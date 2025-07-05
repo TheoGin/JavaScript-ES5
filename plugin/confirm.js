@@ -210,7 +210,7 @@ window.myPlugin.openConfirm = (function () {
     div = document.createElement("div");
     div.style.height = "70px";
     div.style.padding = "20px";
-    div.innerHTML = options.content;
+    // div.innerHTML = options.content;
     // 文本需要可配置
     // div.innerHTML = "123吧啦";
     div.style.boxSizing = "border-box";
