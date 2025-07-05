@@ -29,7 +29,7 @@
         cancelClass: "cancel",
       }); */
       btn.onclick = function () {
-        /* myPlugin.openConfirm({
+        myPlugin.openConfirm({
           title: "删除提示",
           content: "你确定要删除吗？",
           confirmText: "ok",
@@ -42,10 +42,10 @@
           onCancel: function () {
             console.log("点了取消");
           },
-        }); */
+        });
         
         // 传递一个参数，则为递内容
-        myPlugin.openConfirm("test文本");
+        // myPlugin.openConfirm("test文本");
       };
     </script>
   </body>

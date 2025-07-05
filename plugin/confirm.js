@@ -74,7 +74,11 @@ window.myPlugin.openConfirm = (function () {
 
   function openConfirm(opts) {
     if (typeof opts === "string") {
-      options = {
+      /* options = {
+        content: opts,
+      }; */
+      // 统一都给opts赋值
+      opts = {
         content: opts,
       };
     } /*  else {
@@ -84,7 +88,7 @@ window.myPlugin.openConfirm = (function () {
       // 防止报错
       options = {};
     }*/
-    // 给opts赋值
+    // 统一都给opts赋值
     if (!opts) {
       // 防止报错
       opts = {};
@@ -154,11 +158,17 @@ window.myPlugin.openConfirm = (function () {
       divModal.appendChild(divCenter);
 
       // 获取dom在这里就不用重复获取
-      spanTitle = document.querySelector('[data-my-plugin-id="title"]');
+      /* spanTitle = document.querySelector('[data-my-plugin-id="title"]');
       spanClose = document.querySelector('[data-my-plugin-id="close"]');
       divContent = document.querySelector('[data-my-plugin-id="content"]');
       btnConfirm = document.querySelector('[data-my-plugin-id="confirm"]');
-      btnCancel = document.querySelector('[data-my-plugin-id="cancel"]');
+      btnCancel = document.querySelector('[data-my-plugin-id="cancel"]'); */
+      // 可以缩小范围查找
+      spanTitle = divCenter.querySelector('[data-my-plugin-id="title"]');
+      spanClose = divCenter.querySelector('[data-my-plugin-id="close"]');
+      divContent = divCenter.querySelector('[data-my-plugin-id="content"]');
+      btnConfirm = divCenter.querySelector('[data-my-plugin-id="confirm"]');
+      btnCancel = divCenter.querySelector('[data-my-plugin-id="cancel"]');
     }
 
     // 设置配置的内容。每次打开需要更新配置文本内容，所以写在这里
