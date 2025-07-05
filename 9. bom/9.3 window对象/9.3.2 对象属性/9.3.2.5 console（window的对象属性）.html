@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 1. log方法：打印对象的valueOf（默认返回对象本身）的返回值
+      var obj = {
+        x: 123,
+        y: 456,
+      };
+      console.log(obj.valueOf()); // {x: 123, y: 456}
+      console.log(document.body.valueOf()); // <body>...<\/body>，浏览器重写了该方法
+
+      // 2. dir方法（directory 目录）：打印对象结构
+      // 2.1 如果对象没有重写过valueOf，用的是Object里边的valueOf，返回的就是对象本身的，用log和dir是一样的
+      console.log(obj); // {x: 123, y: 456}
+      console.dir(obj); // Object {x: 123, y: 456}
+
+      // 2.2 如果这个valueOf被重写之后，再用log，打印出来的是valueOf；用dir查看的是目录结构。
+      console.log(document.body); // <body>...<\/body>，浏览器重写了该方法
+      console.dir(document.body); // body{ ... }
+
+      // 3. tiem方法和timeEnd方法：用于计时
+      console.time("两个循环");
+      for (var i = 0; i < 100000; i++) {
+        sum += i;
+      }
+
+      console.time(); // 开始计时，不会打印
+      var sum = 0;
+      for (var i = 0; i < 10000; i++) {
+        sum += i;
+      }
+      console.timeEnd(); // 结束及时，会打印：default: 1.122802734375 ms
+      console.timeEnd("两个循环"); // 两个循环: 11.64501953125 ms
+    </script>
+  </body>
+</html>

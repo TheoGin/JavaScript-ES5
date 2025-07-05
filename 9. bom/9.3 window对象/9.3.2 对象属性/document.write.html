@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- 在h1前面面追加p元素 -->
+    <script>
+      document.write("<p>123</p>");
+    </script>
+    <h1>test</h1>
+
+    <!-- 在h1后面面追加p元素 -->
+    <script>
+      document.write("<p>123</p>");
+    </script>
+
+    <script>
+      window.onload = function () {
+        // 会覆盖文档中的所有内容。因为onload事件里边，已经加载全部完成了，完成了过后文档流就关闭了。那么，关闭了过后，比方说你花椒都画完了，你说再加个苹果，它只能给你新开一幅画来加
+        document.write("<p>123</p>");
+      };
+    </script>
+  </body>
+</html>
