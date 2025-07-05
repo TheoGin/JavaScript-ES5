@@ -4,16 +4,49 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <style>
+      .confirm {
+        background-color: lightblue;
+        color: #fff;
+        border: none;
+      }
+    </style>
   </head>
   <body>
     <button>打开一个确认对话框</button>
     <script src="../../plugin/confirm.js"></script>
+    <!-- <script src="../../plugin/other.js"></script> -->
     <script>
       var btn = document.querySelector("button");
-      btn.onclick = openConfirm;
-      /* btn.onclick = function () {
-        openConfirm();
-      }; */
+      // console.log(myPlugin.abc); // 不导入就是undefined
+
+      /*  myPlugin.openConfirm({
+        title: "删除提示",
+        content: "你确定要删除吗？",
+        confirmText: "ok",
+        confirmClass: "confirm",
+        cancelText: "cancel",
+        cancelClass: "cancel",
+      }); */
+      btn.onclick = function () {
+        /* myPlugin.openConfirm({
+          title: "删除提示",
+          content: "你确定要删除吗？",
+          confirmText: "ok",
+          confirmClass: "confirm",
+          cancelText: "cancel",
+          cancelClass: "cancel",
+          onConfirm: function () {
+            console.log("点了确定");
+          },
+          onCancel: function () {
+            console.log("点了取消");
+          },
+        }); */
+        
+        // 传递一个参数，则为递内容
+        myPlugin.openConfirm("test文本");
+      };
     </script>
   </body>
 </html>

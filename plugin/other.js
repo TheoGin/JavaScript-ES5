@@ -1,0 +1,1 @@
+window.myPlugin.abc = 123;
