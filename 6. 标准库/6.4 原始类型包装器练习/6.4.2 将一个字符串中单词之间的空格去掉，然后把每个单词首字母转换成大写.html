@@ -125,7 +125,7 @@
       }
       console.log(bigCamel(str)); */
 
-      var str = "they were on  tHe upper flOor of the   building.  ";
+      /*  var str = "they were on  tHe upper flOor of the   building.  ";
       function bigCamel(str) {
         // 参数传正则，就可以解决\t\r\n，目前只考虑空格
         return str
@@ -139,7 +139,16 @@
           })
           .join("");
       }
-      console.log(bigCamel(str)); // TheyWereOnTheUpperFloorOfTheBuilding.
+      console.log(bigCamel(str)); // TheyWereOnTheUpperFloorOfTheBuilding. */
+
+      // var s = "they were on  \t the upper floor\r of the\r\n building. \n ";
+      var s = " fasd das des dser eafw  ";
+      // 将空白字符、制表符去掉，并将首字母转为大写
+      s = s.replace(/\s*\b[a-z]\s*/g, function (match) {
+        console.log(match);
+        return match.toUpperCase().trim();
+      });
+      console.log(s); // TheyWereOnTheUpperFloorOfTheBuilding.
     </script>
   </body>
 </html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function Test() {}
+      const t = new Test();
+
+      // 1. 所有函数都有一个属性：prototype，称之为函数原型
+      Test.prototype; // {}
+
+      // 1.1 普通对象没有prototype属性
+      t.prototype; // undefined
+
+      // 2. 默认情况下，prototype是一个普通的Object对象
+      Test.prototype; // {} （{}前面没有任何标注）
+      typeof Test.prototype; // 'object'
+
+      // 3. 默认情况下，prototype中有一个属性，constructor，它也是一个对象，它指向构造函数本身。
+      Test.prototype.constructor; // ƒ Test() {  }
+      Test.prototype.constructor === Test; // true
+
+      t.__proto__ === Test.prototype; // true
+
+      Object.prototype; // {__defineGetter__: ƒ, __defineSetter__: ƒ, hasOwnProperty: ƒ, __lookupGetter__: ƒ, __lookupSetter__: ƒ, …}
+      Array.prototype; // [at: ƒ, concat: ƒ, copyWithin: ƒ, fill: ƒ, find: ƒ, …]
+
+      function Test() {
+        return {}; // 等价于 return new Object()
+      }
+      var obj = new Test();
+      console.log(obj.__proto__ === Object.prototype); // true
+
+    </script>
+  </body>
+</html>

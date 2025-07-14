@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 一个replace解决
+      // String.prototype.camel = function () {
+      //   return this.replace(/\s*(\w)(\w+)\s*/g, function ($, $1, $2) {
+      //     console.log($, $1, $2);
+      //     return $1.toUpperCase() + $2;
+      //   });
+      // };
+
+      // String.prototype.camel = function () {
+      //   return this.replace(/\b(\w)(\w+)\b/g, function ($, $1, $2) {
+      //     // console.log($, $1, $2);
+      //     return $1.toUpperCase() + $2;
+      //   }).replace(/\s/g, '');
+      // };
+
+      String.prototype.camel = function () {
+        // return this.replace(/\s*\b[a-z]\s*/, function (match) {
+        // 需要全局匹配，不然匹配完第一个就结束了
+        return this.replace(/\s*\b[a-z]/g, function (match) {
+          // console.log(match);
+          return match.toUpperCase().trim();
+        }).replace(/\s/g, "");
+      };
+
+      /* 
+      当访问一个对象的成员时：
+      */
+      function Fn() {}
+
+      var obj = new Fn();
+
+      // 2. 在原型链中依次查找是否拥有该成员，如果有直接使用
+      console.log(obj.toString()); // [object Object]
+
+      // 重写Object实例方法：Object.prototype.toString
+      Fn.prototype.toString = function () {
+        return "123";
+      };
+      var obj = new Fn();
+
+      // 1. 看该对象自身是否拥有该成员，如果有直接使用
+      console.log(obj.toString()); // 3
+
+      // 强行调用Object实例方法toString
+      console.log(Object.prototype.toString.call(obj)); // [object Object]
+    </script>
+  </body>
+</html>

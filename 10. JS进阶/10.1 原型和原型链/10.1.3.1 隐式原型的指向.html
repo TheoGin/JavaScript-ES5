@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /* function Fn(){
+
+      }
+      var f = new Fn();
+      f.abc = 123;
+      Fn.prototype.bcd = 456;
+      console.log(f.abc, Fn.abc); // 123 undefined
+      // console.log(f.bcd, Fn.bcd); // 456 undefined
+      console.log(f.bcd, Fn.prototype.bcd); // 456 456 */
+
+      function Fn() {}
+      var f1 = new Fn();
+      var f2 = new Fn();
+      f1.abc = 123;
+      f2.__proto__.bcd = 456;
+      console.log(f1.abc, f2.abc); // 123 undefined
+
+      // 隐式原型都指向 Fn
+      console.log(f1.__proto__.bcd, f2.__proto__.bcd); // 456 456
+
+      // 默认情况下，隐式原型指向创建该对象的函数的原型。
+      console.log(f1.__proto__); // {bcd: 456}
+      console.log(f2.__proto__); // {bcd: 456}
+    </script>
+  </body>
+</html>
