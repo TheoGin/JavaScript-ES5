@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script src="../../plugin/helper.js"></script>
+    <script>
+      function User(firstname, lastname, age) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.fullname = this.lastname + this.firstname;
+        this.age = age;
+      }
+
+      User.prototype.sayHello = function () {
+        console.log(`我叫${this.fullname}, 今年${this.age}岁了`);
+      };
+
+      function VIPUser(firstname, lastname, age, money) {
+        // this.uber( firstname, lastname, age); // son.prototype.uber = father
+        User.call(this, firstname, lastname, age);
+        this.money = money;
+      }
+      // VIPUser.prototype = User.prototype; // 不推荐，会造成原型污染
+
+      // 推荐原型继承：写个插件（要在VIPUser.prototype.upgrade之前写，不然改变了原型，就会被覆盖掉）
+      window.myPlugin.inherit(VIPUser, User); // 我叫张三丰, 今年18岁了
+
+      VIPUser.prototype.upgrade = function () {
+        console.log(`使用了元${this.money}，升级了`);
+        this.money -= 100;
+      };
+
+      var vUser = new VIPUser("三丰", "张", 18, 100);
+      console.log(vUser); // VIPUser {firstname: '三丰', lastname: '张', fullname: '三丰张', age: 18}
+      vUser.sayHello(); // 我叫张三丰, 今年18岁了
+
+      console.log(vUser.__proto__.constructor); // ƒ User(firstname, lastname, age) { ... }
+    </script>
+  </body>
+</html>

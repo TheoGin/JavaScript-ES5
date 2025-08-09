@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function Test() {}
+      var t = new Test();
+      // W3C不推荐直接使用系统成员 __proto__ 来获取原型
+      console.log(t.__proto__); // { constructor :  ƒ Test() }
+
+      // 1. Object.getPrototypeOf(对象)：获取对象的隐式原型
+      console.log(t.getPrototypeOf); // undefined
+      console.log(Object.getPrototypeOf(t)); // { constructor :  ƒ Test() }
+      console.log(Object.getPrototypeOf(t) === t.__proto__); // true
+      console.log(Object.getPrototypeOf(t).constructor); // ƒ Test() {}
+      console.log(Object.getPrototypeOf(t).constructor.name); // Test
+
+      // 2. Object.prototype.isPrototypeOf(对象)：判断当前对象(this)是否在指定对象的原型链上
+      console.log(Object.prototype.isPrototypeOf(t)); // true
+      console.log(Function.prototype.isPrototypeOf(t)); // false
+
+      var obj = {};
+      console.log(obj.isPrototypeOf(t)); // false
+
+      // 2.1 面试：Object.getPrototypeOf(obj)是obj的隐式原型是Object.prototype，在 t 对象的原型链上
+      console.log(Object.getPrototypeOf(obj).isPrototypeOf(t)); // true
+
+      // 2.2 判断是不是真数组
+      console.log(Array.prototype.isPrototypeOf(t)); // false
+      console.log(
+        Array.prototype.isPrototypeOf(document.querySelectorAll("a"))
+      ); // false
+      Array.prototype.isPrototypeOf([]); // true
+
+      var arr = [];
+      // 3. 对象 instanceof 函数：判断函数的原型是否在对象的原型链上
+      console.log(arr instanceof Array); // true
+      console.log(arr instanceof Test); // false
+
+      console.log(Object.isPrototypeOf(arr)); // false
+      console.log(arr instanceof Object); // true
+
+      // 3.1 instanceof【不推荐】用来判断数组，因为有iframe，跨窗口指向就不一样了
+      // console.log(arr instanceof Array); // true
+      // 【推荐】
+      console.log(Array.isArray(arr)); // true
+
+      // 4. Object.create(对象)：创建一个新对象，其隐式原型指向指定的对象
+      var obj = Object.create(Object.prototype);
+      console.log(obj); // { } 隐式原型指向[[Prototype]]: Object
+
+      // 4.1 {} 创建的对象 和 Object.create(Object.prototype) 创建的对象 形式一样
+      var obj = {};
+      console.log(obj); // { } 隐式原型指向[[Prototype]]: Object
+
+      var p = {
+        a: 1,
+        b: 2,
+      };
+      var obj = Object.create(p);
+      console.log(obj); // obj的隐式原型指向 p { a: 1, b: 2, }
+      console.log("obj.a：", obj.a); // obj.a： 1
+      console.log("obj.b：", obj.b); // obj.b： 2
+
+      // 4.2 面试题：并不是所有对象的原型链最终一定是Object.prototype ！！！
+      // var obj = Object.create(); // Uncaught TypeError: Object prototype may only be an Object or null: undefined
+      var obj = Object.create(null); // { } No properties
+
+      var p = {
+        a: 1,
+        b: 2,
+      };
+      var obj = Object.create(p);
+      obj.abc = 123;
+      console.log(obj.hasOwnProperty('a')); // false
+      console.log(obj.hasOwnProperty('abc')); // true
+
+      // 循环对象属性
+      for (var prop in obj) {
+        // console.log(prop);
+        /* 为什么没有把Object原型链上的属性打印出来？因为做了特殊处理，具体原因见 属性描述符 那一小节
+            abc
+            a
+            b
+        */
+
+        // 5. Object.prototype.hasOwnProperty(属性名)：判断一个对象自身是否拥有某个属性
+        if (obj.hasOwnProperty(prop)) {
+          console.log(prop); // abc
+        }
+      }
+    </script>
+  </body>
+</html>
