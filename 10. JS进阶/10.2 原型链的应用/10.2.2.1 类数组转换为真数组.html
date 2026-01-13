@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 【不推荐】[].slice.call(类数组) 转换会产生一个新的对象
+      var arr = [].slice.call(document.querySelectorAll("a"));
+      console.log(Array.isArray(arr)); // true
+
+      // 【推荐】Array.prototype.slice.call(类数组);
+      var arr = Array.prototype.slice.call(document.querySelectorAll("a"));
+      console.log(Array.isArray(arr)); // true
+    </script>
+  </body>
+</html>
