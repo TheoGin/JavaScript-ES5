@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function User(firstname, lastname, age) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.fullname = this.firstname + this.lastname;
+        this.age = age;
+      }
+
+      User.prototype.sayHello = function () {
+        console.log(`我叫${this.fullname}, 今年${this.age}岁了`);
+      };
+
+      function VIPUser(firstname, lastname, age, salary) {
+        User.call(this, firstname, lastname, age);
+      }
+      var v = new VIPUser("三丰", "张", 18, 100);
+      console.log(v); // VIPUser {firstname: '三丰', lastname: '张', fullname: '三丰张', age: 18}
+      v.sayHello(); // Uncaught TypeError: v.sayHello is not a function
+    </script>
+  </body>
+</html>
