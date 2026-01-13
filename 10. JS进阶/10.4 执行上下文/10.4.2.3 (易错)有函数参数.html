@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+  </head>
+
+  <body>
+    <script>
+      function A(a, b) {
+        // 1). 确定所有形参值以及特殊变量arguments
+        console.log(a, b);
+        // 2). 确定函数中通过var声明的变量，将它们的值设置为undefined，如果VO中已有该名称，则直接忽略。
+        var b = 123;
+        console.log(a, b);
+
+        // 3). 确定函数中通过字面量声明的函数，将它们的值设置为指向函数对象，如果VO中已存在该名称，则覆盖。
+        function b() {
+          var d = 123;
+        }
+      }
+
+      A(1, 2);
+    </script>
+  </body>
+
+</html>

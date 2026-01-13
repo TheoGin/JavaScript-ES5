@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+  </head>
+
+  <body>
+    <script>
+      // 2). 在函数外，this指向全局对象
+      console.log(this.name);
+      var a = 2;
+
+      function A() {
+        // 3). 通过对象调用或new一个函数，this指向调用的对象或新对象
+        this.abc = 123;
+
+        function B() {
+          console.log(this);
+        }
+
+        // 1). 直接调用函数，this指向全局对象
+        B();
+      } // 通过 new 调用的函数，调用结束后会 return 对象实例
+
+      var a = new A();
+
+      console.log(a.abc);
+    </script>
+  </body>
+
+</html>
