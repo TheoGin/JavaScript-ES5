@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+  </head>
+
+  <body>
+    <script>
+      function User(name, age) {
+        this.name = name;
+        // this.age = age; // age 会被改成不是从 0 - 100
+        // var _age = age;
+        var _age; // 一开始不赋值
+        // 1、定义属性的 accessors（getter和setter）
+        Object.defineProperty(this, "age", {
+          get: function () {
+            // 当读取属性age时，运行的函数
+            console.log("调用属性的 get", _age);
+
+            // 该函数的返回值，将作为属性的值
+            return _age;
+          },
+          set: function (val) {
+            // 当给该属性赋值时，运行的函数
+            // val：表示要赋的值
+            console.log("调用属性的 set", val);
+
+            // 年龄的取值范围是 0 - 100
+            // 如果年龄的值小于了0，则赋值为0，如果年龄的值大于了100，则赋值为100
+            if (val < 0) {
+              val = 0;
+            } else if (val > 100) {
+              val = 100;
+            }
+            _age = val;
+          },
+        });
+        // this.age = _age;
+        this.age = age; // 一开始就赋值为传递的 age，会触发调用 set(age)
+      }
+
+      var user = new User("Sopho", -1); // 会调用 set(-1)
+      console.log(user); // User {name: 'Sopho', age: ... } hover的时候，会显示 Invoke property getter，0
+      console.log(user.age); // 会调用 get() --> 0
+      user.age = user.age + 10000;
+      console.log(user); // User {name: 'Sopho', age: ... } -->  hover的时候，会显示 Invoke property getter --> 调用属性的 get 100
+      /*
+      调用属性的 set -1
+      User {name: 'Sopho', age: ...(0) }
+      调用属性的 get 0
+      0
+      调用属性的 get 0
+      调用属性的 set 10000
+      User {name: 'Sopho', age: ...(100) }
+      * */
+    </script>
+  </body>
+
+</html>

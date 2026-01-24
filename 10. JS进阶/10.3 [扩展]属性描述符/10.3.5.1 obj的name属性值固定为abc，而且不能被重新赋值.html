@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+  </head>
+
+  <body>
+    <script>
+      "use strict";
+
+      // obj的name属性值固定为abc，而且不能被重新赋值
+      var obj = {};
+      // 法一：
+      Object.defineProperty(obj, "name", {
+        configurable: true, // 默认值为 false
+        get: function () {
+          return "abc";
+        },
+        // 只写 get，不写 set，则不能改
+      });
+
+      console.log(Object.getOwnPropertyDescriptor(obj, "name")); // {set: undefined, enumerable: false, configurable: true, get: ƒ}
+
+      obj.name = 123;
+      console.log(obj.name); // abc
+
+      // 法二：
+      Object.defineProperty(obj, "name", {
+        value: "abc",
+        writable: false,
+      });
+
+      obj.name = 456;
+      console.log(obj.name); // abc
+    </script>
+  </body>
+
+</html>

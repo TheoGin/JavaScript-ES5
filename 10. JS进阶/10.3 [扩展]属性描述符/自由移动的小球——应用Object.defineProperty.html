@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Document</title>
+    <style>
+      .move {
+        width: 100px;
+        height: 100px;
+        background-color: red;
+        border-radius: 50%;
+        /* position: absolute; */
+        /* 要用固定定位才是在可视窗口，才不会有滚动条闪动问题 */
+        position: fixed;
+        top: 0;
+        left: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="move">
+      <!-- 该div自动向右下移动，遇到边界反弹 -->
+    </div>
+    <script>
+      var div = document.querySelector(".move");
+
+      var config = {
+        _x: 0, // 初始坐标x
+        _y: 0, // 初始坐标y
+        xDis: 2, // 每次移动x的距离
+        yDis: 2, // 每次移动y的距离
+        duration: 6, // 移动的间隔时间
+        width: 100,
+        height: 100,
+      };
+
+      Object.defineProperty(config, "x", {
+        get: function () {
+          return config._x;
+        },
+        set(v) {
+          var clientWidth = document.documentElement.clientWidth - config.width; // 要减去自身宽
+          if (v < 0) {
+            v = 0;
+          } else if (v > clientWidth) {
+            v = clientWidth;
+          }
+          config._x = v;
+          div.style.left = v + "px";
+        },
+      });
+
+      Object.defineProperty(config, "y", {
+        get: function () {
+          return config._y;
+        },
+        set(v) {
+          var clientHeight = document.documentElement.clientHeight - config.height; // 要减去自身宽
+          if (v < 0) {
+            v = 0;
+          } else if (v > clientHeight) {
+            v = clientHeight;
+          }
+          config._y = v;
+          div.style.top = v + "px";
+        },
+      });
+
+      Object.defineProperty(config, "y", { });
+
+      setInterval(function () {
+        config.x += config.xDis;
+        config.y += config.yDis;
+
+        // 边界判定
+        if (config.x === document.documentElement.clientWidth - config.width || config.y === 0) {
+          config.xDis = -config.xDis;
+        }
+
+        if (config.y === document.documentElement.clientHeight - config.height || config.y === 0) {
+          config.yDis = -config.yDis;
+        }
+        /*// 可以写到属性定义的地方
+        div.style.left = config.x + "px";
+        div.style.top = config.y + "px";*/
+      }, config.duration);
+    </script>
+  </body>
+</html>
