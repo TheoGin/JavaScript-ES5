@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+  </head>
+  <body>
+    <script src="../../plugin/helper.js"></script>
+    <script>
+      var obj1 = {
+        x: 1,
+        y: 2,
+      };
+      var obj2 = {
+        x: 11,
+        z: 6,
+      };
+
+      // 两个对象，混合后产生一个新对象
+      var mixinObj = myPlugin.mixin(obj1, obj2);
+      console.log(mixinObj); // {x: 11, y: 2, z: 6}
+      console.log(mixinObj === obj1); // false
+
+      var assignObj = Object.assign(obj1, obj2);
+      console.log(assignObj); // {x: 11, y: 2, z: 6}
+      console.log(assignObj === obj1); // true
+
+      complicateFunc({
+        a: 1,
+        c: 3,
+      });
+
+      // 应用：option参数是一个对象，表示配置对象
+      function complicateFunc(option) {
+        // 如果没有传递，则使用默认值
+        var defaultOption = {
+          a: "defaut-a",
+          b: "defaut-b",
+          c: "defaut-c",
+          d: "defaut-d",
+          e: "defaut-e",
+        };
+
+        var opt = myPlugin.mixin(defaultOption, option);
+
+        console.log(opt); // {a: 1, b: 'defaut-b', c: 3, d: 'defaut-d', e: 'defaut-e'}
+      }
+    </script>
+  </body>
+</html>

@@ -1,6 +1,6 @@
 /* if (!window.myPlugin) {
-  window.myPlugin = {};
-} */
+ window.myPlugin = {};
+ } */
 // 继承可能不是在浏览器，就没有window对象，为了通用性，把window改为this
 if (!this.myPlugin) {
   this.myPlugin = {};
@@ -8,7 +8,8 @@ if (!this.myPlugin) {
 
 this.myPlugin.inherit = function (son, father) {
   // ES5之前没有Object.create的写法
-  var Temp = function () {};
+  var Temp = function () {
+  };
   Temp.prototype = father.prototype;
   son.prototype = new Temp();
 
@@ -27,20 +28,83 @@ this.myPlugin.inherit = function (son, father) {
   // son.prototype.uber = father;
 };
 /* this.myPlugin.inherit = (function () {
-  // ES5之前没有Object.create的写法
-  var Temp = function () {};
-  return function (son, father) {
-    Temp.prototype = father.prototype;
-    son.prototype = new Temp();
+ // ES5之前没有Object.create的写法
+ var Temp = function () {};
+ return function (son, father) {
+ Temp.prototype = father.prototype;
+ son.prototype = new Temp();
 
-    son.prototype.constructor = son;
-    son.prototype.uber = father.prototype;
-  };
-})(); */
-typeof Node; // 'function'
-Element; // ƒ Element() { [native code] }
-Comment; // ƒ Comment() { [native code] }
-console.dir(document.body); // 隐式原型：HTMLBodyElement ->HTMLElement -> Element -> Node -> EventTarget -> Object
-var e = new MouseEvent('click') 
-e // MouseEvent {isTrusted: false, screenX: 0, screenY: 0, clientX: 0, clientY: 0, …}
- // 隐式原型：MouseEvent ->UIEvent -> Event -> Object
+ son.prototype.constructor = son;
+ son.prototype.uber = father.prototype;
+ };
+ })(); */
+
+/**
+ * 将 obj2 混合到 obj1 并产生新的对象
+ * @param obj1
+ * @param obj2
+ * @returns {Object}
+ */
+this.myPlugin.mixin = function (obj1, obj2) {
+  /* var newObj = {};
+
+   // 思路1：
+   // 1.1 先复制 obj1 的属性到 newObj
+   for (var prop in obj1) {
+   newObj[prop] = obj1[prop];
+   }
+
+   // 1.2 再复制 obj2 的属性到 newObj，原先有的就覆盖，没有就新增
+   for (const prop in obj2) {
+   newObj[prop] = obj2[prop];
+   }
+
+   // 参考：先复制 obj2，再找到obj1中有但是obj2中没有的属性
+   for (const prop in obj2) {
+   newObj[prop] = obj2[prop];
+   }
+
+   for (var prop in obj1) {
+   if (!(prop in newObj)) {
+   newObj[prop] = obj1[prop];
+   }
+   }
+
+   return newObj;
+   */
+  return Object.assign({}, obj1, obj2);
+};
+
+/**
+ * 克隆一个对象
+ * @param data
+ * @param {boolean} deep 是否深度克隆
+ * @returns {{}|*|*[]}
+ */
+this.myPlugin.clone = function (data, deep = false) {
+  if (Array.isArray(data)) {
+    if (deep) {
+      // 深度克隆
+      const newArr = [];
+      for (var i = 0; i < data.length; i++) {
+        newArr[i] = this.clone(data[i], deep);
+      }
+      return newArr;
+    } else {
+      return data.slice(); //复制数组
+    }
+  } else if (typeof data === "object" && typeof data !== null) {
+    var newObj = {};
+    for (const prop in data) {
+      if (deep) {
+        newObj[prop] = this.clone(data[prop], deep);
+      } else {
+        newObj[prop] = data[prop];
+      }
+    }
+    return newObj;
+  } else {
+    // 函数、原始类型直接返回（递归出口）
+    return data; //递归的终止条件
+  }
+};

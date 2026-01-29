@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+  </head>
+  <body>
+    <script src="../../plugin/helper.js"></script>
+    <script>
+      // 克隆obj
+      // 浅度克隆，深度克隆
+      var arr = [
+        123,
+        [45, 4, 5],
+        {
+          x: [234, 454],
+          y: {
+            a: 1,
+          },
+        },
+      ];
+
+      var newArr = myPlugin.clone(arr, true);
+      console.log(arr[1] === newArr[1]); // false
+      console.log(arr[2] === newArr[2]); // false
+      console.log(arr[2].y === newArr[2].y); // false
+
+    </script>
+  </body>
+</html>
