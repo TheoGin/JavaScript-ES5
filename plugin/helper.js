@@ -147,15 +147,15 @@ this.myPlugin.throttle = function (callback, timeout, immmediate = true) {
   }
 
   var timer;
-   return function () {
-   if (timer) {
-   return;
-   }
-   var args = arguments;  // 利用闭包保存参数数组
+  return function () {
+    if (timer) {
+      return;
+    }
+    var args = arguments;  // 利用闭包保存参数数组
 
-   timer = setTimeout(function () {
-   callback.apply(null, args);
-   timer = null;
-   }, timeout);
-   };
+    timer = setTimeout(function () {
+      callback.apply(null, args);
+      timer = null;
+    }, timeout);
+  };
 };
