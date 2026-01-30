@@ -108,3 +108,54 @@ this.myPlugin.clone = function (data, deep = false) {
     return data; //递归的终止条件
   }
 };
+
+/**
+ * 函数防抖
+ * @param callback
+ * @param timeout
+ * @returns {(function(): void)|*}
+ */
+this.myPlugin.debounce = function (callback, timeout) {
+  var timer; // 不定义在外面，防止污染全局变量
+  return function () {
+    var args = arguments;  // 利用闭包保存参数数组
+    clearTimeout(timer); // 清除之前的计时
+    timer = setTimeout(function () {
+      // 这里的 arguments 是里面函数的，而不是外层的
+      callback.apply(null, args);
+    }, timeout);
+  };
+};
+
+/**
+ * 函数节流
+ * @param callback
+ * @param timeout
+ * @param immmediate
+ * @returns {(function(): void)|*}
+ */
+this.myPlugin.throttle = function (callback, timeout, immmediate = true) {
+  if (immmediate) {
+    var timerstamp;
+    return function () {
+      // !timerstamp：第一次立即执行
+      if (!timerstamp || Date.now() - timerstamp >= timeout) { // 之前没有计时 或 距离上次执行的时间已超过规定的值
+        timerstamp = Date.now(); // 得到的当前时间戳
+        callback.apply(null, arguments);
+      }
+    };
+  }
+
+  var timer;
+   return function () {
+   if (timer) {
+   return;
+   }
+   var args = arguments;  // 利用闭包保存参数数组
+
+   timer = setTimeout(function () {
+   callback.apply(null, args);
+   timer = null;
+   }, timeout);
+   };
+};

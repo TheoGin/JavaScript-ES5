@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+  </head>
+  <body>
+    <script src="../../plugin/helper.js"></script>
+    <script>
+
+      function handleResize(n) {
+        console.log("resize", n);
+      }
+
+      // var throttleResize = myPlugin.throttle(handleResize, 1000);
+      var throttleResize = myPlugin.throttle(handleResize, 1000, false);
+
+      window.onresize = function () {
+        throttleResize(1);
+      };
+
+      // 保证一个时间段内执行一次
+      throttleResize();
+      throttleResize();
+      throttleResize();
+      throttleResize();
+      throttleResize();
+      throttleResize();
+      throttleResize();
+      throttleResize();
+    </script>
+  </body>
+</html>

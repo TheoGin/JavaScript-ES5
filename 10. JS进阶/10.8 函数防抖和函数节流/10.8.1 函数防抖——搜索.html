@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+  </head>
+  <body>
+    <input type="text">
+    <script src="../../plugin/helper.js"></script>
+    <script>
+      function handleResize(clientWidth, clientHeight, thisArg) {
+        console.log("resize", clientWidth, clientHeight, thisArg);
+      }
+
+      var handleInput = function (val, thisArg) {
+        console.log("搜索", val); // 搜索 aaa
+        console.dir(thisArg); // input {...}
+      };
+      let debounceInput = myPlugin.debounce(handleInput, 500);
+      document.querySelector("input").oninput = function () {
+        debounceInput(this.value, this);
+      };
+
+    </script>
+  </body>
+</html>
