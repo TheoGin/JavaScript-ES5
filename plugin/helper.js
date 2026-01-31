@@ -160,25 +160,34 @@ this.myPlugin.throttle = function (callback, timeout, immmediate = true) {
   };
 };
 
+/**
+ * 科里化函数
+ * 在函数式编程中，科里化最重要的作用是把多参函数变为单参函数
+ */
 myPlugin.currying = function (func) {
+  // 得到从下标 1 开始的参数
   let remainArgs = Array.prototype.slice.call(arguments, 1);
 
   const that = this;
 
   return function () {
-    let currentArgs = Array.from(arguments);
+    let currentArgs = Array.from(arguments);  // 当前调用的参数
     let totalArgs = remainArgs.concat(currentArgs);
 
     // func.length 函数的形参个数
     if (totalArgs.length >= func.length) {
+      // 参数数量够了
       return func.apply(null, totalArgs);
     } else {
       // Uncaught TypeError: this.currying is not a function
       // this.currying(func, remainArgs); // this 指向不对，并且不能直接调用
 
+      // 参数数量仍然不够
+
       // 需要把 func 作为第一个参数传过去
       totalArgs.unshift(func);
-      that.currying.apply(that, totalArgs);
+      // that.currying.apply(that, totalArgs); // 调用完的函数需要返回，不然递归后就变成 undefined了！！！
+      return that.currying.apply(that, totalArgs); // 调用完的函数需要返回，不然递归后就变成 undefined了！！！
     }
   };
 };

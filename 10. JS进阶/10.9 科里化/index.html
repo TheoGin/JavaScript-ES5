@@ -8,25 +8,27 @@
   <body>
     <script src="../../plugin/helper.js"></script>
     <script>
+      // currying: Haskell currying
+      // 科里化函数：固定某个函数的一些参数，得到该函数剩余参数的一个新函数，如果没有剩余参数，则调用
 
       function func(x, y, z) {
         return (x + y) * z;
       }
 
-      func(2, 3, 4);
-      func(2, 3, 6);
-      func(2, 5, 6);
-      func(2, 7, 8);
+      // 求：(2+3)*5  (2+5)*6  (2+4)*7  (2+4)*16
+      /* func(2, 3, 5);
+      // func(2, 3, 6);
+      func(2, 4, 7);
+      func(2, 4, 16); */
 
       var g = myPlugin.currying(func, 2);
-      // console.log(g(3, 4));
-      // console.log(g(5, 6));
-      // console.log(g(7, 8));
+      console.log(g(3, 5));
+      console.log(g(5, 6));
+      console.log(g(7, 8));
 
       var y = g(3);
-      console.log(y);
-      y(4);
-      y(6);
+      y(7);
+      y(16);
     </script>
   </body>
 </html>
