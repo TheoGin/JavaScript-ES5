@@ -159,3 +159,26 @@ this.myPlugin.throttle = function (callback, timeout, immmediate = true) {
     }, timeout);
   };
 };
+
+myPlugin.currying = function (func) {
+  let remainArgs = Array.prototype.slice.call(arguments, 1);
+
+  const that = this;
+
+  return function () {
+    let currentArgs = Array.from(arguments);
+    let totalArgs = remainArgs.concat(currentArgs);
+
+    // func.length 函数的形参个数
+    if (totalArgs.length >= func.length) {
+      return func.apply(null, totalArgs);
+    } else {
+      // Uncaught TypeError: this.currying is not a function
+      // this.currying(func, remainArgs); // this 指向不对，并且不能直接调用
+
+      // 需要把 func 作为第一个参数传过去
+      totalArgs.unshift(func);
+      that.currying.apply(that, totalArgs);
+    }
+  };
+};
