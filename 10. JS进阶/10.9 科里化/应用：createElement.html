@@ -4,6 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Title</title>
+    <style>
+      .container {
+        border: 1px solid;
+        padding: 10px;
+      }
+    </style>
   </head>
   <body>
     <!-- <img src="./1.jpg" alt=""> -->
@@ -12,18 +18,20 @@
     <script>
 
       function createElement(container, tagName, props, styles, content) {
-        let element = document.createElement(tagName);
+        var element = document.createElement(tagName);
         container.appendChild(element);
 
-        for (let prop in props) {
-          element[prop] = props[props];
+        for (var prop in props) {
+          element[prop] = props[prop];
         }
 
-        for (let prop in styles) {
+        for (var prop in styles) {
           element.style[prop] = styles[prop];
         }
 
-        element.innerHTML = content;
+        if (content) {
+          element.innerHTML = content;
+        }
       }
 
       /* createElement(document.querySelector(".container"), "div", {}, {
@@ -44,31 +52,31 @@
        textAlign: "center",
        }, "abc"); */
 
-      createElement(
-        document.querySelector(".container"),
-        "img",
-        {
-          src: "./1.jpg",
-        },
-        {
-          border: "1px solid",
-          width: "100px",
-          padding: "10px",
-          background: "#008c8c",
-          color: "#fff",
-          textAlign: "center",
-        });
+      var divDom = document.querySelector(".container");
+      /* createElement(
+       divDom,
+       "img",
+       {
+       src: "1.jpg",
+       },
+       {
+       width: "100px",
+       background: "#008c8c",
+       color: "#fff",
+       textAlign: "center",
+       }); */
 
-      let createByContent = myPlugin.currying(createElement, document.querySelector(".container"), "div", {}, {
+      var createByContent = myPlugin.currying(createElement, divDom, "div", {}, {
         border: "1px solid",
         // height: "100px",
-        padding: "10px",
         background: "#008c8c",
         color: "#fff",
         textAlign: "center",
+        padding: "10px",
       });
       createByContent(123);
       createByContent("aaa");
+      createByContent("abc");
 
     </script>
   </body>
