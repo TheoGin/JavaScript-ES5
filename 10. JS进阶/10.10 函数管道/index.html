@@ -9,8 +9,10 @@
 
     <script src="../../plugin/helper.js"></script>
     <script>
+      // 函数管道：将多个单参函数组合起来，形成一个新的函数，这些函数中，前一个函数的输出，是后一个函数的输入
+
       /**
-       * 字符串 每个单词首字母大写
+       * 将 字符串 中每一个单词首字母大写
        * @param str 字符串
        * @returns {*}
        */
@@ -32,17 +34,22 @@
       function firstLetterLower(str) {
         return str.replace(/\w/, function ($FistLetter) {
           // 没有匹配到的保持不变
-          return $FistLetter.toLowerCase()
-        })
+          return $FistLetter.toLowerCase();
+        });
       }
       // console.log(firstLetterLower(str)); //     mY     fIrST    naME
 
-      function leftLetterLowerExceptFirstLetter(str) {
+      /**
+       * 将字符串中除首字母外的其他字母小写
+       * @param str
+       * @returns {*}
+       */
+      function otherLetterLowerExceptFirstLetter(str) {
         return str.replace(/\b(\w)(\w*)\b/g, function ($word, $1FistLetter, $2LeftLetter) {
           return $1FistLetter + $2LeftLetter.toLowerCase();
         });
       }
-      // console.log(leftLetterLowerExceptFirstLetter(str)); //     My     first    name
+      // console.log(otherLetterLowerExceptFirstLetter(str)); //     My     first    name
 
       /**
        * 去掉字符串中所有的空格
@@ -51,19 +58,26 @@
        */
       function removeSpace(str) {
         // \s  匹配任意空白字符(空格、制表符、换行符等)
-        return str.replace(/\s/g, "");
+        // return str.replace(/\s/g, "");
+        return str.replace(/\s+/g, "");
       }
       // console.log(removeSpace(str)); // MYfIrSTnaME
 
-      var str = "    MY     fIrST    naME";
-      str = everyFirstLetterUpper(str);
-      str = firstLetterLower(str);
-      str = leftLetterLowerExceptFirstLetter(str);
-      str = removeSpace(str);
-      console.log(str); // myFirstName
+      function curryingString(number, str) {
+        return str.substr(0, number)
+      }
 
-      var lowerCamelFn = myPlugin.pipe(everyFirstLetterUpper, firstLetterLower, leftLetterLowerExceptFirstLetter, removeSpace);
-      console.log(lowerCamelFn(str));
+      var str = "    MY     fIrST    naME";
+      /* str = everyFirstLetterUpper(str);
+      str = firstLetterLower(str);
+      str = otherLetterLowerExceptFirstLetter(str);
+      str = removeSpace(str);
+      console.log(str); // myFirstName */
+
+      // var smallCamelFn = myPlugin.pipe(everyFirstLetterUpper, firstLetterLower, otherLetterLowerExceptFirstLetter);
+      var smallCamelFn = myPlugin.pipe(everyFirstLetterUpper, firstLetterLower, otherLetterLowerExceptFirstLetter, removeSpace, myPlugin.currying(curryingString, 10));
+      console.log(smallCamelFn(str));
+      console.log(smallCamelFn("  asdfasf  sdfasf   ggggggg  hGDGF"));
     </script>
   </body>
 </html>

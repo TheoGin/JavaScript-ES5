@@ -192,19 +192,22 @@ myPlugin.currying = function (func) {
   };
 };
 
+/**
+ * 函数管道
+ */
 myPlugin.pipe = function () {
-  args = Array.from(arguments);
+  var args = Array.from(arguments);
 
   // 只能是单参
   return function (value) {
-    for (var i = 0; i < args.length; i++) {
+    /* for (var i = 0; i < args.length; i++) {
       var func = args[i];
       value = func(value);
     }
-    return value;
+    return value; */
 
     return args.reduce(function (acc, func) {
-     return func(acc);
-    }, value)
+      return func(acc);
+    }, value);
   };
 };
