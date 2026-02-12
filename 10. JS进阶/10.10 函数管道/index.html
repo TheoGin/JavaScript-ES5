@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+  </head>
+  <body>
+
+    <script src="../../plugin/helper.js"></script>
+    <script>
+      /**
+       * 字符串 每个单词首字母大写
+       * @param str 字符串
+       * @returns {*}
+       */
+      function everyFirstLetterUpper(str) {
+        // \w  匹配任意单词字符(字母、数字、下划线)，等价于 [a-zA-Z0-9_]
+        // *  匹配前面的子表达式零次或多次
+        return str.replace(/\b(\w)(\w*)\b/g, function ($word, $1FistLetter, $2LeftLetter) {
+          return $1FistLetter.toUpperCase() + $2LeftLetter;
+          // console.log($word, $1FistLetter, $2LeftLetter);
+          /*
+           MY M Y
+           fIrST f IrST
+           naME n aME
+           *  */
+        });
+      }
+      // console.log(everyFirstLetterUpper(str)); //     MY     FIrST    NaME
+
+      function firstLetterLower(str) {
+        return str.replace(/\w/, function ($FistLetter) {
+          // 没有匹配到的保持不变
+          return $FistLetter.toLowerCase()
+        })
+      }
+      // console.log(firstLetterLower(str)); //     mY     fIrST    naME
+
+      function leftLetterLowerExceptFirstLetter(str) {
+        return str.replace(/\b(\w)(\w*)\b/g, function ($word, $1FistLetter, $2LeftLetter) {
+          return $1FistLetter + $2LeftLetter.toLowerCase();
+        });
+      }
+      // console.log(leftLetterLowerExceptFirstLetter(str)); //     My     first    name
+
+      /**
+       * 去掉字符串中所有的空格
+       * @param str 字符串
+       * @returns {*}
+       */
+      function removeSpace(str) {
+        // \s  匹配任意空白字符(空格、制表符、换行符等)
+        return str.replace(/\s/g, "");
+      }
+      // console.log(removeSpace(str)); // MYfIrSTnaME
+
+      var str = "    MY     fIrST    naME";
+      str = everyFirstLetterUpper(str);
+      str = firstLetterLower(str);
+      str = leftLetterLowerExceptFirstLetter(str);
+      str = removeSpace(str);
+      console.log(str); // myFirstName
+
+      var lowerCamelFn = myPlugin.pipe(everyFirstLetterUpper, firstLetterLower, leftLetterLowerExceptFirstLetter, removeSpace);
+      console.log(lowerCamelFn(str));
+    </script>
+  </body>
+</html>
